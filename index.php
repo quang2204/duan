@@ -4,9 +4,13 @@ require_once "model/connact.php";
 require_once "model/product.php";
 require_once "model/singin.php";
 require_once "model/dn.php";
+require_once "model/dx.php";
 require_once 'Controller/product.php';
 require_once 'Controller/dk.php';
+
 $baseurl = 'http://php.test/duanmau/';
+
+
 // print_r($_SESSION['user']['email']);
 // echo 'sdf';
 // Lấy giá trị của biến 'act' từ tham số GET hoặc mặc định là 'index' nếu không tồn tại
@@ -24,10 +28,12 @@ if ($act === 'index') {
     $dk = login();
 } else if ($act === 'login') {
     $dn = dn();
+} else if ($act === 'dx') {
+    $dx = dx();
 }
 
-
 require_once 'view/inc/header.php';
+
 
 // Xây dựng đường dẫn đến file view dựa trên giá trị của 'act'
 $path = "view/{$act}.php";

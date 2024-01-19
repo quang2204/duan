@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+	<?php
+	print_r($_SESSION['users'])
+		?>
 	<title>CozaStore</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -82,26 +85,36 @@
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full">
 						<div class="flex-c-m h-full p-r-25 bor6 gap">
-							<!-- <div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart"
-																																					data-notify="2">
-								<i class="zmdi zmdi-shopping-cart"></i>
-							</div> -->
-							<a href="?act=login"
-																																					class="flex-c-m stext-104 cl0 size-104 bg1 bor2 hov-btn2 p-lr-15 trans-04 ">Đăng
-								nhập</a>
-							<a href="?act=singup" class="flex-c-m stext-104 cl0 size-104  bor2 hov-btn2 p-lr-15 trans-04 "
-																																					style="border: 3px solid #717fe0;">Đăng
-								ký</a>
+							<?php
+							if (!empty($_SESSION['users'])): ?>
+								<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart"
+																																						data-notify="2">
+									<i class="zmdi zmdi-shopping-cart"></i>
+								</div>
+								<div class="flex-c-m h-full p-lr-19">
+									<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
+										<i class="zmdi zmdi-menu"></i>
+									</div>
+								</div>
+							<?php endif; ?>
+							<?php
+							if (empty($_SESSION['users'])): ?>
+								<a href="?act=login"
+																																						class="flex-c-m stext-104 cl0 size-104 bg1 bor2 hov-btn2 p-lr-15 trans-04 ">Đăng
+									nhập</a>
+								<a href="?act=singup" class="flex-c-m stext-104 cl0 size-104  bor2 hov-btn2 p-lr-15 trans-04 "
+																																						style="border: 3px solid #717fe0;">Đăng
+									ký</a>
+							<?php endif; ?>
+							<!-- -->
+
 						</div>
 
-						<div class="flex-c-m h-full p-lr-19">
-							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
-								<i class="zmdi zmdi-menu"></i>
-							</div>
-						</div>
+
 					</div>
-				</nav>
 			</div>
+			</nav>
+		</div>
 		</div>
 
 		<!-- Header Mobile -->
@@ -118,6 +131,7 @@
 																																					data-notify="2">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</div> -->
+
 					<a href="?act=login"
 																																			class="flex-c-m stext-104 cl0 size-104 bg1 bor2 hov-btn2 p-lr-15 trans-04 ">Đăng
 						nhập</a>
@@ -126,7 +140,7 @@
 						ký</a>
 				</div>
 			</div>
-			
+
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
 				<span class="hamburger-box">
@@ -204,7 +218,7 @@
 
 					<li class="p-b-13">
 						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							My Wishlist
+							Đơn hàng
 						</a>
 					</li>
 
@@ -215,8 +229,8 @@
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Đơn hàng
+						<a href="?act=dx" class="stext-102 cl2 hov-cl1 trans-04">
+							Đăng xuất
 						</a>
 					</li>
 

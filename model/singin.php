@@ -7,9 +7,9 @@ function login()
         try {
 
 
-            $checkEmailQuery = "SELECT COUNT(*) FROM taikhoan WHERE email = :email";
+            $checkEmailQuery = "SELECT COUNT(*) FROM taikhoan WHERE user = :user";
             $checkEmailStmt = $GLOBALS['conn']->prepare($checkEmailQuery);
-            $checkEmailStmt->bindParam(':email', $_POST['email']);
+            $checkEmailStmt->bindParam(':user', $_POST['user']);
             $checkEmailStmt->execute();
 
             if ($checkEmailStmt->fetchColumn() > 0) {

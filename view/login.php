@@ -33,6 +33,8 @@
             <input type="text" class="input" placeholder="Enter your Email" required='' name='email'>
         </div>
 
+
+
         <div class="flex-column">
             <label>Password </label>
         </div>
