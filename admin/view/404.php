@@ -57,7 +57,7 @@
 <!-- Content page -->
 
 <div class="containe  mt">
-    <img src="../../view/images/404.png" alt="" style="width: 100%; max-width: 500px;">
+    <img src="../view/images/404.png" alt="" style="width: 100%; max-width: 500px;">
     <br>
 
 </div>

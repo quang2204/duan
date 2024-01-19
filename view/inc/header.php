@@ -17,6 +17,8 @@
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="view/fonts/linearicons-v1.0.0/icon-font.min.css">
 	<!--===============================================================================================-->
+
+	<link rel="stylesheet" type="text/css" href="view/vendor/animsition/css/animsition.min.css" />
 	<link rel="stylesheet" type="text/css" href="view/vendor/animate/animate.css">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="view/vendor/css-hamburgers/hamburgers.min.css">
@@ -46,7 +48,7 @@
 				<nav class="limiter-menu-desktop p-l-45">
 
 					<!-- Logo desktop -->
-					<a href="#" class="logo">
+					<a href="?" class="logo">
 						<img src="view/images/icons/logo-02.png" alt="IMG-LOGO">
 					</a>
 
@@ -62,8 +64,6 @@
 							<li>
 								<a href="?act=product">Cửa hàng</a>
 							</li>
-
-
 
 							<li>
 								<a href="?act=blog">Tin tức</a>
@@ -90,7 +90,7 @@
 																																					class="flex-c-m stext-104 cl0 size-104 bg1 bor2 hov-btn2 p-lr-15 trans-04 ">Đăng
 								nhập</a>
 							<a href="?act=singup" class="flex-c-m stext-104 cl0 size-104  bor2 hov-btn2 p-lr-15 trans-04 "
-																																					style="border: 3px solid ;">Đăng
+																																					style="border: 3px solid #717fe0;">Đăng
 								ký</a>
 						</div>
 
@@ -113,14 +113,20 @@
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
-				<div class="flex-c-m h-full p-r-5">
-					<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart"
-																																			data-notify="2">
-						<i class="zmdi zmdi-shopping-cart"></i>
-					</div>
+				<div class="flex-c-m h-full p-r-25 bor6 gap">
+					<!-- <div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart"
+																																					data-notify="2">
+								<i class="zmdi zmdi-shopping-cart"></i>
+							</div> -->
+					<a href="?act=login"
+																																			class="flex-c-m stext-104 cl0 size-104 bg1 bor2 hov-btn2 p-lr-15 trans-04 ">Đăng
+						nhập</a>
+					<a href="?act=singup" class="flex-c-m stext-104 cl2 size-104  bor2 hov-btn2 p-lr-15 trans-04 "
+																																			style="border: 3px solid #717fe0; ">Đăng
+						ký</a>
 				</div>
 			</div>
-
+			
 			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
 				<span class="hamburger-box">
@@ -134,7 +140,7 @@
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="index.php">Trang chủ</a>
+					<a href="?">Trang chủ</a>
 
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -145,15 +151,15 @@
 					<a href="?act=product">Cửa hàng</a>
 				</li>
 				<li>
-					<a href="blog.php">Tin tức</a>
+					<a href="?act=blog">Tin tức</a>
 				</li>
 
 				<li>
-					<a href="about.php">Về</a>
+					<a href="?act=about">Về</a>
 				</li>
 
 				<li>
-					<a href="contact.php">Liên hệ</a>
+					<a href="?act=contact">Liên hệ</a>
 				</li>
 			</ul>
 		</div>

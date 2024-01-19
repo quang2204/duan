@@ -1,9 +1,16 @@
 <?php
-require_once 'build/inc/header.php';
-$mod = !empty($_GET['mod']) ? $_GET['mod'] : '';
-$act = !empty($_GET['act']) ? $_GET['act'] : 'index';
-$path = "build/pages/{$mod}/{$act}.php";
+
+
+require_once "./model/connact.php";
+require_once './Controller/product.php';
+require_once './model/adproduct.php';
+require_once './model/danhmuc.php';
+require_once 'view/inc/header.php';
+$act = !empty($_GET['act']) ? $_GET['act'] : 'sanpham';
+$path = "{$act}.php";
+$baseurl = 'http://php.test/duanmau/admin/';
 ?>
+
 <nav class="relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all shadow-none duration-250 ease-soft-in rounded-2xl lg:flex-nowrap lg:justify-start none"
                                                                                                                         navbar-main
                                                                                                                         navbar-scroll="true">
@@ -19,7 +26,9 @@ $path = "build/pages/{$mod}/{$act}.php";
                     <?= $act ?>
                 </li>
             </ol>
-            <h6 class="mb-0 font-bold capitalize">Billing</h6>
+            <h6 class="mb-0 font-bold capitalize">
+                <?= $act ?>
+            </h6>
         </nav>
 
         <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
@@ -78,7 +87,7 @@ $path = "build/pages/{$mod}/{$act}.php";
                                                                                                                                                     href="javascript:;">
                                 <div class="flex py-1">
                                     <div class="my-auto">
-                                        <img src="build/assets/img/team-2.jpg"
+                                        <img src="view/assets/img/team-2.jpg"
                                                                                                                                                                 class="inline-flex items-center justify-center mr-4 text-white text-sm h-9 w-9 max-w-none rounded-xl" />
                                     </div>
                                     <div class="flex flex-col justify-center">
@@ -99,7 +108,7 @@ $path = "build/pages/{$mod}/{$act}.php";
                                                                                                                                                     href="javascript:;">
                                 <div class="flex py-1">
                                     <div class="my-auto">
-                                        <img src="build/assets/img/small-logos/logo-spotify.svg"
+                                        <img src="view/assets/img/small-logos/logo-spotify.svg"
                                                                                                                                                                 class="inline-flex items-center justify-center mr-4 text-white text-sm bg-gradient-to-tl from-gray-900 to-slate-800 h-9 w-9 max-w-none rounded-xl" />
                                     </div>
                                     <div class="flex flex-col justify-center">
@@ -159,12 +168,33 @@ $path = "build/pages/{$mod}/{$act}.php";
         </div>
     </div>
 </nav>
+
 <?php
+$ad = getAlldm();
+
+if ($act === 'sanpham') {
+    $product = getAll();
+
+} else if ($act === 'adsp') {
+    $get = addsp();
+} elseif ($act === 'xoa') {
+    $xoa = delete($_GET['id']);
+} elseif ($act === 'sua') {
+    $update = getid($_GET['id']);
+    $sua = updatesp($_GET['id']);
+} elseif ($act === 'xoadanhmuc') {
+    $delete = xoadm();
+} elseif ($act === 'themdm') {
+    $add = adddm();
+} elseif ($act === 'suadm') {
+    $suadm = getiddm($_GET['id']);
+    $updatedm=updatedm($_GET['id']);
+}
 //  echo "File path: $act";
 if (file_exists($path)) {
     require_once $path;
 } else {
-    require_once "build/pages/404.php";
+    require_once "404.php";
 }
-require_once 'build/inc/footer.php';
+require_once 'view/inc/footer.php';
 

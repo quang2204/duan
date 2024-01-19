@@ -1,4 +1,3 @@
-
 <footer class="pt-4">
     <div class="w-full px-6 mx-auto">
         <div class="flex flex-wrap items-center -mx-3 lg:justify-between">
@@ -9,8 +8,7 @@
                         document.write(new Date().getFullYear() + ",");
                     </script>
                     made with <i class="fa fa-heart"></i> by
-                    <a href="https://www.creative-tim.com" class="font-semibold text-slate-700" target="_blank">Creative
-                        Tim</a>
+                    Lương Thành Quang
                     for a better web.
                 </div>
             </div>
@@ -45,12 +43,12 @@
 
 </body>
 <!-- plugin for charts  -->
-<script src=" ./build/assets/js/plugins/chartjs.min.js" async></script>
+<script src=" ./view/assets/js/plugins/chartjs.min.js" async></script>
 <!-- plugin for scrollbar  -->
-<script src=" ./build/assets/js/plugins/perfect-scrollbar.min.js" async></script>
+<script src=" ./view/assets/js/plugins/perfect-scrollbar.min.js" async></script>
 <!-- github button -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- main script file  -->
-<script src=" build/assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script>
+<script src=" view/assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script>
 
 </html>

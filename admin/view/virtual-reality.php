@@ -19,20 +19,20 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="apple-touch-icon" sizes="76x76" href="build/assets/img/apple-icon.png" />
-  <link rel="icon" type="image/png" href="build/assets/img/favicon.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="view/assets/img/apple-icon.png" />
+  <link rel="icon" type="image/png" href="view/assets/img/favicon.png" />
   <title>Soft UI Dashboard Tailwind</title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Nucleo Icons -->
-  <link href=".build/assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href=".build/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href=".view/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href=".view/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Popper -->
   <script src="https://unpkg.com/@popperjs/core@2"></script>
   <!-- Main Styling -->
-  <link href=".build/assets/css/soft-ui-dashboard-tailwind.css?v=1.0.5" rel="stylesheet" />
+  <link href=".view/assets/css/soft-ui-dashboard-tailwind.css?v=1.0.5" rel="stylesheet" />
 
   <!-- Nepcha Analytics (nepcha.com) -->
   <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
@@ -113,7 +113,7 @@
                                                                                                                                         href="javascript:;">
                   <div class="flex py-1">
                     <div class="my-auto">
-                      <img src="build/assets/img/team-2.jpg"
+                      <img src="view/assets/img/team-2.jpg"
                                                                                                                                               class="inline-flex items-center justify-center mr-4 text-white text-sm h-9 w-9 max-w-none rounded-xl" />
                     </div>
                     <div class="flex flex-col justify-center">
@@ -133,7 +133,7 @@
                                                                                                                                         href="javascript:;">
                   <div class="flex py-1">
                     <div class="my-auto">
-                      <img src="build/assets/img/small-logos/logo-spotify.svg"
+                      <img src="view/assets/img/small-logos/logo-spotify.svg"
                                                                                                                                               class="inline-flex items-center justify-center mr-4 text-white text-sm h-9 w-9 max-w-none rounded-xl bg-gradient-to-tl from-gray-900 to-slate-800" />
                     </div>
                     <div class="flex flex-col justify-center">
@@ -191,7 +191,7 @@
   </nav>
 </div>
 <div class="relative mx-4 mt-4 rounded-2xl"
-                                                                                                                        style="background-image: url('build/assets/img/vr-bg.jpg'); background-size: cover">
+                                                                                                                        style="background-image: url('view/assets/img/vr-bg.jpg'); background-size: cover">
   <aside
                                                                                                                           class="fixed inset-y-0 xl:animate-fade-up z-990 xl:scale-60 xl:left-[18%] flex-wrap items-center justify-between block w-full p-0 my-4 xl:ml-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-none max-w-62.5 ease-nav-brand rounded-2xl xl:translate-x-0">
     <div class="h-19.5">
@@ -199,7 +199,7 @@
                                                                                                                               sidenav-close></i>
       <a class="block px-8 py-6 m-0 text-slate-700 text-sm whitespace-nowrap" href="../pages/dashboard.php"
                                                                                                                               target="_blank">
-        <img src="build/assets/img/logo-ct.png" class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8"
+        <img src="view/assets/img/logo-ct.png" class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8"
                                                                                                                                 alt="main_logo" />
         <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">Soft UI Dashboard</span>
       </a>
@@ -463,7 +463,7 @@
       <div class="after:opacity-65 after:bg-gradient-to-tl after:from-slate-600 after:to-slate-300 relative flex min-w-0 flex-col items-center break-words rounded-2xl border-0 border-solid border-blue-900 bg-white bg-clip-border shadow-none after:absolute after:top-0 after:bottom-0 after:left-0 after:z-10 after:block after:h-full after:w-full after:rounded-2xl after:content-['']"
                                                                                                                               sidenav-card>
         <div class="mb-7.5 absolute h-full w-full rounded-2xl bg-cover bg-center"
-                                                                                                                                style="background-image: url('build/assets/img/curved-view/images/white-curved.jpeg')">
+                                                                                                                                style="background-image: url('view/assets/img/curved-view/images/white-curved.jpeg')">
         </div>
         <div class="relative z-20 flex-auto w-full p-4 text-left text-white">
           <div
@@ -496,7 +496,7 @@
             <a href="javascript:;" class="inline-flex items-center justify-center w-12 h-12 text-white transition-all duration-200 border-0 text-base ease-soft-in-out rounded-xl"
                                                                                                                                     data-target="tooltip_trigger"
                                                                                                                                     data-placement="left">
-              <img class="w-full rounded-xl" alt="Image placeholder" src="build/assets/img/team-1.jpg" />
+              <img class="w-full rounded-xl" alt="Image placeholder" src="view/assets/img/team-1.jpg" />
             </a>
             <div data-target="tooltip" class="hidden px-2 py-1 text-white bg-black rounded-lg text-sm">
               My Profile
@@ -548,7 +548,7 @@
                 <h6 class="mb-0 ml-1 uppercase">Cloudy</h6>
               </div>
               <div class="ml-auto">
-                <img class="float-right w-1/2 lg:-mt-6" src="build/assets/img/small-logos/icon-sun-cloud.png"
+                <img class="float-right w-1/2 lg:-mt-6" src="view/assets/img/small-logos/icon-sun-cloud.png"
                                                                                                                                         alt="image sun" />
               </div>
             </div>
@@ -640,7 +640,7 @@
                                                                                                                                         class="relative flex flex-col items-start min-w-0 break-words transition-all duration-200 bg-white border-0 border-transparent after:bg-gradient-to-tl after:from-purple-700 after:to-pink-500 after:opacity-85 shadow-soft-xl ease-soft-out transform3d hover:transform3d-hover rounded-2xl bg-clip-border after:absolute after:top-0 after:bottom-0 after:left-0 after:z-10 after:block after:h-full after:w-full after:rounded-2xl">
                   <div class="cursor-pointer">
                     <div class="absolute mb-7.5 h-full w-full rounded-2xl bg-cover bg-center"
-                                                                                                                                            style="background-image: url('build/assets/img/curved-view/images/curved1.jpg')">
+                                                                                                                                            style="background-image: url('view/assets/img/curved-view/images/curved1.jpg')">
                     </div>
                     <div class="relative z-20 flex-auto p-6 text-white">
                       <h5 class="mb-0 text-white">Some Kind Of Blues</h5>
@@ -695,7 +695,7 @@
                         <a href="javascript:;" class="relative z-20 inline-flex items-center justify-center text-white transition-all duration-200 border-0 rounded-full text-sm ease-soft-in-out h-9 w-9 hover:z-30"
                                                                                                                                                 data-target="tooltip_trigger"
                                                                                                                                                 data-placement="top">
-                          <img class="w-full rounded-full" alt="Image placeholder" src="build/assets/img/team-1.jpg" />
+                          <img class="w-full rounded-full" alt="Image placeholder" src="view/assets/img/team-1.jpg" />
                         </a>
                         <div data-target="tooltip" class="hidden px-2 py-1 text-white bg-black rounded-lg text-sm">
                           2 New Messages
@@ -706,7 +706,7 @@
                         <a href="javascript:;" class="relative z-20 inline-flex items-center justify-center -ml-4 text-white transition-all duration-200 border-0 rounded-full text-sm ease-soft-in-out h-9 w-9 hover:z-30"
                                                                                                                                                 data-target="tooltip_trigger"
                                                                                                                                                 data-placement="top">
-                          <img class="w-full rounded-full" alt="Image placeholder" src="build/assets/img/team-2.jpg" />
+                          <img class="w-full rounded-full" alt="Image placeholder" src="view/assets/img/team-2.jpg" />
                         </a>
                         <div data-target="tooltip" class="hidden px-2 py-1 text-white bg-black rounded-lg text-sm">
                           1 New Message
@@ -717,7 +717,7 @@
                         <a href="javascript:;" class="relative z-20 inline-flex items-center justify-center -ml-4 text-white transition-all duration-200 border-0 rounded-full text-sm ease-soft-in-out h-9 w-9 hover:z-30"
                                                                                                                                                 data-target="tooltip_trigger"
                                                                                                                                                 data-placement="top">
-                          <img class="w-full rounded-full" alt="Image placeholder" src="build/assets/img/team-3.jpg" />
+                          <img class="w-full rounded-full" alt="Image placeholder" src="view/assets/img/team-3.jpg" />
                         </a>
                         <div data-target="tooltip" class="hidden px-2 py-1 text-white bg-black rounded-lg text-sm">
                           13 New Messages
@@ -728,7 +728,7 @@
                         <a href="javascript:;" class="relative z-20 inline-flex items-center justify-center -ml-4 text-white transition-all duration-200 border-0 rounded-full text-sm ease-soft-in-out h-9 w-9 hover:z-30"
                                                                                                                                                 data-target="tooltip_trigger"
                                                                                                                                                 data-placement="top">
-                          <img class="w-full rounded-full" alt="Image placeholder" src="build/assets/img/team-4.jpg" />
+                          <img class="w-full rounded-full" alt="Image placeholder" src="view/assets/img/team-4.jpg" />
                         </a>
                         <div data-target="tooltip" class="hidden px-2 py-1 text-white bg-black rounded-lg text-sm">
                           7 New Messages
@@ -894,10 +894,10 @@
 </div>
 </body>
 <!-- plugin for scrollbar  -->
-<script src="../build/assets/js/plugins/perfect-scrollbar.min.js" async></script>
+<script src="../view/assets/js/plugins/perfect-scrollbar.min.js" async></script>
 <!-- github button -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- main script file  -->
-<script src="../build/assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script>
+<script src="../view/assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script>
 
 </html>

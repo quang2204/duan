@@ -24,45 +24,60 @@
 </style>
 <div class="container">
     <h1 style="text-align: center;margin-bottom: 30px;">Đăng Ký </h1>
-    <form class="form">
+    <form class="form" method="post" action="">
         <div class="flex-column">
             <label>Họ và tên </label>
         </div>
         <div class="inputForm">
-
-            <input type="text" class="input" placeholder="Họ và tên" required=''>
+            <i class="fa fa-user"></i>
+            <input type="text" class="input" placeholder="Họ và tên" name='user' required=''>
         </div>
         <div class="flex-column">
             <label>Email </label>
         </div>
         <div class="inputForm">
             <i class="fa fa-envelope"></i>
-            <input type="email" class="input" placeholder="Email" required=''>
+            <input type="email" class="input" placeholder="Email" name='email' required=''>
         </div>
 
+        <div class="flex-column">
+            <label>Địa chỉ </label>
+        </div>
+        <div class="inputForm">
+            <i class="fa fa-location-arrow"></i>
+            <input type="text" class="input" placeholder="Địa chỉ" name="address" required=''>
+        </div>
+        <div class="flex-column">
+            <label>Số điện thoại </label>
+        </div>
+        <div class="inputForm">
+            <i class="fa fa-phone"></i>
+            <input type="tel" class="input" placeholder="Số điện thoại" name="tel" required=''>
+        </div>
         <div class="flex-column">
             <label>Mật khẩu </label>
         </div>
         <div class="inputForm">
             <i class="fa fa-lock"></i>
-            <input type="password" class="input" id="passwordInput" placeholder="Enter your Password" required="">
-            <div class="i">
-                <i class="fa fa-eye"></i>
+            <input type="password" class="input" id="passwords" name="pass" placeholder="Enter your Password"
+                                                                                                                                    required="">
+            <div class="ii">
+                <i class="fa fa-eye-slash"></i>
             </div>
 
         </div>
 
-        <div class="flex-column">
+        <!-- <div class="flex-column">
             <label>Nhập lại mật khẩu </label>
         </div>
         <div class="inputForm">
             <i class="fa fa-lock"></i>
-            <input type="password" class="input" id="passwordInput" placeholder="Enter your Password" required="">
-            <div class="i">
-                <i class="fa fa-eye"></i>
+            <input type="password" class="input" id="password" placeholder="Enter your Password" required="">
+            <div class="mat">
+                <i class="fa fa-eye-slash"></i>
             </div>
 
-        </div>
+        </div> -->
 
         <button class="button-submit">Đăng ký</button>
         <p class="p">Bạn đã có tài khoản? <a href="?act=login" class="span">Đăng nhập</a>

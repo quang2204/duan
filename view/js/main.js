@@ -290,15 +290,29 @@
     $(".js-modal1").removeClass("show-modal1");
   });
   $(document).ready(function () {
-    $('.i').click(function () {
-        var passwordInput = $('#passwordInput');
+    $(".ii").click(function () {
+        var passwordInput = $("#passwords");
 
-        if (passwordInput.attr('type') === 'password') {
-            passwordInput.attr('type', 'text');
-            
-$(this).html('<i class="fa fa-eye"></i>'); 
+        if (passwordInput.attr("type") === "password") {
+            passwordInput.attr("type", "text");
+
+            $(this).html('<i class="fa fa-eye"></i>');
         } else {
-            passwordInput.attr('type', 'password');
+            passwordInput.attr("type", "password");
+            $(this).html('<i class="fa fa-eye-slash"></i>  ');
+        }
+    });
+});
+$(document).ready(function () {
+    $(".mat").click(function () {
+        var passwordInput = $("#password");
+
+        if (passwordInput.attr("type") === "password") {
+            passwordInput.attr("type", "text");
+
+            $(this).html('<i class="fa fa-eye"></i>');
+        } else {
+            passwordInput.attr("type", "password");
             $(this).html('<i class="fa fa-eye-slash"></i>  ');
         }
     });

@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="76x76" href=" build/assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="../../view/images/icons/favicon.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href=" view/assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../view/images/icons/favicon.png" />
 
     <title>CozaStore</title>
     <!--     Fonts and icons     -->
@@ -13,15 +13,15 @@
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Nucleo Icons -->
-    <link href=" build/assets/css/nucleo-icons.css" rel="stylesheet" />
-    <link href=" build/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link href=" view/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href=" view/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- Popper -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- Main Styling -->
-    <link href=" build/assets/css/soft-ui-dashboard-tailwind.css?v=1.0.5" rel="stylesheet" />
+    <link href=" view/assets/css/soft-ui-dashboard-tailwind.css?v=1.0.5" rel="stylesheet" />
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
-    <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+    <!-- <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script> -->
 </head>
 
 <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
@@ -31,8 +31,8 @@
         <div class="h-19.5">
             <i class="absolute top-0 right-0 hidden p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden"
                                                                                                                                     sidenav-close></i>
-            <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="javascript:;" target="_blank">
-                <img src="../../view/images/icons/favicon.png" class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8 "
+            <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="?" target="_blank">
+                <img src="../view/images/icons/favicon.png" class="inline h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8 "
                                                                                                                                         style=" width:30px"
                                                                                                                                         alt="main_logo" />
                 <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand text-lg">Admin</span>
@@ -74,7 +74,7 @@
 
                 <li class="mt-0.5 w-full">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
-                                                                                                                                            href="?act=tables">
+                                                                                                                                            href="?act=sanpham">
                         <div
                                                                                                                                                 class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +103,7 @@
 
                 <li class="mt-0.5 w-full">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
-                                                                                                                                            href=" ?act=billing">
+                                                                                                                                            href=" ?act=danhmuc">
                         <div
                                                                                                                                                 class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center fill-current stroke-0 text-center xl:p-2.5">
                             <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +132,7 @@
 
                 <li class="mt-0.5 w-full">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
-                                                                                                                                            href="?act=virtual-reality.html">
+                                                                                                                                            href="?act=virtual-reality">
                         <div
                                                                                                                                                 class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg"

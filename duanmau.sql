@@ -83,12 +83,12 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`id`, `name`, `price`, `img`, `mota`, `luotxem`, `iddm`) VALUES
-(7, 'Iphone 14', 123.00, '03POP0TjDjuXonJXI16Omn2-1..v1663720055.jpg', '', 0, 5),
-(8, 'Samsung Galaxy', 321.00, 'Samsung-Galaxy-S22.jpg', '', 0, 5),
-(9, 'Iphone 11', 456.00, 'primary_iphone11.png', '', 0, 5),
-(10, 'Laptop gaming', 654.00, 'asus-tuf-gaming-fx506lhb-i5-hn188w-(54).jpg', '', 0, 6),
-(11, 'Laptop Acer', 789.00, 'laptop-under-500-2048px-acer-1.jpg', '', 0, 6),
-(12, 'Macbook air ', 1000.00, 'macbook-air-m1-2020-gray-600x600.jpg', '', 0, 6);
+(7, 'Iphone 14', 123.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-plus_1__1.png', '', 0, 5),
+(8, 'Iphone 15', 321.00, 'iPhone 15 128GB ', '', 0, 5),
+(9, 'Iphone 13', 456.00, 'primary_iphone11.png', '', 0, 5),
+(10, 'Laptop gaming', 654.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-13_2_.png', '', 0, 6),
+(11, 'Macbook Pro 14 M3 ', 789.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/g/p/gpu.png', '', 0, 6),
+(12, 'Laptop Asus VivoBook  ', 1000.00, 'https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/t/e/text_ng_n_-_2023-06-08t005130.908.png', '', 0, 6);
 
 -- --------------------------------------------------------
 

@@ -24,13 +24,13 @@
 </style>
 <div class="container">
     <h1 style="text-align: center;margin-bottom: 30px;">Đăng Nhập</h1>
-    <form class="form">
+    <form class="form" method="post">
         <div class="flex-column">
             <label>Email </label>
         </div>
         <div class="inputForm">
             <i class="fa fa-envelope"></i>
-            <input type="text" class="input" placeholder="Enter your Email" required=''>
+            <input type="text" class="input" placeholder="Enter your Email" required='' name='email'>
         </div>
 
         <div class="flex-column">
@@ -38,9 +38,10 @@
         </div>
         <div class="inputForm">
             <i class="fa fa-lock"></i>
-            <input type="password" class="input" id="passwordInput" placeholder="Enter your Password" required="">
+            <input type="password" class="input" id="passwordInput" placeholder="Enter your Password" required=""
+                                                                                                                                    name="pass">
             <div class="i">
-                <i class="fa fa-eye"></i>
+                <i class="fa fa-eye-slash"></i>
             </div>
 
         </div>
@@ -52,8 +53,8 @@
             </div>
             <span class="span">Quên mật khẩu</span>
         </div>
-        <button class="button-submit">Sign In</button>
-        <p class="p">Bạn chưa có tài khoản? <a href="?act=singup" class="span">Sign Up</a>
+        <button class="button-submit" type="submit">Sign In</button>
+        <p class="p">Bạn chưa có tài khoản? <a href="?act=singup" class="span">Đăng ký</a>
 
         </p>
         <p class="p line">Or With</p>
@@ -107,20 +108,3 @@
         </div>
     </form>
 </div>
-<!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $('.i').click(function () {
-            var passwordInput = $('#passwordInput');
-
-            if (passwordInput.attr('type') === 'password') {
-                passwordInput.attr('type', 'text');
-                
-$(this).html('<i class="fa fa-eye"></i>'); 
-            } else {
-                passwordInput.attr('type', 'password');
-                $(this).html('<i class="fa fa-eye-slash"></i>  ');
-            }
-        });
-    });
-</script> -->
