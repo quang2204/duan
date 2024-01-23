@@ -50,14 +50,14 @@ $baseurl = 'http://php.test/duanmau/admin/';
             <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
 
                 <li class="flex items-center">
-                    <?php if (empty($_SESSION['users'])): ?>
+                    <?php if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1): ?>
                         <a href="?act=sign-in"
                                                                                                                                                 class="block px-0 py-2 font-semibold transition-all ease-nav-brand text-sm text-slate-500">
                             <i class="fa fa-user sm:mr-1" aria-hidden="true"></i>
                             <span class="hidden sm:inline">Sign In</span>
                         </a>
                     <?php else: ?>
-                        <img src="<?= $_SESSION['users']['img'] ?>" class="rounded-circle w-10 " alt="">
+                        <img src="<?= $_SESSION['users']['img'] ?>" class="rounded-circle w-10 h-9" alt="">
                         <h6 class="px-4 mt-2">
                             <?= $_SESSION['users']['name'] ?>
                         </h6>
