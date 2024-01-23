@@ -30,7 +30,7 @@
         </div>
         <div class="inputForm">
             <i class="fa fa-user"></i>
-            <input type="text" class="input" placeholder="Họ và tên" name='user' required=''>
+            <input type="text" class="input" placeholder="Họ và tên" name='name' required=''>
         </div>
         <div class="flex-column">
             <label>Email </label>

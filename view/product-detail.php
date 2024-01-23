@@ -6,6 +6,7 @@
 	.top {
 		margin-top: 100px;
 	}
+
 </style>
 
 
@@ -17,7 +18,7 @@
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
 
-		<a href="?act=product" class="stext-109 cl8 hov-cl1 trans-04">
+		<a href="?act=product&id=<?= $product['dm_id'] ?>" class="stext-109 cl8 hov-cl1 trans-04">
 			<?= $product['dm_name'] ?>
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
@@ -62,13 +63,13 @@
 								</div>
 							</div> -->
 
-							<div class="item-slick3" data-thumb="<?= $product['sp_img'] ?>">
+							<div class="item-slick3" data-thumb="admin/<?= $product['sp_img'] ?>">
 								<div class="wrap-pic-w pos-relative">
 
-									<img src="<?= $product['sp_img'] ?>" alt="IMG-PRODUCT">
+									<img src="admin/<?= $product['sp_img'] ?>" alt="IMG-PRODUCT">
 
 									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-																																							href="<?= $product['sp_img'] ?>">
+																																							href="admin/<?= $product['sp_img'] ?>">
 										<i class="fa fa-expand"></i>
 									</a>
 								</div>

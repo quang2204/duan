@@ -1,9 +1,3 @@
-<?php
-if (empty($_SESSION['users'])) {
-    header('Location: index.php');
-
-}
-?>
 <style>
     .form {
         margin-top: 30px;
@@ -120,32 +114,28 @@ if (empty($_SESSION['users'])) {
     }
 </style>
 <form class="form" method="post" enctype="multipart/form-data">
-    <p class="title">Thêm sản phẩm </p>
+    <p class="title">Sửa sản phẩm </p>
+    <input type="hidden" name='id' value='<?= $_GET['id'] ?>'>
     <label>
         <span>Tên sản phẩm</span>
-        <input required="" placeholder="" type="text" class="input" name="name">
+        <input required="" type="text" class="input" name="name" value="<?= $update['name'] ?>">
 
     </label>
 
+    <label>
+        <span>Email</span>
+        <input required="" placeholder="" type="email" class="input" min="0" name="price"
+                                                                                                                                value="<?= $update['email'] ?>">
+
+    </label>
     <label>
         <span>Giá</span>
-        <input required="" placeholder="" type="number" class="input" min="0" name="price">
+        <input required="" placeholder="" type="text" class="input" min="0" name="price"
+                                                                                                                                value="<?= $update['email'] ?>">
 
     </label>
-
-    <label>
-        <p>Ảnh</p>
-        <input required="" placeholder="" type="file" class="input" name="img">
-    </label>
-
-
-    <label>
-        <span>Mô tả</span>
-        <textarea class="input" name="motact">
-        </textarea>
-
-    </label>
-    <label>
+    
+    <!-- <label>
         <span>Loại</span>
         <select name="iddm" id="" class="input">
             <?php foreach ($ad as $key => $value): ?>
@@ -155,6 +145,6 @@ if (empty($_SESSION['users'])) {
             <?php endforeach; ?>
 
         </select>
-    </label>
+    </label> -->
     <button class="submit" type="submit">Thêm</button>
 </form>

@@ -1,4 +1,4 @@
-// sidenav transition-burger
+// Sidenav chuyển tiếp-Burger
 
 var sidenav = document.querySelector("aside");
 var sidenav_trigger = document.querySelector("[sidenav-trigger]");

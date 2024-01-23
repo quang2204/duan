@@ -7,7 +7,7 @@ function getAll()
 {
     try {
         // Câu truy vấn thường
-        $sql = "SELECT * FROM sanpham";
+        $sql = "SELECT * FROM sanpham ";
 
         // Chuẩn bị câu truy vấn
         $stmt = $GLOBALS['conn']->prepare($sql);
@@ -25,28 +25,30 @@ function getAll()
         die;
     }
 }
-function getAlldm()
+
+function getidsps($iddm)
 {
     try {
-        // Câu truy vấn thường
-        $sql = "SELECT * FROM danhmuc";
+        $sql = "SELECT * FROM sanpham WHERE iddm = :iddm";
 
-        // Chuẩn bị câu truy vấn
         $stmt = $GLOBALS['conn']->prepare($sql);
 
-        // Thực hiện câu truy vấn
+        $stmt->bindParam(":iddm", $iddm, PDO::PARAM_INT); // Giả sử IDDM là một số nguyên, điều chỉnh nếu cần thiết
+
         $stmt->execute();
 
-        // fetchAll để lấy ra dữ liệu
-        // PDO::FETCH_ASSOC - chuyển đổi dữ liệu lấy ra thành kiểu mảng column_name => value
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
         return $result;
-    } catch (Exception $e) {
-        echo 'ERROR: ' . $e->getMessage();
-        die;
+
+    } catch (PDOException $e) {
+        // Handle the exception, logging or displaying an error message
+        die("Error: " . $e->getMessage());
     }
 }
+
+// Example of usage:
+
+
 function getByID($id)
 {
     try {
@@ -58,7 +60,8 @@ function getByID($id)
             sp.luotxem as sp_luotxem, 
             sp.mota as sp_mota, 
             sp.motact as sp_motact, 
-            dm.name as dm_name
+            dm.name as dm_name,
+            dm.id as dm_id
         FROM sanpham as sp
         INNER JOIN danhmuc as dm
             ON dm.id = sp.iddm

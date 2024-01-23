@@ -2,15 +2,10 @@
   .header-v3 .wrap-menu-desktop {
     background-color: black;
   }
-  .con {
-		margin-top: 100px;
-	}
 
-	@media (max-width: 983px) {
-		.con {
-			margin-top: 0px;
-		}
-	}
+  .con {
+    margin-top: 100px;
+  }
 </style>
 
 

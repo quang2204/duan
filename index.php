@@ -5,8 +5,9 @@ require_once "model/product.php";
 require_once "model/singin.php";
 require_once "model/dn.php";
 require_once "model/dx.php";
+require_once "model/danhmuc.php";
 require_once 'Controller/product.php';
-require_once 'Controller/dk.php';
+// require_once 'Controller/dk.php';
 
 $baseurl = 'http://php.test/duanmau/';
 
@@ -19,10 +20,16 @@ $act = !empty($_GET['act']) ? $_GET['act'] : 'index';
 if ($act === 'index') {
     $data = getAll();
 } else if ($act === 'product-detail') {
-    $product = getByID($_GET['id']);
-} else if ($act === 'product') {
-    $datas = getAll();
 
+    $product = productXemChiTietSanPham($_GET['id']);
+
+} else if ($act === 'product') {
+    if (isset($_GET['id'])) {
+        $id = getidsps($_GET['id']);
+    } else {
+        // If no category ID is provided, get all products
+        $id = getAll();
+    }
     $dm = getAlldm();
 } else if ($act === 'singup') {
     $dk = login();

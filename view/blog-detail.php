@@ -6,12 +6,6 @@
 	.con {
 		margin-top: 100px;
 	}
-
-	@media (max-width: 983px) {
-		.con {
-			margin-top: 0px;
-		}
-	}
 </style>
 
 

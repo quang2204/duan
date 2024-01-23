@@ -1,10 +1,15 @@
 <?php
 
-
-require_once "./model/connact.php";
+session_start();
+require_once "../model/connact.php";
 require_once './Controller/product.php';
 require_once './model/adproduct.php';
 require_once './model/danhmuc.php';
+require_once './model/user.php';
+require_once '../model/singin.php';
+require_once '../model/dn.php';
+require_once '../model/dx.php';
+require_once '../model/phantrang.php';
 require_once 'view/inc/header.php';
 $act = !empty($_GET['act']) ? $_GET['act'] : 'sanpham';
 $path = "view/{$act}.php";
@@ -43,16 +48,22 @@ $baseurl = 'http://php.test/duanmau/admin/';
                 </div>
             </div>
             <ul class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
-                <!-- online builder btn  -->
-                <!-- <li class="flex items-center">
-                <a class="inline-block px-8 py-2 mb-0 mr-4 font-bold text-center uppercase align-middle transition-all bg-transparent border border-solid rounded-lg shadow-none cursor-pointer leading-pro border-fuchsia-500 ease-soft-in text-xs hover:scale-102 active:shadow-soft-xs text-fuchsia-500 hover:border-fuchsia-500 active:bg-fuchsia-500 active:hover:text-fuchsia-500 hover:text-fuchsia-500 tracking-tight-soft hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
-              </li> -->
+
                 <li class="flex items-center">
-                    <a href="?act=sign-in"
-                                                                                                                                            class="block px-0 py-2 font-semibold transition-all ease-nav-brand text-sm text-slate-500">
-                        <i class="fa fa-user sm:mr-1" aria-hidden="true"></i>
-                        <span class="hidden sm:inline">Sign In</span>
-                    </a>
+                    <?php if (empty($_SESSION['users'])): ?>
+                        <a href="?act=sign-in"
+                                                                                                                                                class="block px-0 py-2 font-semibold transition-all ease-nav-brand text-sm text-slate-500">
+                            <i class="fa fa-user sm:mr-1" aria-hidden="true"></i>
+                            <span class="hidden sm:inline">Sign In</span>
+                        </a>
+                    <?php else: ?>
+                        <img src="<?= $_SESSION['users']['img'] ?>" class="rounded-circle w-10 " alt="">
+                        <h6 class="px-4 mt-2">
+                            <?= $_SESSION['users']['name'] ?>
+                        </h6>
+
+                    <?php endif; ?>
+
                 </li>
                 <li class="flex items-center pl-4 xl:hidden">
                     <a href="javascript:;" class="block p-0 transition-all ease-nav-brand text-sm text-slate-500"
@@ -76,7 +87,7 @@ $baseurl = 'http://php.test/duanmau/admin/';
                     <p class="hidden transform-dropdown-show"></p>
                     <a dropdown-trigger href="javascript:;" class="block p-0 transition-all text-sm ease-nav-brand text-slate-500"
                                                                                                                                             aria-expanded="false">
-                        <i class="cursor-pointer fa fa-bell" aria-hidden="true"></i>
+                        <i class="cursor-pointer fa fa-bell text-xl" aria-hidden="true"></i>
                     </a>
 
                     <ul dropdown-menu
@@ -174,27 +185,47 @@ $ad = getAlldm();
 
 if ($act === 'sanpham') {
     $product = getAll();
+    $productData = getProductsPerPage($currentPage, $productsPerPage);
 
 } else if ($act === 'adsp') {
     $get = addsp();
+
 } elseif ($act === 'xoa') {
     $xoa = delete($_GET['id']);
+
 } elseif ($act === 'sua') {
     $update = getid($_GET['id']);
     $sua = updatesp($_GET['id']);
+
 } elseif ($act === 'xoadanhmuc') {
     $delete = xoadm();
+
 } elseif ($act === 'themdm') {
     $add = adddm();
+
 } elseif ($act === 'suadm') {
     $suadm = getiddm($_GET['id']);
-    $updatedm=updatedm($_GET['id']);
+    $updatedm = updatedm($_GET['id']);
+
+} else if ($act === 'sign-up') {
+    $dk = login();
+} else if ($act === 'sign-in') {
+    $dn = dn();
+} else if ($act === 'dx') {
+    $dx = dx();
+} else if ($act === 'user') {
+    $user = getAlluser();
+} elseif ($act === 'xoauser') {
+    $xoa = xoauser($_GET['id']);
 }
+
 //  echo "File path: $act";
 if (file_exists($path)) {
     require_once $path;
 } else {
-    require_once "404.php";
+    require_once "view/404.php";
 }
+
+
 require_once 'view/inc/footer.php';
 

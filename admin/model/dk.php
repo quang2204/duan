@@ -1,5 +1,6 @@
 <?php
-function login()
+
+function dk()
 {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -17,8 +18,8 @@ function login()
             $checkEmailStmt->execute();
 
             if ($checkEmailStmt->fetchColumn() > 0) {
-                echo '<script>promt("Đã có tên này");</script>';
-                // Handle the invalid login (e.g., redirect, display an error message)
+                echo '<script>alert("Sai tên hoặc mật khẩu");</script>';
+                //Xử lý đăng nhập không hợp lệ (ví dụ: chuyển hướng, hiển thị thông báo lỗi)
             } else {
                 $insertUserQuery = 'INSERT INTO taikhoan (name, pass, email, address, tel)
                                     VALUES (:name, :pass, :email, :address, :tel)';
@@ -36,7 +37,7 @@ function login()
                 $insertUserStmt->execute();
 
                 // Redirect to login page if needed
-                header("Location: ?act=sign-in");
+                header("Location: http://php.test/duanmau/?act=login");
             }
         } catch (Exception $e) {
             die($e->getMessage());
@@ -44,6 +45,7 @@ function login()
     } else {
 
         echo '<script>promt("Đăng ký không thành công");</script>';
+
 
     }
 

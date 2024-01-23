@@ -42,13 +42,9 @@
 </main>
 
 </body>
-<!-- plugin for charts  -->
-<script src=" ./view/assets/js/plugins/chartjs.min.js" async></script>
-<!-- plugin for scrollbar  -->
+
 <script src=" ./view/assets/js/plugins/perfect-scrollbar.min.js" async></script>
-<!-- github button -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- main script file  -->
+
 <script src=" view/assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script>
 
 </html>

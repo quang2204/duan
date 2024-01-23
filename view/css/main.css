@@ -299,7 +299,6 @@ Pargrap: 18px/1.6 '', Arial, sans-serif;
 }
 
 .header-v3 .wrap-menu-desktop {
-  background-color: black;
   top: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -318,7 +317,7 @@ Pargrap: 18px/1.6 '', Arial, sans-serif;
   display: -ms-flexbox;
   display: flex;
   align-items: center;
-  background-color: black;
+  background-color: transparent;
 }
 
 

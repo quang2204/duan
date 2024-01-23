@@ -1,199 +1,10 @@
-<style>
-  .noselect {
-    width: 90px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    background: red;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
-    background: #e62222;
+<?php
+if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
+  header('Location: ?act=sign-in');
+  exit();
+}
+?>
 
-  }
-
-  p {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-
-  .noselect,
-  .noselect span {
-    transition: 200ms;
-  }
-
-  .noselect .text {
-    transform: translateX(5px);
-    color: white;
-    font-weight: bold;
-  }
-
-  .noselect .icon {
-    position: absolute;
-    transform: translateX(54px);
-    height: 40px;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .noselect svg {
-    width: 15px;
-    fill: #eee;
-  }
-
-  .noselect:hover {
-    background: #ff3636;
-  }
-
-  .noselect:hover .text {
-    color: transparent;
-  }
-
-  .noselect:hover .icon {
-    width: 150px;
-    border-left: none;
-    transform: translateX(-30px);
-  }
-
-  .noselect:focus {
-    outline: none;
-  }
-
-  .noselect:active .icon svg {
-    transform: scale(0.8);
-  }
-
-  .c-button {
-    color: #000;
-    font-weight: 700;
-    font-size: 14px;
-    text-decoration: none;
-    padding: 0.4em 1.7em;
-    cursor: pointer;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    z-index: 1;
-    border-radius: 10px;
-  }
-
-  .c-button--gooey {
-    color: #000;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border: 4px solid #ffe500;
-    border-radius: 5px;
-    position: relative;
-    transition: all 700ms ease;
-  }
-
-  .c-button--gooey .c-button__blobs {
-    height: 100%;
-    filter: url(#goo);
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: -3px;
-    right: -1px;
-    z-index: -1;
-  }
-
-  .c-button--gooey .c-button__blobs div {
-    background-color: #ffe500;
-    width: 34%;
-    height: 100%;
-    border-radius: 100%;
-    position: absolute;
-    transform: scale(1.4) translateY(125%) translateZ(0);
-    transition: all 700ms ease;
-  }
-
-  .c-button--gooey .c-button__blobs div:nth-child(1) {
-    left: -5%;
-  }
-
-  .c-button--gooey .c-button__blobs div:nth-child(2) {
-    left: 30%;
-    transition-delay: 60ms;
-  }
-
-  .c-button--gooey .c-button__blobs div:nth-child(3) {
-    left: 66%;
-    transition-delay: 25ms;
-  }
-
-  .c-button--gooey:hover {
-    color: #fff;
-  }
-
-  .c-button--gooey:hover .c-button__blobs div {
-    transform: scale(1.4) translateY(0) translateZ(0);
-  }
-
-  .button {
-    position: relative;
-    width: 170px;
-    height: 40px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    border: 1px solid #34974d;
-    background-color: #3aa856;
-  }
-
-  .button,
-  .button__icon,
-  .button__text {
-    transition: all 0.3s;
-  }
-
-  .button .button__text {
-    transform: translateX(5px);
-    color: #fff;
-    font-weight: 600;
-  }
-
-  .button .button__icon {
-    position: absolute;
-    transform: translateX(129px);
-    height: 100%;
-    width: 39px;
-    background-color: #34974d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .button .svg {
-    width: 30px;
-    stroke: #fff;
-  }
-
-  .button:hover {
-    background: #34974d;
-  }
-
-  .button:hover .button__text {
-    color: transparent;
-  }
-
-  .button:hover .button__icon {
-    width: 148px;
-    transform: translateX(10px);
-  }
-
-  .button:active .button__icon {
-    background-color: #2e8644;
-  }
-
-  .button:active {
-    border: 1px solid #2e8644;
-  }
-</style>
 <div class="w-full px-6 py-6 mx-auto">
   <!-- table 1 -->
 
@@ -206,7 +17,7 @@
     justify-content: space-between;">
           <h6>Sản phẩm </h6>
           <a href="?act=adsp">
-            <button type="button" class="button">
+            <button type="button" class="button" style="background-color: #3aa856;">
               <span class="button__text">Thêm sản phẩm </span>
               <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round"
                                                                                                                                         stroke-linecap="round"
@@ -221,7 +32,7 @@
           </a>
 
         </div>
-        <div class="flex-auto px-0 pt-0 pb-2">
+        <div class="flex-auto px-0 pt-0 ">
           <div class="p-0 overflow-x-auto">
             <table class="table-auto items-center w-full mb-0 align-top border-gray-200 text-slate-500">
               <thead class="align-bottom">
@@ -251,19 +62,15 @@
               </thead>
               <tbody>
                 <?php
-                foreach ($product as $key => $value): ?>
+                foreach ($products as $key => $value): ?>
                   <tr>
-
-                    <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent ">
+                    <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                       <div class="flex px-2 py-1">
-                        <div>
-
-                        </div>
+                        <div></div>
                         <div class="flex flex-col justify-center">
                           <h6 class="mb-0 text-sm leading-normal">
-                            <?= $key++ ?>
+                            <?= $key + 1 ?>
                           </h6>
-
                         </div>
                       </div>
                     </td>
@@ -271,27 +78,23 @@
                       <p class="mb-0 text-xs font-semibold leading-tight">
                         <?= $value['name'] ?>
                       </p>
-
                     </td>
                     <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                       <p class="mb-0 text-xs font-semibold leading-tight">
-                        <?= $value['price'] ?>0.000 đ
+                        <?= number_format($value['price'], 0, ',', '.') ?> đ
                       </p>
-
                     </td>
                     <td
                                                                                                                                             class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                       <img src="<?= $value['img'] ?>" style="width: 80px;" alt="">
                     </td>
-                    <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent ">
-                      <textarea class="mb-0 text-xs font-semibold w-full leading-tight" style="height: 120px;">
-                                                                              <?= $value['motact'] ?>
-                                                                            </textarea>
-
+                    <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                      <textarea class="mb-0 text-xs font-semibold w-full leading-tight">
+                                          <?= $value['motact'] ?>
+                                      </textarea>
                     </td>
-                    <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent" style="display: flex;
-                    justify-content: center;
-                  align-items: center; gap:20px;padding: 52px 0;">
+                    <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"
+                                                                                                                                            style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 52px 0;">
                       <a href="<?= $GLOBALS['baseurl'] ?>?act=sua&id=<?= $value['id'] ?>">
                         <button class="c-button c-button--gooey"> Sửa
                           <div class="c-button__blobs">
@@ -301,8 +104,6 @@
                           </div>
                         </button>
                       </a>
-
-
                       <a href="<?= $GLOBALS['baseurl'] ?>?act=xoa&id=<?= $value['id'] ?>">
                         <button class="noselect"
                                                                                                                                                 onclick="return confirm('Bạn có muốn xóa sản phẩm <?= $value['name'] ?>')">
@@ -316,10 +117,10 @@
                           </span>
                         </button>
                       </a>
-
                     </td>
                   </tr>
                 <?php endforeach; ?>
+
 
 
               </tbody>
@@ -334,3 +135,22 @@
 
 
 </div>
+<ul class="pagination" >
+  <?php if ($currentPage > 1): ?>
+    <li class="page-item">
+      <a class="page-link" href="?trang=<?= $currentPage - 1; ?>">Prev</a>
+    </li>
+  <?php endif; ?>
+  <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+    <li class="page-item <?= ($i == $currentPage) ? 'active' : ''; ?>">
+      <a class="page-link" href="?trang=<?= $i; ?>">
+        <?= $i; ?>
+      </a>
+    </li>
+  <?php endfor; ?>
+  <?php if ($currentPage < $totalPages): ?>
+    <li class="page-item">
+      <a class="page-link" href="?trang=<?= $currentPage + 1; ?>">Next</a>
+    </li>
+  <?php endif; ?>
+</ul>

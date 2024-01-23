@@ -5,6 +5,7 @@ require_once "./model/connact.php";
 require_once './Controller/product.php';
 require_once './model/adproduct.php';
 require_once './model/danhmuc.php';
+require_once './model/dk.';
 require_once 'view/inc/header.php';
 $act = !empty($_GET['act']) ? $_GET['act'] : 'sanpham';
 $path = "{$act}.php";
@@ -189,6 +190,9 @@ if ($act === 'sanpham') {
 } elseif ($act === 'suadm') {
     $suadm = getiddm($_GET['id']);
     $updatedm=updatedm($_GET['id']);
+}
+elseif ($act==='sign-up') {
+    $signup=dk();
 }
 //  echo "File path: $act";
 if (file_exists($path)) {

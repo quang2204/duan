@@ -3,7 +3,15 @@
 require_once "./model/product.php";
 
 
-function productHienThiDanhSach()
+function productXemChiTietSanPham($id)
 {
-    $data = getAll();
+    $product = getByID($id);
+
+    if (empty($product)) {
+        require_once "view/404.php";
+
+        exit();
+    }
+
+    require_once 'view/product-detail.php';
 }

@@ -1,30 +1,27 @@
 <?php
 
-function dn()
+function dnadmin()
 {
     try {
         if (!empty($_POST)) {
             $pass = $_POST['pass'];
 
+            // Thực hiện truy vấn để kiểm tra xem người dùng có tồn tại không
             $query = "SELECT * FROM taikhoan WHERE name = :name AND pass = :pass ";
             $stmt = $GLOBALS['conn']->prepare($query);
             $stmt->bindParam(':name', $_POST['name']);
             $stmt->bindParam(':pass', $pass);
 
 
-
             $stmt->execute();
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
             // Sử dụng phương thức rowCount() để kiểm tra số dòng kết quả
             if ($stmt->rowCount() > 0) {
-
                 // Người dùng tồn tại trong cơ sở dữ liệu
                 $_SESSION['users'] = [
-                    'name' => $result['name'],
-                    'pass' => $result['pass'],
-                    'img' => $result['img'],
-                    'role' => $result['role']
+                    'name' => $_POST['name'],
+                    'pass' => $pass,
+
                 ];
 
                 header('Location: index.php');

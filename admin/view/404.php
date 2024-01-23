@@ -11,7 +11,7 @@
     }
 
     .cuoi {
-        margin-bottom: 160px;
+        margin-bottom: 180px;
 
     }
 
@@ -26,7 +26,7 @@
     }
 
     .mt {
-        margin-top: 130px;
+        margin-top: 170px;
     }
 
     .btnn {

@@ -6,12 +6,6 @@
 	.con {
 		margin-top: 100px;
 	}
-
-	@media (max-width: 983px) {
-		.con {
-			margin-top: 0px;
-		}
-	}
 </style>
 
 
@@ -21,12 +15,15 @@
 	<div class="container con">
 		<div class="flex-w flex-sb-m p-b-52">
 			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
-				<button class="stext-106 cl6 hov1 trans-04 m-r-32 m-tb-5 how-active1">
-					Tất cả sản phẩm
-				</button>
+				<a href="?act=product">
+					<button class="stext-106 cl6 hov1 trans-04 m-r-32 m-tb-5 how-active1">
+						Tất cả sản phẩm
+					</button>
+				</a>
+
 				<?php foreach ($dm as $key => $value): ?>
-					<a href="#">
-						<button class="stext-106 cl6 hov1  trans-04 m-r-32 m-tb-5 how-active1">
+					<a href="?act=product&id=<?= $value['id'] ?>">
+						<button class="stext-106 cl6 hov1 <?= $value['name'] ? 'active' : ''; ?> trans-04 m-r-32 m-tb-5 how-active1">
 							<?= $value['name'] ?>
 						</button>
 					</a>
@@ -58,7 +55,7 @@
 					Lọc
 				</div>
 
-				<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+				<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search ">
 					<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
 					<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
 					Tìm kiếm
@@ -66,14 +63,14 @@
 			</div>
 
 			<!-- Search product -->
-			<div class="dis-none panel-search w-full p-t-10 p-b-15">
-				<div class="bor8 dis-flex p-l-15">
+			<div class="dis-none panel-search w-full p-t-10 p-b-15 ">
+				<div class=" dis-flex p-l-15 bor2 bor10">
 					<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
 
-					<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product"
-																																			placeholder="Search">
+					<input class="mtext-107 cl2 size-114 plh2 p-r-15 align-content-center" type="text" name="search-product" placeholder="Search"
+																																			style=" margin-top: 17px;">
 				</div>
 			</div>
 
@@ -95,7 +92,7 @@
 
 							<li class="p-b-6">
 								<a href="#" class="filter-link stext-106 trans-04">
-									Price: Low to High
+									Giá: thấp đến cao
 								</a>
 							</li>
 
@@ -231,7 +228,7 @@
 		</div>
 
 		<div class="row isotope-grid">
-			<?php foreach ($datas as $key => $value): ?>
+			<?php foreach ($id as $key => $value): ?>
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
 					<div class="block2">

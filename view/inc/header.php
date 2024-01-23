@@ -84,25 +84,40 @@
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full">
-						<div class="flex-c-m h-full p-r-25 bor6 gap">
+						<div class="flex-c-m h-full  gap">
 							<?php
 							if (!empty($_SESSION['users'])): ?>
 								<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart"
 																																						data-notify="2">
 									<i class="zmdi zmdi-shopping-cart"></i>
 								</div>
+
 								<div class="flex-c-m h-full p-lr-19">
-									<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
-										<i class="zmdi zmdi-menu"></i>
+
+
+									<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-18 js-show-sidebar ">
+										<?php
+										if (!empty($_SESSION['users']['img'])):
+											?>
+											<img src="<?= $_SESSION['users']['img'] ?>" alt="" style="  width: 40px; height:40px;border-radius: 50%;
+												">
+										<?php else: ?>
+											<img src="view\images\avatar-01.jpg" alt="" style="  width: 40px; height:40px;border-radius: 50%;
+	">
+										<?php endif; ?>
+
+
 									</div>
+
 								</div>
+
 							<?php endif; ?>
 							<?php
 							if (empty($_SESSION['users'])): ?>
 								<a href="?act=login"
 																																						class="flex-c-m stext-104 cl0 size-104 bg1 bor2 hov-btn2 p-lr-15 trans-04 ">Đăng
 									nhập</a>
-								<a href="?act=singup" class="flex-c-m stext-104 cl0 size-104  bor2 hov-btn2 p-lr-15 trans-04 "
+								<a href="?act=singup" class="flex-c-m stext-104 cl0 size-104  bor2 hov-btn2 p-lr-15 trans-04 m-r-10"
 																																						style="border: 3px solid #717fe0;">Đăng
 									ký</a>
 							<?php endif; ?>
@@ -121,27 +136,33 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="index.php"><img src="view/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+				<a href="index.html"><img src="view/images/icons/logo-01.png" alt="IMG-LOGO" /></a>
 			</div>
 
 			<!-- Icon header -->
-			<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
-				<div class="flex-c-m h-full p-r-25 bor6 gap">
-					<!-- <div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart"
-																																					data-notify="2">
-								<i class="zmdi zmdi-shopping-cart"></i>
-							</div> -->
-
-					<a href="?act=login"
-																																			class="flex-c-m stext-104 cl0 size-104 bg1 bor2 hov-btn2 p-lr-15 trans-04 ">Đăng
-						nhập</a>
-					<a href="?act=singup" class="flex-c-m stext-104 cl2 size-104  bor2 hov-btn2 p-lr-15 trans-04 "
-																																			style="border: 3px solid #717fe0; ">Đăng
-						ký</a>
+			<?php
+			if (!empty($_SESSION['users'])): ?>
+				<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
+					<div class="flex-c-m h-full p-r-5">
+						<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart"
+																																				data-notify="2">
+							<i class="zmdi zmdi-shopping-cart"></i>
+						</div>
+					</div>
 				</div>
-			</div>
 
-			<!-- Button show menu -->
+				<!-- Button show menu -->
+
+			<?php endif; ?>
+
+			<?php
+			if (empty($_SESSION['users'])): ?>
+				<a href="?act=login" class="flex-c-m stext-104 cl0 size-104 bg1 bor2 hov-btn2 p-lr-15 trans-04 m-r-10">Đăng
+					nhập</a>
+				<a href="?act=singup" class="flex-c-m stext-104  size-104  bor2 hov-btn2 p-lr-15 trans-04 "
+																																		style="border: 3px solid #717fe0;color: #717fe0;">Đăng
+					ký</a>
+			<?php endif; ?>
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
 				<span class="hamburger-box">
 					<span class="hamburger-inner"></span>
@@ -175,6 +196,16 @@
 				<li>
 					<a href="?act=contact">Liên hệ</a>
 				</li>
+				<?php
+				if (!empty($_SESSION['users'])): ?>
+					<li>
+						<a href="?act=dx">Đăng xuất</a>
+					</li>
+					<li>
+						<a href="#">Đơn hàng</a>
+					</li>
+				<?php endif; ?>
+
 			</ul>
 		</div>
 
@@ -212,7 +243,7 @@
 				<ul class="sidebar-link w-full">
 					<li class="p-b-13">
 						<a href="index.php" class="stext-102 cl2 hov-cl1 trans-04">
-							Trang chủ
+							Tài khoản
 						</a>
 					</li>
 

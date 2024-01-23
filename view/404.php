@@ -3,6 +3,19 @@
         background-color: black;
     }
 
+    a {
+        text-decoration: none;
+
+    }
+
+    .con {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        ;
+    }
+
     .containe {
 
         display: flex;
@@ -37,15 +50,16 @@
 </style>
 
 <!-- Content page -->
+<div class="con ">
+    <div class="containe  ">
+        <img src="view/images/404.png" alt="" style="width: 100%; max-width: 500px;">
+        <br>
 
-<div class="containe m-t-150 m-b-30">
-    <img src="view/images/404.png" alt="" style="width: 100%; max-width: 500px;">
-    <br>
-
-</div>
-<div class="containe m-b-20">
-    <a href="?" class="btnn">Tham khảo sản phẩm </a>
-</div>
-<div class="containe m-b-60 ">
-    <a href="tel:0949699222" class="cl2 ltext-107">Gọi 0949699222 miễn phí</a>
+    </div>
+    <div class="containe m-b-20">
+        <a href="?" class="btnn">Tham khảo sản phẩm </a>
+    </div>
+    <div class="containe m-b-264 ">
+        <a href="tel:0949699222" class="cl2 ltext-107">Gọi 0949699222 miễn phí</a>
+    </div>
 </div>
