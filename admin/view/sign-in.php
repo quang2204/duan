@@ -1,4 +1,3 @@
-
 <main class="mt-12 transition-all duration-200 ease-soft-in-out ">
   <section>
     <div class="relative flex items-center p-0 overflow-hidden bg-center bg-cover min-h-75-screen">
@@ -15,12 +14,12 @@
               </div>
               <div class="flex-auto p-6">
                 <form method="post">
-                  <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Name</label>
+                  <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Email</label>
                   <div class="mb-4">
                     <input type="text" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
-                                                                                                                                            placeholder="Name"
+                                                                                                                                            placeholder="Email"
                                                                                                                                             required
-                                                                                                                                            name="name" />
+                                                                                                                                            name="email" />
                   </div>
                   <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Password</label>
                   <div class="mb-4">
@@ -60,7 +59,7 @@
             <div
                                                                                                                                     class="absolute top-0 hidden w-3/5 h-full -mr-32 overflow-hidden -skew-x-10 -right-40 rounded-bl-xl md:block">
               <div class="absolute inset-x-0 top-0 z-0 h-full -ml-16 bg-cover skew-x-10"
-                                                                                                                                      style="background-image: url('view/assets/img/curved-images/curved6.jpg')">
+                                                                                                                                      style="background-image: url('./assets/img/curved-images/curved6.jpg')">
               </div>
             </div>
           </div>

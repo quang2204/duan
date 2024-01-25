@@ -7,7 +7,7 @@
 <main class="mt-0 transition-all duration-200 ease-soft-in-out">
   <section class="min-h-screen mb-32">
     <div class="relative flex items-start pt-12 pb-56 m-4 overflow-hidden bg-center bg-cover min-h-50-screen rounded-xl"
-                                                                                                                            style="background-image: url('view/assets/img/curved-images/curved14.jpg')">
+                                                                                                                            style="background-image: url('./assets/img/curved-images/curved14.jpg')">
       <span
                                                                                                                               class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 opacity-60"></span>
       <div class="container z-10">
@@ -125,6 +125,11 @@
                                                                                                                                           placeholder="Số điện thoại"
                                                                                                                                           name='address'
                                                                                                                                           required='' />
+                </div>
+                <div class="mb-4 ">
+                  <select name="role" id="role" style="display:none;">
+                    <option value="1">Admin</option>
+                  </select>
                 </div>
                 <div class="min-h-6 pl-6.92 mb-0.5 block">
                   <input id="terms" class="w-4.92 h-4.92 ease-soft -ml-6.92 rounded-1.4 checked:bg-gradient-to-tl checked:from-gray-900 checked:to-slate-800 after:text-xxs after:font-awesome after:duration-250 after:ease-soft-in-out duration-250 relative float-left mt-1 cursor-pointer appearance-none border border-solid border-slate-200 bg-white bg-contain bg-center bg-no-repeat align-top transition-all after:absolute after:flex after:h-full after:w-full after:items-center after:justify-center after:text-white after:opacity-0 after:transition-all after:content-['\f00c'] checked:border-0 checked:border-transparent checked:bg-transparent checked:after:opacity-100"

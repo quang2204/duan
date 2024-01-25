@@ -6,9 +6,9 @@ function dn()
         if (!empty($_POST)) {
             $pass = $_POST['pass'];
 
-            $query = "SELECT * FROM taikhoan WHERE name = :name AND pass = :pass ";
+            $query = "SELECT * FROM taikhoan WHERE email = :email AND pass = :pass ";
             $stmt = $GLOBALS['conn']->prepare($query);
-            $stmt->bindParam(':name', $_POST['name']);
+            $stmt->bindParam(':email', $_POST['email']);
             $stmt->bindParam(':pass', $pass);
 
 

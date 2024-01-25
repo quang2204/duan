@@ -1,44 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<?php
-	print_r($_SESSION['users'])
-		?>
-	<title>CozaStore</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="view/images/icons/favicon.png" />
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="view/vendor/bootstrap/css/bootstrap.min.css">
-	<!--===============================================================================================-->
 
-	<link rel="stylesheet" type="text/css" href="view/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="view/fonts/iconic/css/material-design-iconic-font.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="view/fonts/linearicons-v1.0.0/icon-font.min.css">
-	<!--===============================================================================================-->
+<title>CozaStore</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="view/images/icons/favicon.png" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="view/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
 
-	<link rel="stylesheet" type="text/css" href="view/vendor/animsition/css/animsition.min.css" />
-	<link rel="stylesheet" type="text/css" href="view/vendor/animate/animate.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="view/vendor/css-hamburgers/hamburgers.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="view/vendor/select2/select2.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="view/vendor/daterangepicker/daterangepicker.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="view/vendor/slick/slick.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="view/vendor/MagnificPopup/magnific-popup.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="view/vendor/perfect-scrollbar/perfect-scrollbar.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="view/css/util.css">
-	<link rel="stylesheet" type="text/css" href="view/css/main.css">
-	<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="view/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="view/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="view/fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+
+<link rel="stylesheet" type="text/css" href="view/vendor/animsition/css/animsition.min.css" />
+<link rel="stylesheet" type="text/css" href="view/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="view/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="view/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="view/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="view/vendor/slick/slick.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="view/vendor/MagnificPopup/magnific-popup.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="view/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="view/css/util.css">
+<link rel="stylesheet" type="text/css" href="view/css/main.css">
+<!--===============================================================================================-->
 </head>
 
 <body class="animsition">

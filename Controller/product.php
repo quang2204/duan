@@ -15,3 +15,10 @@ function productXemChiTietSanPham($id)
 
     require_once 'view/product-detail.php';
 }
+function productidsp($iddm)
+{
+    $products = getidm($iddm);
+
+
+    require_once 'view/product-detail.php';
+}

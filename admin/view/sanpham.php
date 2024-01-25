@@ -45,12 +45,17 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                     Tên </th>
                   <th
                                                                                                                                           class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Loại</th>
+                  <th
+                                                                                                                                          class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                     Giá</th>
 
                   <th
                                                                                                                                           class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                     Ảnh</th>
-
+                  <th
+                                                                                                                                          class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Lượt xem</th>
                   <th
                                                                                                                                           class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                     Mô tả chi tiết</th>
@@ -63,62 +68,73 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
               <tbody>
                 <?php
                 foreach ($products as $key => $value): ?>
-                    <tr>
-                      <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                        <div class="flex px-2 py-1">
-                          <div></div>
-                          <div class="flex flex-col justify-center">
-                            <h6 class="mb-0 text-sm leading-normal">
-                              <?= $key + 1 ?>
-                            </h6>
-                          </div>
+                  <tr>
+                    <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                      <div class="flex px-2 py-1">
+                        <div></div>
+                        <div class="flex flex-col justify-center">
+                          <h6 class="mb-0 text-sm leading-normal">
+                            <?= $key + 1 ?>
+                          </h6>
                         </div>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 text-xs font-semibold leading-tight">
-                          <?= $value['name'] ?>
-                        </p>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                        <p class="mb-0 text-xs font-semibold leading-tight">
-                          <?= number_format($value['price'], 0, ',', '.') ?> đ
-                        </p>
-                      </td>
-                      <td
-                                                                                                                                              class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                        <img src="<?= $value['img'] ?>" style="width: 80px;" alt="">
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                        <textarea class="mb-0 text-xs font-semibold w-full leading-tight">
-                                            <?= $value['motact'] ?>
-                                        </textarea>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"
-                                                                                                                                              style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 52px 0;">
-                        <a href="<?= $GLOBALS['baseurl'] ?>?act=sua&id=<?= $value['id'] ?>">
-                          <button class="c-button c-button--gooey"> Sửa
-                            <div class="c-button__blobs">
-                              <div></div>
-                              <div></div>
-                              <div></div>
-                            </div>
-                          </button>
-                        </a>
-                        <a href="<?= $GLOBALS['baseurl'] ?>?act=xoa&id=<?= $value['id'] ?>">
-                          <button class="noselect"
-                                                                                                                                                  onclick="return confirm('Bạn có muốn xóa sản phẩm <?= $value['name'] ?>')">
-                            <span class="text">Delete</span>
-                            <span class="icon">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path
-                                                                                                                                                        d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
-                                </path>
-                              </svg>
-                            </span>
-                          </button>
-                        </a>
-                      </td>
-                    </tr>
+                      </div>
+                    </td>
+                    <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                      <p class="mb-0 text-xs font-semibold leading-tight">
+                        <?= $value['sp_name'] ?>
+                      </p>
+                    </td>
+                    <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                      <p class="mb-0 text-xs font-semibold leading-tight">
+                        <?= $value['dm_name'] ?>
+                      </p>
+                    </td>
+                    <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                      <p class="mb-0 text-xs font-semibold leading-tight">
+                        <?= number_format($value['sp_price'], 0, ',', '.') ?> đ
+                      </p>
+                    </td>
+                    <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                      <p class="mb-0 text-xs font-semibold leading-tight">
+                        <?= $value['sp_luotxem'] ?>
+                      </p>
+                    </td>
+                    <td
+                                                                                                                                            class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                      <img src="<?= $value['sp_img'] ?>" style="width: 80px;" alt="">
+                    </td>
+                    <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent readonly">
+                      <textarea class="mb-0 text-xs font-semibold w-full leading-tight" readonly>
+                                                    <?= $value['sp_motact'] ?>
+                                                </textarea>
+                    </td>
+
+                    <td class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"
+                                                                                                                                            style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 52px 0;">
+                      <a href="?act=sua&id=<?= $value['sp_id'] ?>">
+                        <button class="c-button c-button--gooey"> Sửa
+                          <div class="c-button__blobs">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        </button>
+                      </a>
+                      <a href="?act=xoa&id=<?= $value['sp_id'] ?>">
+                        <button class="noselect"
+                                                                                                                                                onclick="return confirm('Bạn có muốn xóa sản phẩm <?= $value['sp_name'] ?>')">
+                          <span class="text">Delete</span>
+                          <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                              <path
+                                                                                                                                                      d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+                              </path>
+                            </svg>
+                          </span>
+                        </button>
+                      </a>
+                    </td>
+                  </tr>
                 <?php endforeach; ?>
 
 
@@ -135,22 +151,22 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 
 
 </div>
-<ul class="pagination" >
+<ul class="pagination d-flex justify-content-center">
   <?php if ($currentPage > 1): ?>
-      <li class="page-item">
-        <a class="page-link" href="?trang=<?= $currentPage - 1; ?>">Prev</a>
-      </li>
+    <li class="page-item">
+      <a class="page-link" href="?trang=<?= $currentPage - 1; ?>">Prev</a>
+    </li>
   <?php endif; ?>
   <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-      <li class="page-item <?= ($i == $currentPage) ? 'active' : ''; ?>">
-        <a class="page-link" href="?trang=<?= $i; ?>">
-          <?= $i; ?>
-        </a>
-      </li>
+    <li class="page-item <?= ($i == $currentPage) ? 'active' : ''; ?>">
+      <a class="page-link" href="?trang=<?= $i; ?>">
+        <?= $i; ?>
+      </a>
+    </li>
   <?php endfor; ?>
   <?php if ($currentPage < $totalPages): ?>
-      <li class="page-item">
-        <a class="page-link" href="?trang=<?= $currentPage + 1; ?>">Next</a>
-      </li>
+    <li class="page-item">
+      <a class="page-link" href="?trang=<?= $currentPage + 1; ?>">Next</a>
+    </li>
   <?php endif; ?>
 </ul>

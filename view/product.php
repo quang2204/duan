@@ -23,29 +23,14 @@
 
 				<?php foreach ($dm as $key => $value): ?>
 					<a href="?act=product&id=<?= $value['id'] ?>">
-						<button class="stext-106 cl6 hov1 <?= $value['name'] ? 'active' : ''; ?> trans-04 m-r-32 m-tb-5 how-active1">
+						<button
+																																				class="stext-106 cl6 hov1 <?= $value['name'] ? 'active' : ''; ?> trans-04 m-r-32 m-tb-5 how-active1">
 							<?= $value['name'] ?>
 						</button>
 					</a>
 
 				<?php endforeach; ?>
 
-
-				<!-- <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Đàn ông
-				</button> -->
-				<!-- 
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Cái túi
-				</button>
-
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Đôi giày
-				</button>
-
-				<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-					Đồng hồ
-				</button> -->
 			</div>
 
 			<div class="flex-w flex-c-m m-tb-10">
@@ -243,13 +228,13 @@
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href=" <?= $GLOBALS['baseurl'] ?>?act=product-detail&id=<?= $value['id'] ?>"
+								<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
 																																						class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									<?= $value['name'] ?>
 								</a>
 
 								<span class="stext-105 cl3">
-									<?= $value['price'] ?>0.000đ
+									<?= number_format($value['price'], 0, ',', '.') ?> đ
 								</span>
 							</div>
 

@@ -12,22 +12,25 @@ require_once 'Controller/product.php';
 $baseurl = 'http://php.test/duanmau/';
 
 
-// print_r($_SESSION['user']['email']);
-// echo 'sdf';
-// Lấy giá trị của biến 'act' từ tham số GET hoặc mặc định là 'index' nếu không tồn tại
+
+
 $act = !empty($_GET['act']) ? $_GET['act'] : 'index';
 // Nếu $act là 'index', thì gọi hàm proht() để lấy giá trị sản phẩm
 if ($act === 'index') {
     $data = getAll();
 } else if ($act === 'product-detail') {
 
-    $product = productXemChiTietSanPham($_GET['id']);
+    $productId = $_GET['id'];
+    $productDetail = getByID($productId);
+
+ 
+    $id = getidsp($_GET['iddm'], $productId);
 
 } else if ($act === 'product') {
     if (isset($_GET['id'])) {
-        $id = getidsps($_GET['id']);
+        $id = getidm($_GET['id']);
     } else {
-        // If no category ID is provided, get all products
+        
         $id = getAll();
     }
     $dm = getAlldm();

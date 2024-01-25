@@ -3,13 +3,16 @@
 session_start();
 require_once "../model/connact.php";
 require_once './Controller/product.php';
+require_once './Controller/dk.php';
 require_once './model/adproduct.php';
+require_once './model/product.php';
 require_once './model/danhmuc.php';
 require_once './model/user.php';
 require_once '../model/singin.php';
 require_once '../model/dn.php';
 require_once '../model/dx.php';
-require_once '../model/phantrang.php';
+require_once './model/dk.php';
+require_once './model/phantrang.php';
 require_once 'view/inc/header.php';
 $act = !empty($_GET['act']) ? $_GET['act'] : 'sanpham';
 $path = "view/{$act}.php";
@@ -57,7 +60,15 @@ $baseurl = 'http://php.test/duanmau/admin/';
                             <span class="hidden sm:inline">Sign In</span>
                         </a>
                     <?php else: ?>
-                        <img src="<?= $_SESSION['users']['img'] ?>" class="rounded-circle w-10 h-9" alt="">
+                        <?php
+                        if (!empty($_SESSION['users']['img'])):
+                            ?>
+                            <img src="<?= $_SESSION['users']['img'] ?>" alt="" style="  width: 40px; height:40px;border-radius: 50%;
+                                                ">
+                        <?php else: ?>
+                            <img src="../view\images\avatar-01.jpg" alt="" style="  width: 40px; height:40px;border-radius: 50%;
+    ">
+                        <?php endif; ?>
                         <h6 class="px-4 mt-2">
                             <?= $_SESSION['users']['name'] ?>
                         </h6>
@@ -184,7 +195,7 @@ $baseurl = 'http://php.test/duanmau/admin/';
 $ad = getAlldm();
 
 if ($act === 'sanpham') {
-    $product = getAll();
+
     $productData = getProductsPerPage($currentPage, $productsPerPage);
 
 } else if ($act === 'adsp') {
@@ -208,7 +219,7 @@ if ($act === 'sanpham') {
     $updatedm = updatedm($_GET['id']);
 
 } else if ($act === 'sign-up') {
-    $dk = login();
+    $dk = dkadmin();
 } else if ($act === 'sign-in') {
     $dn = dn();
 } else if ($act === 'dx') {

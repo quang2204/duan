@@ -20,6 +20,7 @@ function getAll()
         die;
     }
 }
+
 function getid()
 {
     try {
@@ -43,17 +44,13 @@ function xoasp()
 {
     try {
         $sql = "DELETE FROM sanpham WHERE id = :id;";
-
         $stmt = $GLOBALS['conn']->prepare($sql);
-
         $stmt->bindParam(":id", $_GET['id']);
-
         $stmt->execute();
     } catch (Exception $e) {
         echo 'ERROR: ' . $e->getMessage();
         die;
     }
-
 }
 function updatesp()
 {

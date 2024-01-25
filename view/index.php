@@ -1,4 +1,3 @@
-
 <?php
 $baseurl = 'http://php.test/duanmau/';
 ?>
@@ -182,13 +181,13 @@ $baseurl = 'http://php.test/duanmau/';
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="<?= $baseurl ?>?act=product-detail&id=<?= $value['id'] ?>"
+								<a href="?act=product-detail&id=<?= $value['id'] ?> &iddm=<?= $value['iddm'] ?>"
 																																						class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									<?= $value['name'] ?>
 								</a>
 
 								<span class="stext-105 cl3">
-									<?= $value['price'] ?>0.000 đ
+									<?= number_format($value['price'], 0, ',', '.') ?> đ
 
 								</span>
 							</div>

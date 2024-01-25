@@ -6,7 +6,6 @@
 	.top {
 		margin-top: 100px;
 	}
-
 </style>
 
 
@@ -18,13 +17,13 @@
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
 
-		<a href="?act=product&id=<?= $product['dm_id'] ?>" class="stext-109 cl8 hov-cl1 trans-04">
-			<?= $product['dm_name'] ?>
+		<a href="?act=product&id=<?= $productDetail['dm_id'] ?>" class="stext-109 cl8 hov-cl1 trans-04">
+			<?= $productDetail['dm_name'] ?>
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
 
 		<span class="stext-109 cl4">
-			<?= $product['sp_name'] ?>
+			<?= $productDetail['sp_name'] ?>
 		</span>
 	</div>
 </div>
@@ -63,13 +62,13 @@
 								</div>
 							</div> -->
 
-							<div class="item-slick3" data-thumb="admin/<?= $product['sp_img'] ?>">
+							<div class="item-slick3" data-thumb="admin/<?= $productDetail['sp_img'] ?>">
 								<div class="wrap-pic-w pos-relative">
 
-									<img src="admin/<?= $product['sp_img'] ?>" alt="IMG-PRODUCT">
+									<img src="admin/<?= $productDetail['sp_img'] ?>" alt="IMG-PRODUCT">
 
 									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-																																							href="admin/<?= $product['sp_img'] ?>">
+																																							href="admin/<?= $productDetail['sp_img'] ?>">
 										<i class="fa fa-expand"></i>
 									</a>
 								</div>
@@ -82,12 +81,12 @@
 			<div class="col-md-6 col-lg-5 p-b-30">
 				<div class="p-r-50 p-t-5 p-lr-0-lg">
 					<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-						<?= $product['sp_name'] ?>
+						<?= $productDetail['sp_name'] ?>
 
 					</h4>
 
 					<span class="mtext-106 cl2">
-						<?= $product['sp_price'] ?>0.000đ
+						<?= $productDetail['sp_price'] ?>0.000đ
 
 					</span>
 
@@ -210,7 +209,7 @@
 					<div class="tab-pane fade show active" id="description" role="tabpanel">
 						<div class="how-pos2 p-lr-15-md">
 							<li class="stext-102 cl6" style="  white-space: pre-line;">
-								<?= $product['sp_motact'] ?>
+								<?= $productDetail['sp_motact'] ?>
 							</li>
 						</div>
 					</div>
@@ -373,7 +372,7 @@
 
 		<span class="stext-107 cl6 p-lr-25">
 			Thể loại:
-			<?= $product['dm_name'] ?>
+			<?= $productDetail['dm_name'] ?>
 		</span>
 	</div>
 </section>
@@ -391,291 +390,50 @@
 		<!-- Slide2 -->
 		<div class="wrap-slick2">
 			<div class="slick2">
-				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="view/images/product-01.jpg" alt="IMG-PRODUCT">
 
-							<a href="#"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								xem
-							</a>
-						</div>
+				<?php foreach ($id as $product): ?>
 
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href=" ?act=product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Esprit Ruffle Shirt
-								</a>
+					<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+						<div class="block2">
+							<div class="block2-pic hov-img0">
+								<img src="admin/<?= $product['img'] ?>" alt="IMG-PRODUCT">
 
-								<span class="stext-105 cl3">
-									$16.64
-								</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="view/images/icons/icon-heart-01.png"
-																																							alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="view/images/icons/icon-heart-02.png"
-																																							alt="ICON">
+								<a href="#"
+																																						class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+									xem
 								</a>
 							</div>
-						</div>
-					</div>
-				</div>
 
-				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="view/images/product-02.jpg" alt="IMG-PRODUCT">
+							<div class="block2-txt flex-w flex-t p-t-14">
+								<div class="block2-txt-child1 flex-col-l ">
+									<a href=" ?act=product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										<?= $product['name'] ?>
+									</a>
 
-							<a href="#"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								xem
-							</a>
-						</div>
+									<span class="stext-105 cl3">
+										<?= $product['price'] ?>
 
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href=" ?act=product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Herschel supply
-								</a>
+									</span>
+								</div>
 
-								<span class="stext-105 cl3">
-									$35.31
-								</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="view/images/icons/icon-heart-01.png"
-																																							alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="view/images/icons/icon-heart-02.png"
-																																							alt="ICON">
-								</a>
+								<div class="block2-txt-child2 flex-r p-t-3">
+									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+										<img class="icon-heart1 dis-block trans-04" src="view/images/icons/icon-heart-01.png"
+																																								alt="ICON">
+										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="view/images/icons/icon-heart-02.png"
+																																								alt="ICON">
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				<?php endforeach; ?>
 
-				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="view/images/product-03.jpg" alt="IMG-PRODUCT">
 
-							<a href="#"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								xem
-							</a>
-						</div>
+				<!-- -->
 
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href=" ?act=product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Only Check Trouser
-								</a>
 
-								<span class="stext-105 cl3">
-									$25.50
-								</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="view/images/icons/icon-heart-01.png"
-																																							alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="view/images/icons/icon-heart-02.png"
-																																							alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="view/images/product-04.jpg" alt="IMG-PRODUCT">
-
-							<a href="#"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								xem
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href=" ?act=product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Classic Trench Coat
-								</a>
-
-								<span class="stext-105 cl3">
-									$75.00
-								</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="view/images/icons/icon-heart-01.png"
-																																							alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="view/images/icons/icon-heart-02.png"
-																																							alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="view/images/product-05.jpg" alt="IMG-PRODUCT">
-
-							<a href="#"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								xem
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href=" ?act=product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Front Pocket Jumper
-								</a>
-
-								<span class="stext-105 cl3">
-									$34.75
-								</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="view/images/icons/icon-heart-01.png"
-																																							alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="view/images/icons/icon-heart-02.png"
-																																							alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="view/images/product-06.jpg" alt="IMG-PRODUCT">
-
-							<a href="#"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								xem
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href=" ?act=product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Vintage Inspired Classic
-								</a>
-
-								<span class="stext-105 cl3">
-									$93.20
-								</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="view/images/icons/icon-heart-01.png"
-																																							alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="view/images/icons/icon-heart-02.png"
-																																							alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="view/images/product-07.jpg" alt="IMG-PRODUCT">
-
-							<a href="#"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								xem
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href=" ?act=product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Shirt in Stretch Cotton
-								</a>
-
-								<span class="stext-105 cl3">
-									$52.66
-								</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="view/images/icons/icon-heart-01.png"
-																																							alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="view/images/icons/icon-heart-02.png"
-																																							alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="view/images/product-08.jpg" alt="IMG-PRODUCT">
-
-							<a href="#"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								xem
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href=" ?act=product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Pieces Metallic Printed
-								</a>
-
-								<span class="stext-105 cl3">
-									$18.96
-								</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-									<img class="icon-heart1 dis-block trans-04" src="view/images/icons/icon-heart-01.png"
-																																							alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="view/images/icons/icon-heart-02.png"
-																																							alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
-
-
-
-<!--===============================================================================================-->

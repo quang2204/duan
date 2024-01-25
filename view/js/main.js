@@ -25,7 +25,7 @@
   $(".animsition").animsition({
     inClass: "fade-in",
     outClass: "fade-out",
-    inDuration: 1500,
+    inDuration: 1000,
     outDuration: 800,
     linkElement: ".animsition-link",
     loading: true,
@@ -291,30 +291,30 @@
   });
   $(document).ready(function () {
     $(".ii").click(function () {
-        var passwordInput = $("#passwords");
+      var passwordInput = $("#passwords");
 
-        if (passwordInput.attr("type") === "password") {
-            passwordInput.attr("type", "text");
+      if (passwordInput.attr("type") === "password") {
+        passwordInput.attr("type", "text");
 
-            $(this).html('<i class="fa fa-eye"></i>');
-        } else {
-            passwordInput.attr("type", "password");
-            $(this).html('<i class="fa fa-eye-slash"></i>  ');
-        }
+        $(this).html('<i class="fa fa-eye"></i>');
+      } else {
+        passwordInput.attr("type", "password");
+        $(this).html('<i class="fa fa-eye-slash"></i>  ');
+      }
     });
-});
-$(document).ready(function () {
+  });
+  $(document).ready(function () {
     $(".mat").click(function () {
-        var passwordInput = $("#password");
+      var passwordInput = $("#password");
 
-        if (passwordInput.attr("type") === "password") {
-            passwordInput.attr("type", "text");
+      if (passwordInput.attr("type") === "password") {
+        passwordInput.attr("type", "text");
 
-            $(this).html('<i class="fa fa-eye"></i>');
-        } else {
-            passwordInput.attr("type", "password");
-            $(this).html('<i class="fa fa-eye-slash"></i>  ');
-        }
+        $(this).html('<i class="fa fa-eye"></i>');
+      } else {
+        passwordInput.attr("type", "password");
+        $(this).html('<i class="fa fa-eye-slash"></i>  ');
+      }
     });
-});
+  });
 })(jQuery);

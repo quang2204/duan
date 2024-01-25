@@ -64,7 +64,10 @@
             <div class="ii">
                 <i class="fa fa-eye-slash"></i>
             </div>
-
+            <select name="role" id="role" style="display:none;">
+                <option value="0">User</option>
+               
+            </select>
         </div>
 
         <!-- <div class="flex-column">

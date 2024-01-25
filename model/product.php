@@ -26,14 +26,14 @@ function getAll()
     }
 }
 
-function getidsps($iddm)
+function getidm($iddm)
 {
     try {
         $sql = "SELECT * FROM sanpham WHERE iddm = :iddm";
 
         $stmt = $GLOBALS['conn']->prepare($sql);
 
-        $stmt->bindParam(":iddm", $iddm, PDO::PARAM_INT); // Giả sử IDDM là một số nguyên, điều chỉnh nếu cần thiết
+        $stmt->bindParam(":iddm", $iddm);
 
         $stmt->execute();
 
@@ -47,8 +47,26 @@ function getidsps($iddm)
 }
 
 // Example of usage:
+function getidsp($iddm, $id)
+{
+    try {
+        $sql = "SELECT * FROM sanpham WHERE iddm = :iddm and id!=:id ";
 
+        $stmt = $GLOBALS['conn']->prepare($sql);
 
+        $stmt->bindParam(":iddm", $iddm);
+        $stmt->bindParam(":id", $id);
+
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+
+    } catch (PDOException $e) {
+        // Handle the exception, logging or displaying an error message
+        die("Error: " . $e->getMessage());
+    }
+}
 function getByID($id)
 {
     try {

@@ -30,7 +30,7 @@
         </div>
         <div class="inputForm">
             <i class="fa fa-envelope"></i>
-            <input type="text" class="input" placeholder="Enter your Email" required='' name='name'>
+            <input type="text" class="input" placeholder="Enter your Email" required='' name='email'>
         </div>
 
 
@@ -40,9 +40,9 @@
         </div>
         <div class="inputForm">
             <i class="fa fa-lock"></i>
-            <input type="password" class="input" id="passwordInput" placeholder="Enter your Password" required=""
-                                                                                                                                    name="pass">
-            <div class="i">
+            <input type="password" class="input" id="passwords" name="pass" placeholder="Enter your Password"
+                                                                                                                                    required="">
+            <div class="ii">
                 <i class="fa fa-eye-slash"></i>
             </div>
 
