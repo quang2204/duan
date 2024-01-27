@@ -4,6 +4,7 @@ session_start();
 require_once "../model/connact.php";
 require_once './Controller/product.php';
 require_once './Controller/dk.php';
+require_once './Controller/dm.php';
 require_once './model/adproduct.php';
 require_once './model/product.php';
 require_once './model/danhmuc.php';
@@ -11,6 +12,7 @@ require_once './model/user.php';
 require_once '../model/singin.php';
 require_once '../model/dn.php';
 require_once '../model/dx.php';
+require_once '../model/function.php';
 require_once './model/dk.php';
 require_once './model/phantrang.php';
 require_once 'view/inc/header.php';
@@ -209,7 +211,7 @@ if ($act === 'sanpham') {
     $sua = updatesp($_GET['id']);
 
 } elseif ($act === 'xoadanhmuc') {
-    $delete = xoadm();
+    $delete = deletedm($_GET['id']);
 
 } elseif ($act === 'themdm') {
     $add = adddm();

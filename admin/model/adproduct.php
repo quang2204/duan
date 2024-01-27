@@ -30,7 +30,7 @@ function addsp()
             $stmt->bindParam(':img', $pathSaveDB);
 
             $stmt->execute();
-            header('Location: http://php.test/duanmau/admin/index.php?act=sanpham'); // replace success.php with your success page
+            header('Location:?act=sanpham'); // replace success.php with your success page
 
             ob_end_clean();
             return $stmt;

@@ -1,25 +1,12 @@
 <?php
 
-// Ở trong Model thì tôi sẽ lấy dữ liệu
 
-// getAll để lấy toàn bộ dữ liệu sản phẩm có trong CSDL
-function getAll()
+function getAll($limit)
 {
     try {
         // Câu truy vấn thường
-        $sql = "SELECT * FROM sanpham ";
-
-        // Chuẩn bị câu truy vấn
-        $stmt = $GLOBALS['conn']->prepare($sql);
-
-        // Thực hiện câu truy vấn
-        $stmt->execute();
-
-        // fetchAll để lấy ra dữ liệu
-        // PDO::FETCH_ASSOC - chuyển đổi dữ liệu lấy ra thành kiểu mảng column_name => value
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
+        $sql = "SELECT * FROM sanpham ORDER BY id DESC LIMIT " . $limit;
+        return select($sql);
     } catch (Exception $e) {
         echo 'ERROR: ' . $e->getMessage();
         die;
@@ -94,6 +81,39 @@ function getByID($id)
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $result;
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+}
+function desc()
+{
+    try {
+        // Câu truy vấn thường
+        $sql = "SELECT * FROM sanpham ORDER BY price DESC  " ;
+        return select($sql);
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+}
+function acs()
+{
+    try {
+        // Câu truy vấn thường
+        $sql = "SELECT * FROM sanpham ORDER BY price ASC  " ;
+        return select($sql);
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+}
+function getAlls()
+{
+    try {
+        // Câu truy vấn thường
+        $sql = "SELECT * FROM sanpham  ";
+        return select($sql);
     } catch (Exception $e) {
         echo 'ERROR: ' . $e->getMessage();
         die;

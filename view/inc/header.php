@@ -55,26 +55,26 @@
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu ">
-							<li>
+							<li class="<?= ($act === 'index') ? 'active' : '' ?>">
 
-								<a href="?">Trang chủ</a>
+								<a href="?" class="<?= ($act === 'index') ? 'active' : '' ?>">Trang chủ</a>
 
 							</li>
 
 							<li>
-								<a href="?act=product">Cửa hàng</a>
+								<a href="?act=product"  class="<?= ($act === 'product') ? 'active' : '' ?>">Cửa hàng</a>
+							</li>
+
+							<li >
+								<a href="?act=blog" class="<?= ($act === 'blog') ? 'active' : '' ?>">Tin tức</a>
+							</li>
+
+							<li >
+								<a href="?act=about" class="<?= ($act === 'about') ? 'active' : '' ?>">Về</a>
 							</li>
 
 							<li>
-								<a href="?act=blog">Tin tức</a>
-							</li>
-
-							<li>
-								<a href="?act=about">Về</a>
-							</li>
-
-							<li>
-								<a href="?act=contact">Liên hệ</a>
+								<a href="?act=contact"  class="<?= ($act === 'contact') ? 'active' : '' ?>">Liên hệ</a>
 							</li>
 						</ul>
 					</div>

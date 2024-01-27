@@ -14,8 +14,9 @@ function getProductsPerPage($page, $perPage)
         $totalPages = ceil($totalProducts / $perPage);
 
         // Lấy sản phẩm cho trang được chỉ định
-        $dataQuery = "SELECT * FROM sanpham ORDER BY id DESC LIMIT $start, $perPage";
-        $dataStatement = $GLOBALS['conn']->prepare($dataQuery);
+        $sql = "SELECT * FROM sanpham ORDER BY id DESC LIMIT $start, $perPage";
+
+        $dataStatement = $GLOBALS['conn']->prepare($sql);
         $dataStatement->execute();
         $products = $dataStatement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -32,13 +33,5 @@ function getProductsPerPage($page, $perPage)
 //Nhận trang hiện tại từ tham số nhận, mặc định thành 1 nếu không đặt
 $currentPage = isset($_GET['trang']) ? ($_GET['trang']) : 1;
 
-// Đặt số lượng sản phẩm để hiển thị trên mỗi trang
-$productsPerPage = 5;
 
-// Nhận sản phẩm cho trang hiện tại
-$productData = getProductsPerPage($currentPage, $productsPerPage);
-
-// Trích xuất dữ liệu
-$products = $productData['products'];
-$totalPages = $productData['totalPages'];
 

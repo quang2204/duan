@@ -86,7 +86,7 @@
 					</h4>
 
 					<span class="mtext-106 cl2">
-						<?= $productDetail['sp_price'] ?>0.000đ
+						<?= number_format($productDetail['sp_price'], 0, ',', '.') ?> đ
 
 					</span>
 
@@ -406,12 +406,13 @@
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href=" ?act=product-detail" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="?act=product-detail&id=<?= $product['id'] ?>&iddm=<?= $product['iddm'] ?>"
+																																							class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										<?= $product['name'] ?>
 									</a>
 
 									<span class="stext-105 cl3">
-										<?= $product['price'] ?>
+										<?= number_format($product['price'], 0, ',', '.') ?> đ
 
 									</span>
 								</div>

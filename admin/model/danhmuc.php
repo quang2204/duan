@@ -2,20 +2,10 @@
 function getAlldm()
 {
     try {
-        // Câu truy vấn thường
+
         $sql = "SELECT * FROM danhmuc";
+        return select($sql);
 
-        // Chuẩn bị câu truy vấn
-        $stmt = $GLOBALS['conn']->prepare($sql);
-
-        // Thực hiện câu truy vấn
-        $stmt->execute();
-
-        // fetchAll để lấy ra dữ liệu
-        // PDO::FETCH_ASSOC - chuyển đổi dữ liệu lấy ra thành kiểu mảng column_name => value
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
     } catch (Exception $e) {
         echo 'ERROR: ' . $e->getMessage();
         die;
@@ -26,14 +16,8 @@ function getiddm()
     try {
         $sql = "SELECT * FROM danhmuc WHERE id = :id LIMIT 1;";
 
-        $stmt = $GLOBALS['conn']->prepare($sql);
+        return slectid($sql);
 
-        $stmt->bindParam(":id", $_GET['id']);
-
-        $stmt->execute();
-
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
 
     } catch (\Throwable $th) {
         die();
@@ -52,7 +36,7 @@ function adddm()
 
 
             $stmt->execute();
-            header('Location:http://php.test/duanmau/admin/?act=danhmuc'); // replace success.php with your success page
+            header('Location:?act=danhmuc'); // replace success.php with your success page
 
             return $stmt;
         } catch (Exception $e) {
@@ -75,10 +59,7 @@ function updatedm()
             $stmt = $GLOBALS['conn']->prepare($sql);
             $stmt->bindParam(':name', $_POST['name']);
 
-
-            // Nếu có ảnh mới, thì bind thêm đường dẫn ảnh mới
-
-            $stmt->bindParam(':id', $_POST['id']); // Assuming that 'id' is being passed in the POST data
+            $stmt->bindParam(':id', $_POST['id']); // Giả sử rằng 'id' đang được truyền trong dữ liệu bài đăng
 
             $stmt->execute();
             header('Location: ?act=danhmuc');
@@ -91,17 +72,14 @@ function updatedm()
 function xoadm()
 {
     try {
-        $GLOBALS['conn']->beginTransaction(); // Start a transaction
+        // Start a transaction
 
         // Delete from the danhmuc table
-        $sql_danhmuc = "DELETE FROM danhmuc WHERE id = :id;";
-        $stmt_danhmuc = $GLOBALS['conn']->prepare($sql_danhmuc);
-        $stmt_danhmuc->bindParam(":id", $_GET['id']);
-        $stmt_danhmuc->execute();
+        $sql = "DELETE FROM danhmuc WHERE id = :id;";
+        return slectid($sql);
 
-        $GLOBALS['conn']->commit(); // Cam kết giao dịch
     } catch (Exception $e) {
-        $GLOBALS['conn']->rollBack(); // Rollback the transaction if an error occurs
+        // Rollback the transaction if an error occurs
         echo 'ERROR: ' . $e->getMessage();
         die;
     }

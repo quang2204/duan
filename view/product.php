@@ -24,7 +24,7 @@
 				<?php foreach ($dm as $key => $value): ?>
 					<a href="?act=product&id=<?= $value['id'] ?>">
 						<button
-																																				class="stext-106 cl6 hov1 <?= $value['name'] ? 'active' : ''; ?> trans-04 m-r-32 m-tb-5 how-active1">
+																																				class="stext-106 cl6 hov1 trans-04 m-r-32 m-tb-5 how-active1">
 							<?= $value['name'] ?>
 						</button>
 					</a>
@@ -76,13 +76,13 @@
 
 
 							<li class="p-b-6">
-								<a href="#" class="filter-link stext-106 trans-04">
+								<a href="?act=product&acs=price" class="filter-link stext-106 trans-04">
 									Giá: thấp đến cao
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="#" class="filter-link stext-106 trans-04">
+								<a href="?act=product&desc=price" class="filter-link stext-106 trans-04">
 									Giá từ cao đến thấp
 								</a>
 							</li>
@@ -248,15 +248,7 @@
 
 		</div>
 
-		<div class="flex-c-m flex-w w-full p-t-38">
-			<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
-				1
-			</a>
 
-			<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
-				2
-			</a>
-		</div>
 	</div>
 </div>
 <!-- Back to top -->

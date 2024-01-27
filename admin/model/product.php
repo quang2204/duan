@@ -4,17 +4,8 @@ function getAll()
     try {
         // Câu truy vấn thường
         $sql = "SELECT * FROM sanpham";
+        return select($sql);
 
-        // Chuẩn bị câu truy vấn
-        $stmt = $GLOBALS['conn']->prepare($sql);
-
-        // Thực hiện câu truy vấn
-        $stmt->execute();
-
-        
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
     } catch (Exception $e) {
         echo 'ERROR: ' . $e->getMessage();
         die;
@@ -26,14 +17,7 @@ function getid()
     try {
         $sql = "SELECT * FROM sanpham WHERE id = :id LIMIT 1;";
 
-        $stmt = $GLOBALS['conn']->prepare($sql);
-
-        $stmt->bindParam(":id", $_GET['id']);
-
-        $stmt->execute();
-
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
+        return slectid($sql);
 
     } catch (\Throwable $th) {
         die();
@@ -44,9 +28,8 @@ function xoasp()
 {
     try {
         $sql = "DELETE FROM sanpham WHERE id = :id;";
-        $stmt = $GLOBALS['conn']->prepare($sql);
-        $stmt->bindParam(":id", $_GET['id']);
-        $stmt->execute();
+        return slectid($sql);
+
     } catch (Exception $e) {
         echo 'ERROR: ' . $e->getMessage();
         die;
@@ -99,7 +82,7 @@ function updatesp()
                 $stmt->bindParam(':img', $pathSaveDB);
             }
 
-            $stmt->bindParam(':id', $_POST['id']); // Assuming that 'id' is being passed in the POST data
+            $stmt->bindParam(':id', $_POST['id']);
 
             $stmt->execute();
             header('Location: ?act=sanpham');

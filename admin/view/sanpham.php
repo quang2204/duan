@@ -38,30 +38,30 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
               <thead class="align-bottom">
                 <tr>
                   <th
-                                                                                                                                          class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                                                          class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                     Stt</th>
                   <th
-                                                                                                                                          class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                                                          class="pr-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                     Tên </th>
                   <th
-                                                                                                                                          class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                                                          class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                     Loại</th>
                   <th
-                                                                                                                                          class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                                                          class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                     Giá</th>
 
                   <th
-                                                                                                                                          class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                    Ảnh</th>
-                  <th
-                                                                                                                                          class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                                                          class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                     Lượt xem</th>
                   <th
-                                                                                                                                          class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                                                          class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    ING </th>
+                  <th
+                                                                                                                                          class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                     Mô tả chi tiết</th>
 
                   <th
-                                                                                                                                          class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                                                          class="pr-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
                   </th>
                 </tr>
               </thead>
@@ -81,7 +81,10 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                     </td>
                     <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                       <p class="mb-0 text-xs font-semibold leading-tight">
-                        <?= $value['sp_name'] ?>
+                        <?=
+                          substr($value['sp_name'], 0, 25) . '...';
+                        ?>
+
                       </p>
                     </td>
                     <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
@@ -105,8 +108,8 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                     </td>
                     <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent readonly">
                       <textarea class="mb-0 text-xs font-semibold w-full leading-tight" readonly>
-                                                    <?= $value['sp_motact'] ?>
-                                                </textarea>
+                                                                      <?= $value['sp_motact'] ?>
+                                                                  </textarea>
                     </td>
 
                     <td class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"
@@ -151,22 +154,6 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 
 
 </div>
-<ul class="pagination d-flex justify-content-center">
-  <?php if ($currentPage > 1): ?>
-    <li class="page-item">
-      <a class="page-link" href="?trang=<?= $currentPage - 1; ?>">Prev</a>
-    </li>
-  <?php endif; ?>
-  <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-    <li class="page-item <?= ($i == $currentPage) ? 'active' : ''; ?>">
-      <a class="page-link" href="?trang=<?= $i; ?>">
-        <?= $i; ?>
-      </a>
-    </li>
-  <?php endfor; ?>
-  <?php if ($currentPage < $totalPages): ?>
-    <li class="page-item">
-      <a class="page-link" href="?trang=<?= $currentPage + 1; ?>">Next</a>
-    </li>
-  <?php endif; ?>
-</ul>
+<?php
+require_once 'view/phantrang.php';
+?>

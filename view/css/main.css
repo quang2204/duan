@@ -3815,11 +3815,14 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 ::-webkit-scrollbar-thumb {
+ 
   background-color: #717fe0;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-track {
+
+
   background-color: #f1f1f1;
 }
 
