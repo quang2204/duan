@@ -118,33 +118,23 @@
     <input type="hidden" name='id' value='<?= $_GET['id'] ?>'>
     <label>
         <span>Tên sản phẩm</span>
-        <input required="" type="text" class="input" name="name" value="<?= $update['name'] ?>">
+        <input required="" type="text" class="input" name="name" value="<?= $sua['name'] ?>">
 
     </label>
 
     <label>
         <span>Email</span>
-        <input required="" placeholder="" type="email" class="input" min="0" name="price"
-                                                                                                                                value="<?= $update['email'] ?>">
+        <input required="" placeholder="" type="email" class="input" min="0" name="email" value="<?= $sua['email'] ?>">
 
     </label>
     <label>
-        <span>Giá</span>
-        <input required="" placeholder="" type="text" class="input" min="0" name="price"
-                                                                                                                                value="<?= $update['email'] ?>">
+        <p>Ảnh</p>
+        <input type="hidden" value="<?= $sua['img'] ?>">
+        <input type="file" class="input" name="img">
 
+        <img src="<?= $sua['img'] ?>" alt="" style="max-width: 360px;margin-top: 20px;">
     </label>
-    
-    <!-- <label>
-        <span>Loại</span>
-        <select name="iddm" id="" class="input">
-            <?php foreach ($ad as $key => $value): ?>
-                <option value="<?= $value['id'] ?>">
-                    <?= $value['name'] ?>
-                </option>
-            <?php endforeach; ?>
 
-        </select>
-    </label> -->
+
     <button class="submit" type="submit">Thêm</button>
 </form>

@@ -11,8 +11,9 @@
 
 <!-- breadcrumb -->
 <div class="container top">
+
 	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-		<a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
+		<a href="?" class="stext-109 cl8 hov-cl1 trans-04">
 			Home
 			<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 		</a>
@@ -186,7 +187,7 @@
 
 		<div class="bor10 m-t-50 p-t-43 p-b-40">
 			<!-- Tab01 -->
-			<div class="tab01">
+			<div class="tab01" id='bl'>
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item p-b-10">
@@ -199,7 +200,7 @@
 					</li> -->
 
 					<li class="nav-item p-b-10">
-						<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Đánh giá (1)</a>
+						<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Đánh giá </a>
 					</li>
 				</ul>
 
@@ -279,38 +280,45 @@
 							<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 								<div class="p-b-30 m-lr-15-sm">
 									<!-- Review -->
-									<div class="flex-w flex-t p-b-68">
-										<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-											<img src="view/images/avatar-01.jpg" alt="AVATAR">
-										</div>
-
-										<div class="size-207">
-											<div class="flex-w flex-sb-m p-b-17">
-												<span class="mtext-107 cl2 p-r-20">
-													Quang
-												</span>
-
-												<span class="fs-18 cl11">
-													<i class="zmdi zmdi-star"></i>
-													<i class="zmdi zmdi-star"></i>
-													<i class="zmdi zmdi-star"></i>
-													<i class="zmdi zmdi-star"></i>
-													<i class="zmdi zmdi-star-half"></i>
-												</span>
+									<?php foreach ($bl as $key => $value): ?>
+										<div class="flex-w flex-t p-b-68">
+											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+												<img src="admin/<?= $value['user_img'] ?>" alt="AVATAR">
 											</div>
 
-											<p class="stext-102 cl6">
-												Sản phẩm tốt
-											</p>
+											<div class="size-207">
+												<div class="flex-w flex-sb-m p-b-17">
+													<span class="mtext-108 cl2 p-r-20">
+														<?= $value['user_name'] ?>
+													</span>
+
+													<span class="fs-18 cl11">
+														<?php for ($i=0; $i < $value['rating']; $i++) { 
+															echo '⭐';
+														} ?>
+													</span>
+												</div>
+
+												<p class="stext-102 cl6">
+													<?= $value['comment_content'] ?>
+
+												</p>
+												<p>
+													<?= $value['ngaybinhluan'] ?>
+												</p>
+											</div>
 										</div>
-									</div>
+									<?php endforeach; ?>
+
 
 									<!-- Add review -->
-									<form class="w-full">
+									<form class="w-full" method="post">
 										<h5 class="mtext-108 cl2 p-b-7">
 											Thêm một bài đánh giá
 										</h5>
+										<input type="hidden" value='<?= $productDetail['sp_id'] ?>' name='idpro'>
 
+										<input type="hidden" value='<?= $_SESSION['users']['id'] ?>' name="iduser">
 										<p class="stext-102 cl6">
 											Địa chỉ email của bạn sẽ không được công bố.Các trường bắt buộc được đánh
 											dấu*
@@ -328,6 +336,7 @@
 												<i class="item-rating pointer zmdi zmdi-star-outline"></i>
 												<i class="item-rating pointer zmdi zmdi-star-outline"></i>
 												<input class="dis-none" type="number" name="rating">
+
 											</span>
 										</div>
 
@@ -335,10 +344,10 @@
 											<div class="col-12 p-b-5">
 												<label class="stext-102 cl3" for="review">Đánh giá của bạn</label>
 												<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10 how-shadow1" id="review"
-																																										name="review"></textarea>
+																																										name="noidung"></textarea>
 											</div>
 
-											<div class="col-sm-6 p-b-5">
+											<!-- <div class="col-sm-6 p-b-5">
 												<label class="stext-102 cl3" for="name">Tên</label>
 												<input class="size-111 bor8 stext-102 cl2 p-lr-20 how-shadow1" id="name" type="text"
 																																										name="name">
@@ -348,10 +357,10 @@
 												<label class="stext-102 cl3" for="email">E-mail</label>
 												<input class="size-111 bor8 stext-102 cl2 p-lr-20 how-shadow1" id="email" type="text"
 																																										name="email">
-											</div>
+											</div> -->
 										</div>
 
-										<button
+										<button type="submit"
 																																								class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
 											Submit
 										</button>

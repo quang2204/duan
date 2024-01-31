@@ -7,10 +7,12 @@ require_once "model/dn.php";
 require_once "model/dx.php";
 require_once "model/phantrang.php";
 require_once "model/danhmuc.php";
-// require_once "model/page.php";
+require_once "model/binhluan.php";
+require_once "admin/model/profile.php";
+require_once "model/user.php";
 require_once "model/function.php";
-require_once 'Controller/product.php';
-// require_once 'Controller/dk.php';
+// require_once 'Controller/product.php';
+require_once 'Controller/user.php';
 
 $baseurl = 'http://php.test/duanmau/';
 
@@ -26,19 +28,23 @@ if ($act === 'index') {
     $productId = $_GET['id'];
     $productDetail = getByID($productId);
 
-
     $id = getidsp($_GET['iddm'], $productId);
+    $bl = allbl($productId);
+ 
+    $insertbl = inserbl();
 
 } else if ($act === 'product') {
-    if (isset($_GET['id'])) {
+    if (isset($_GET['search'])) {
+        $search = $_GET['search'];
+        $id = search($search);
+    } else if (isset($_GET['id'])) {
         $id = getidm($_GET['id']);
     } else if (isset($_GET['desc']) && $_GET['desc'] === 'price') {
-        $id = desc();
+        $id = descByPrice();
     } else if (isset($_GET['acs']) && $_GET['acs'] === 'price') {
-        $id = acs();
+        $id = acsByPrice();
     } else {
         $id = getAlls();
-
     }
     $dm = getAlldm();
 } else if ($act === 'singup') {
@@ -47,7 +53,11 @@ if ($act === 'index') {
     $dn = dn();
 } else if ($act === 'dx') {
     $dx = dx();
+} else if ($act === 'portfolio') {
+    $pro = getuser($_GET['id']);
+    $pros = user($_GET['id']);
 }
+
 
 require_once 'view/inc/header.php';
 

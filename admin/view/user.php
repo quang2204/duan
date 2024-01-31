@@ -106,8 +106,16 @@ if (empty($_SESSION['users'])) {
                                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent" style="display: flex;
                     justify-content: center;
                   align-items: center; gap:20px;padding: 52px 0;">
-
-
+                                                      <a href="?act=suauser&id=<?= $value['id'] ?>">
+                        <button class="c-button c-button--gooey"> Sửa
+                          <div class="c-button__blobs">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        </button>
+                      </a>
+                                        
 
                                             <a href="<?= $GLOBALS['baseurl'] ?>?act=xoauser&id=<?= $value['id'] ?>">
                                                 <button class="noselect"

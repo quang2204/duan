@@ -15,6 +15,7 @@ require_once '../model/dx.php';
 require_once '../model/function.php';
 require_once './model/dk.php';
 require_once './model/phantrang.php';
+require_once './model/profile.php';
 require_once 'view/inc/header.php';
 $act = !empty($_GET['act']) ? $_GET['act'] : 'sanpham';
 $path = "view/{$act}.php";
@@ -230,6 +231,9 @@ if ($act === 'sanpham') {
     $user = getAlluser();
 } elseif ($act === 'xoauser') {
     $xoa = xoauser($_GET['id']);
+} elseif ($act === 'suauser') {
+    $sua = getiduser($_GET['id']);
+    $suauser = updatepro($_GET['id']);
 }
 
 //  echo "File path: $act";

@@ -90,7 +90,7 @@ function desc()
 {
     try {
         // Câu truy vấn thường
-        $sql = "SELECT * FROM sanpham ORDER BY price DESC  " ;
+        $sql = "SELECT * FROM sanpham ORDER BY price DESC  ";
         return select($sql);
     } catch (Exception $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -101,7 +101,7 @@ function acs()
 {
     try {
         // Câu truy vấn thường
-        $sql = "SELECT * FROM sanpham ORDER BY price ASC  " ;
+        $sql = "SELECT * FROM sanpham ORDER BY price ASC  ";
         return select($sql);
     } catch (Exception $e) {
         echo 'ERROR: ' . $e->getMessage();
@@ -118,4 +118,12 @@ function getAlls()
         echo 'ERROR: ' . $e->getMessage();
         die;
     }
+}
+function search($search)
+{
+
+    $sql = "SELECT * FROM sanpham WHERE name LIKE ?";
+    $stmt = $GLOBALS['conn']->prepare($sql);
+    $stmt->execute(['%' . $search . '%']);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

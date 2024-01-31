@@ -23,8 +23,7 @@
 
 				<?php foreach ($dm as $key => $value): ?>
 					<a href="?act=product&id=<?= $value['id'] ?>">
-						<button
-																																				class="stext-106 cl6 hov1 trans-04 m-r-32 m-tb-5 how-active1">
+						<button class="stext-106 cl6 hov1 trans-04 m-r-32 m-tb-5 how-active1">
 							<?= $value['name'] ?>
 						</button>
 					</a>
@@ -49,14 +48,15 @@
 
 			<!-- Search product -->
 			<div class="dis-none panel-search w-full p-t-10 p-b-15 ">
-				<div class=" dis-flex p-l-15 bor2 bor10">
+				<form method="get" class=" dis-flex p-l-15 bor2 bor10">
+
 					<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 						<i class="zmdi zmdi-search"></i>
 					</button>
 
-					<input class="mtext-107 cl2 size-114 plh2 p-r-15 align-content-center" type="text" name="search-product" placeholder="Search"
-																																			style=" margin-top: 17px;">
-				</div>
+					<input class="mtext-107 cl2 size-114 plh2 p-r-15 m-t-20 align-content-center" type="text" name="search"
+																																			placeholder="Search">
+				</form>
 			</div>
 
 			<!-- Filter -->

@@ -335,6 +335,17 @@
 		})
 	});
 </script>
+<script>
+	function chooseFile() {
+		document.getElementById('fileInput').click();
+	}
+
+	function displayFileName(input) {
+		var fileName = input.files[0].name;
+		document.getElementById('fileName').innerText = fileName;
+		document.getElementById('fileName').style.display = 'block';
+	}
+</script>
 <!--===============================================================================================-->
 <script src="view/js/main.js"></script>
 

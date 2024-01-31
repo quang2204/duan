@@ -57,24 +57,24 @@
 						<ul class="main-menu ">
 							<li class="<?= ($act === 'index') ? 'active' : '' ?>">
 
-								<a href="?" class="<?= ($act === 'index') ? 'active' : '' ?>">Trang chủ</a>
+								<a href="?" class="<?= ($act === 'index') ? 'active' : '' ?>">Home</a>
 
 							</li>
 
 							<li>
-								<a href="?act=product"  class="<?= ($act === 'product') ? 'active' : '' ?>">Cửa hàng</a>
-							</li>
-
-							<li >
-								<a href="?act=blog" class="<?= ($act === 'blog') ? 'active' : '' ?>">Tin tức</a>
-							</li>
-
-							<li >
-								<a href="?act=about" class="<?= ($act === 'about') ? 'active' : '' ?>">Về</a>
+								<a href="?act=product" class="<?= ($act === 'product') ? 'active' : '' ?>">Product</a>
 							</li>
 
 							<li>
-								<a href="?act=contact"  class="<?= ($act === 'contact') ? 'active' : '' ?>">Liên hệ</a>
+								<a href="?act=blog" class="<?= ($act === 'blog') ? 'active' : '' ?>">Blog</a>
+							</li>
+
+							<li>
+								<a href="?act=about" class="<?= ($act === 'about') ? 'active' : '' ?>">About</a>
+							</li>
+
+							<li>
+								<a href="?act=contact" class="<?= ($act === 'contact') ? 'active' : '' ?>">Connact</a>
 							</li>
 						</ul>
 					</div>
@@ -96,7 +96,7 @@
 										<?php
 										if (!empty($_SESSION['users']['img'])):
 											?>
-											<img src="<?= $_SESSION['users']['img'] ?>" alt="" style="  width: 40px; height:40px;border-radius: 50%;
+											<img src="admin/<?= $_SESSION['users']['img'] ?>" alt="" style="  width: 40px; height:40px;border-radius: 50%;
 												">
 										<?php else: ?>
 											<img src="view\images\avatar-01.jpg" alt="" style="  width: 40px; height:40px;border-radius: 50%;
@@ -133,7 +133,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="index.html"><img src="view/images/icons/logo-01.png" alt="IMG-LOGO" /></a>
+				<a href="?"><img src="view/images/icons/logo-01.png" alt="IMG-LOGO" /></a>
 			</div>
 
 			<!-- Icon header -->
@@ -172,36 +172,45 @@
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="?">Trang chủ</a>
+					<a href="?">Home</a>
 
-					<span class="arrow-main-menu-m">
-						<i class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
 				</li>
 
 				<li>
-					<a href="?act=product">Cửa hàng</a>
+					<a href="?act=product">Product</a>
 				</li>
 				<li>
-					<a href="?act=blog">Tin tức</a>
-				</li>
-
-				<li>
-					<a href="?act=about">Về</a>
+					<a href="?act=blog">Blog</a>
 				</li>
 
 				<li>
-					<a href="?act=contact">Liên hệ</a>
+					<a href="?act=about">About</a>
 				</li>
 				<?php
 				if (!empty($_SESSION['users'])): ?>
 					<li>
-						<a href="?act=dx">Đăng xuất</a>
+						<a href="?act=portfolio&id=<?= $_SESSION['users']['id'] ?>">Portfolio</a>
+						<ul class="sub-menu-m" style="padding-bottom: 0;">
+							<li>
+								<a href="?act=portfolio">Portfolio</a>
+							</li>
+							<li>
+								<a href="?act=dx">Log out</a>
+							</li>
+							<li>
+								<a href="#">Order</a>
+							</li>
+						</ul>
+						<span class="arrow-main-menu-m">
+							<i class="fa fa-angle-right" aria-hidden="true"></i>
+						</span>
 					</li>
-					<li>
-						<a href="#">Đơn hàng</a>
-					</li>
+
 				<?php endif; ?>
+				<li>
+					<a href="?act=contact">Connact</a>
+				</li>
+
 
 			</ul>
 		</div>
@@ -239,22 +248,18 @@
 			<div class="sidebar-content flex-w w-full p-lr-65 js-pscroll">
 				<ul class="sidebar-link w-full">
 					<li class="p-b-13">
-						<a href="index.php" class="stext-102 cl2 hov-cl1 trans-04">
-							Tài khoản
+						<a href="?act=portfolio&id=<?= $_SESSION['users']['id'] ?>"
+																																				class="stext-102 cl2 hov-cl1 trans-04">
+							Portfolio
 						</a>
 					</li>
 
 					<li class="p-b-13">
 						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Đơn hàng
+							Order
 						</a>
 					</li>
 
-					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-							Tài khoản của tôi
-						</a>
-					</li>
 
 					<li class="p-b-13">
 						<a href="?act=dx" class="stext-102 cl2 hov-cl1 trans-04">
@@ -266,7 +271,7 @@
 
 				<div class="sidebar-gallery w-full p-tb-30">
 					<span class="mtext-101 cl5">
-						@ CozaStore
+						@ Lương Thành Quang
 					</span>
 
 					<div class="flex-w flex-sb p-t-36 gallery-lb">
@@ -328,7 +333,7 @@
 
 				<div class="sidebar-gallery w-full">
 					<span class="mtext-101 cl5">
-						Về chúng tôi
+						About
 					</span>
 
 					<p class="stext-108 cl6 p-t-27">

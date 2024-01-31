@@ -21,12 +21,18 @@ function dn()
 
                 // Người dùng tồn tại trong cơ sở dữ liệu
                 $_SESSION['users'] = [
+
                     'name' => $result['name'],
                     'pass' => $result['pass'],
                     'img' => $result['img'],
-                    'role' => $result['role']
-                ];
+                    'role' => $result['role'],
+                    'email' => $result['email'],
+                    'tel' => $result['tel'],
+                    'address' => $result['address'],
+                    'id' => $result['id'],
 
+                ];
+          
                 header('Location: index.php');
                 exit();
             } else {

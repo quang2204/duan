@@ -2896,7 +2896,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .bor12 {
-  border-bottom: 1px dashed #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
 }
 
 .bor13 {
@@ -3815,7 +3815,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 ::-webkit-scrollbar-thumb {
- 
+
   background-color: #717fe0;
   border-radius: 4px;
 }
@@ -4132,10 +4132,10 @@ table {
 
 }
 
-tr {
+/* tr {
   border-bottom: 1px solid #ccc;
 
-}
+} */
 
 .tvc {
   border-bottom: 2px solid #eae5e5;
