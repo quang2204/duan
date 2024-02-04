@@ -58,9 +58,9 @@ function inserbl()
 
             // Thực hiện truy vấn
             $stmt->execute();
-            echo '<script>alert("Đã có email này");</script>';
 
-            header('Location:?act=product-detail&id=' . $_GET["id"] . '&iddm=' . $_GET['iddm']);
+
+            header('Location:?act=product-detail&id=' . $_GET["id"] . '&iddm=' . $_GET['iddm'] . '#bl');
             exit;
 
         } catch (PDOException $e) {
@@ -68,5 +68,54 @@ function inserbl()
         }
 
 
+    }
+}
+
+
+function allsbl()
+{
+    try {
+        $sql = "SELECT 
+            u.id as user_id, 
+            u.name as user_name, 
+            u.img as user_img, 
+            bl.noidung as comment_content,
+            bl.id as bl_id,
+            bl.iduser as comment_user_id,
+            bl.ngaybinhluan as ngaybinhluan,
+            bl.rating as rating,
+            sp.id as product_id,
+            sp.name as product_name,
+            sp.price as product_price,
+            sp.img as product_img,
+            sp.mota as product_description
+        FROM binhluan as bl
+        INNER JOIN taikhoan as u ON bl.iduser = u.id
+        INNER JOIN sanpham as sp ON bl.idpro = sp.id
+        ";
+
+        $stmt = $GLOBALS['conn']->prepare($sql);
+
+
+
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+}
+function xoabl()
+{
+    try {
+        $sql = "DELETE FROM binhluan WHERE id = :id;";
+        return slectid($sql);
+
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
     }
 }

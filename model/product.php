@@ -126,4 +126,6 @@ function search($search)
     $stmt = $GLOBALS['conn']->prepare($sql);
     $stmt->execute(['%' . $search . '%']);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 }
+

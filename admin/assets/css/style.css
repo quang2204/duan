@@ -85,7 +85,7 @@ p {
     font-weight: 700;
     font-size: 14px;
     text-decoration: none;
-    padding: 0.4em 1.7em;
+    padding: 0.4em 1.3em;
     cursor: pointer;
     display: inline-block;
     vertical-align: middle;
@@ -97,60 +97,23 @@ p {
 .c-button--gooey {
     color: #000;
     text-transform: uppercase;
-    letter-spacing: 2px;
+
     border: 4px solid #ffe500;
     border-radius: 5px;
     position: relative;
-    transition: all 700ms ease;
-}
-
-.c-button--gooey .c-button__blobs {
-    height: 100%;
-    filter: url(#goo);
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: -3px;
-    right: -1px;
-    z-index: -1;
-}
-
-.c-button--gooey .c-button__blobs div {
-    background-color: #ffe500;
-    width: 34%;
-    height: 100%;
-    border-radius: 100%;
-    position: absolute;
-    transform: scale(1.4) translateY(125%) translateZ(0);
-    transition: all 700ms ease;
-}
-
-.c-button--gooey .c-button__blobs div:nth-child(1) {
-    left: -5%;
-}
-
-.c-button--gooey .c-button__blobs div:nth-child(2) {
-    left: 30%;
-    transition-delay: 60ms;
-}
-
-.c-button--gooey .c-button__blobs div:nth-child(3) {
-    left: 66%;
-    transition-delay: 25ms;
+    transition: all 400ms ease;
 }
 
 .c-button--gooey:hover {
     color: #fff;
+    background-color: #ffe500;
 }
 
-.c-button--gooey:hover .c-button__blobs div {
-    transform: scale(1.4) translateY(0) translateZ(0);
-}
+
 
 .button {
     position: relative;
-    width: 170px;
+    width: 140px;
     height: 40px;
     cursor: pointer;
     display: flex;
@@ -173,7 +136,7 @@ p {
 
 .button .button__icon {
     position: absolute;
-    transform: translateX(129px);
+    transform: translateX(103px);
     height: 100%;
     width: 39px;
     display: flex;
@@ -196,7 +159,7 @@ p {
 
 .button:hover .button__icon {
     width: 148px;
-    transform: translateX(10px);
+    transform: translateX(0px);
 }
 
 .button:active .button__icon {
@@ -205,4 +168,102 @@ p {
 
 .button:active {
     border: 1px solid #2e8644;
+}
+
+.btn {
+    padding: 5px;
+    border: 1px solid #34974d;
+    margin-top: -16px;
+    transition: 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #34974d;
+    color: white;
+}
+
+.form {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 1px 2px 10px 1px #c2bdbd;
+
+}
+
+.title {
+    font-size: 26px;
+    color: royalblue;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+
+}
+
+.signin {
+    text-align: center;
+}
+
+.signin a {
+    color: royalblue;
+}
+
+.signin a:hover {
+    text-decoration: underline royalblue;
+}
+
+form .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+}
+
+.form label {
+    position: relative;
+}
+
+.form label .input {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+}
+
+.form label .input:valid+span {
+    color: green;
+}
+
+.submit {
+    border: none;
+    outline: none;
+    background-color: royalblue !important;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+}
+
+.submit:hover {
+    background-color: rgb(56, 90, 194);
+}
+.active{
+    background-image: linear-gradient(to top left, var(--tw-gradient-stops));
+    --tw-gradient-from: #7928ca;
+    --tw-gradient-to: rgb(121 40 202 / 0);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    --tw-gradient-to: #ff0080;
+    color: white;
 }

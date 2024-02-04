@@ -15,10 +15,10 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
         <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent " style="    display: flex;
     align-items: center;
     justify-content: space-between;">
-          <h6>Sản phẩm </h6>
+          <h6>Product</h6>
           <a href="?act=adsp">
             <button type="button" class="button" style="background-color: #3aa856;">
-              <span class="button__text">Thêm sản phẩm </span>
+              <span class="button__text">Add product</span>
               <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round"
                                                                                                                                         stroke-linecap="round"
                                                                                                                                         stroke="currentColor"
@@ -41,27 +41,28 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                                                                                                                           class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                     Stt</th>
                   <th
-                                                                                                                                          class="pr-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                    Tên </th>
+                                                                                                                                          class="pr-6 py-3 pl-2 font-bold  uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Name </th>
                   <th
-                                                                                                                                          class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                    Loại</th>
+                                                                                                                                          class="pr-6  py-3 font-bold  uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Category</th>
                   <th
-                                                                                                                                          class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                    Giá</th>
+                                                                                                                                          class="pr-6 py-3 font-bold  uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Price</th>
 
                   <th
                                                                                                                                           class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                    Lượt xem</th>
+                    View</th>
                   <th
                                                                                                                                           class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                    ING </th>
+                    IMG </th>
                   <th
                                                                                                                                           class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                    Mô tả chi tiết</th>
+                    description</th>
 
                   <th
-                                                                                                                                          class="pr-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                                                          class="pr-6 text-center py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Action
                   </th>
                 </tr>
               </thead>
@@ -98,7 +99,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                       </p>
                     </td>
                     <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                      <p class="mb-0 text-xs font-semibold leading-tight">
+                      <p class="mb-0 text-xs font-semibold leading-tight ml-4">
                         <?= $value['sp_luotxem'] ?>
                       </p>
                     </td>
@@ -107,20 +108,16 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                       <img src="<?= $value['sp_img'] ?>" style="width: 80px;" alt="">
                     </td>
                     <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent readonly">
-                      <textarea class="mb-0 text-xs font-semibold w-full leading-tight" readonly>
-                                                                      <?= $value['sp_motact'] ?>
-                                                                  </textarea>
+                      <textarea class="mb-0 text-xs font-semibold w-full leading-tight pl-2" readonly>
+                                                                                                                                                <?= $value['sp_motact'] ?>
+                                                                                                                                                </textarea>
                     </td>
 
                     <td class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"
                                                                                                                                             style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 52px 0;">
                       <a href="?act=sua&id=<?= $value['sp_id'] ?>">
-                        <button class="c-button c-button--gooey"> Sửa
-                          <div class="c-button__blobs">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                          </div>
+                        <button class="c-button c-button--gooey"> Update
+
                         </button>
                       </a>
                       <a href="?act=xoa&id=<?= $value['sp_id'] ?>">
@@ -150,10 +147,4 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
     </div>
   </div>
 
-  <!-- card 2 -->
-
-
 </div>
-<?php
-require_once 'view/phantrang.php';
-?>

@@ -1,7 +1,7 @@
 <?php
-if (empty($_SESSION['users'])) {
+if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
   header('Location: ?act=sign-in');
-
+  exit();
 }
 ?>
 
@@ -12,13 +12,12 @@ if (empty($_SESSION['users'])) {
     <div class="flex-none w-full max-w-full px-3">
       <div
                                                                                                                               class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
-        <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent " style="    display: flex;
-    align-items: center;
-    justify-content: space-between;">
-          <h6>Sản phẩm </h6>
+        <div
+                                                                                                                                class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent flex justify-content-between">
+          <h6>Category </h6>
           <a href="?act=themdm">
             <button type="button" class="button" style="background-color: #3aa856;">
-              <span class="button__text">Thêm sản phẩm </span>
+              <span class="button__text">Add Category </span>
               <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round"
                                                                                                                                         stroke-linecap="round"
                                                                                                                                         stroke="currentColor"
@@ -42,10 +41,11 @@ if (empty($_SESSION['users'])) {
                     Stt</th>
                   <th
                                                                                                                                           class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                    Tên </th>
+                    Name </th>
 
                   <th
-                                                                                                                                          class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                                                          class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70 text-center">
+                    Action
                   </th>
                 </tr>
               </thead>
@@ -78,18 +78,14 @@ if (empty($_SESSION['users'])) {
                     <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent" style="display: flex;
                     justify-content: center;
                   align-items: center; gap:20px;padding: 52px 0;">
-                      <a href="<?= $GLOBALS['baseurl'] ?>?act=suadm&id=<?= $value['id'] ?>">
-                        <button class="c-button c-button--gooey"> Sửa
-                          <div class="c-button__blobs">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                          </div>
+                      <a href="?act=suadm&id=<?= $value['id'] ?>">
+                        <button class="c-button c-button--gooey"> Update
+
                         </button>
                       </a>
 
 
-                      <a href="<?= $GLOBALS['baseurl'] ?>?act=xoadanhmuc&id=<?= $value['id'] ?>">
+                      <a href="?act=xoadanhmuc&id=<?= $value['id'] ?>">
                         <button class="noselect"
                                                                                                                                                 onclick="return confirm('Bạn có muốn xóa sản phẩm <?= $value['name'] ?>')">
                           <span class="text">Delete</span>

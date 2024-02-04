@@ -1,0 +1,18 @@
+
+#customButton {
+    padding: 6px 12px;
+    border: 1px solid #bab5b5;
+    /* max-width: 190px; */
+    margin: auto;
+    border-radius: 5px;
+    transition: 0.5s ease-in-out;
+}
+
+#customButton:hover {
+    background-color: #2d79f3;
+    color: white;
+}
+
+.hs input {
+    margin-top: -4px;
+}

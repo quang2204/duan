@@ -35,6 +35,7 @@
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="view/css/util.css">
 <link rel="stylesheet" type="text/css" href="view/css/main.css">
+<link rel="stylesheet" type="text/css" href="view/css/style.css">
 <!--===============================================================================================-->
 </head>
 
@@ -55,7 +56,7 @@
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="main-menu ">
-							<li class="<?= ($act === 'index') ? 'active' : '' ?>">
+							<li>
 
 								<a href="?" class="<?= ($act === 'index') ? 'active' : '' ?>">Home</a>
 

@@ -20,25 +20,25 @@ $baseurl = 'http://php.test/duanmau/';
 
 
 $act = !empty($_GET['act']) ? $_GET['act'] : 'index';
-// Nếu $act là 'index', thì gọi hàm proht() để lấy giá trị sản phẩm
+$productId = $_GET['id'];
 if ($act === 'index') {
     $data = getAll(4);
 } else if ($act === 'product-detail') {
 
-    $productId = $_GET['id'];
+
     $productDetail = getByID($productId);
 
     $id = getidsp($_GET['iddm'], $productId);
     $bl = allbl($productId);
- 
+
     $insertbl = inserbl();
 
 } else if ($act === 'product') {
     if (isset($_GET['search'])) {
         $search = $_GET['search'];
         $id = search($search);
-    } else if (isset($_GET['id'])) {
-        $id = getidm($_GET['id']);
+    } else if (isset($productId)) {
+        $id = getidm($productId);
     } else if (isset($_GET['desc']) && $_GET['desc'] === 'price') {
         $id = descByPrice();
     } else if (isset($_GET['acs']) && $_GET['acs'] === 'price') {
@@ -54,8 +54,8 @@ if ($act === 'index') {
 } else if ($act === 'dx') {
     $dx = dx();
 } else if ($act === 'portfolio') {
-    $pro = getuser($_GET['id']);
-    $pros = user($_GET['id']);
+    $pro = getuser($productId);
+    $pros = user($productId);
 }
 
 

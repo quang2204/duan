@@ -48,12 +48,10 @@
 
 			<!-- Search product -->
 			<div class="dis-none panel-search w-full p-t-10 p-b-15 ">
-				<form method="get" class=" dis-flex p-l-15 bor2 bor10">
-
-					<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-						<i class="zmdi zmdi-search"></i>
+				<form method="get" action="?act=product&search=" class="dis-flex p-l-15 bor2 bor10">
+					<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" type="submit">
+						<i class="zmdi zmdi-search" type="submit"></i>
 					</button>
-
 					<input class="mtext-107 cl2 size-114 plh2 p-r-15 m-t-20 align-content-center" type="text" name="search"
 																																			placeholder="Search">
 				</form>

@@ -13,6 +13,14 @@ function updatepro()
             $img = isset($_FILES['img']) ? $_FILES['img'] : null;
 
             if ($img && $img['size'] > 0) {
+                // Check if the file is an image
+                $allowedFormats = ['jpg', 'jpeg', 'png'];
+                $imgFormat = strtolower(pathinfo($img['name'], PATHINFO_EXTENSION));
+
+                if (!in_array($imgFormat, $allowedFormats)) {
+                    throw new Exception("Chỉ chấp nhận file ảnh định dạng JPG, JPEG hoặc PNG");
+                }
+
                 $sql .= ", img = :img";
                 $pathUpload = __DIR__ . '/../upload/' . $img['name'];
 
@@ -44,12 +52,11 @@ function updatepro()
 
             $stmt->execute();
 
-            header('Location: ?act=user');
+            header('Location: ?');
             exit();
         } catch (Exception $e) {
-            echo 'ERROR: ' . $e->getMessage();
-            die;
+            echo '<script>alert("' . $e->getMessage() . '")</script>';
+
         }
     }
 }
-?>

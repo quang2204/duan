@@ -1,9 +1,14 @@
 <?php
-if (empty($_SESSION['users'])) {
+if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
     header('Location: ?act=sign-in');
-
+    exit();
 }
 ?>
+<style>
+    .ml {
+        margin-left: -12px;
+    }
+</style>
 <div class="w-full px-6 py-6 mx-auto">
     <!-- table 1 -->
 
@@ -26,24 +31,21 @@ if (empty($_SESSION['users'])) {
                                         Stt</th>
                                     <th
                                                                                                                                                             class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Tên </th>
-                                    <th
-                                                                                                                                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Email</th>
+                                        Name </th>
 
                                     <th
                                                                                                                                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Địa chỉ</th>
+                                        Address</th>
 
                                     <th
                                                                                                                                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 ">
-                                        Số điện thoại</th>
+                                        Phone</th>
                                     <th
                                                                                                                                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 ">
-                                        Vai trò</th>
+                                        Role</th>
                                     <th
-                                                                                                                                                            class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                    </th>
+                                                                                                                                                            class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70 text-center">
+                                        Action </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,34 +53,34 @@ if (empty($_SESSION['users'])) {
                                 $key = 1;
                                 foreach ($user as $value): ?>
                                     <tr>
-
                                         <td
-                                                                                                                                                                class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent ">
-                                            <div class="flex px-2 py-1">
-                                                <div>
-
-                                                </div>
+                                                                                                                                                                class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                            <div class="flex px-4 py-1">
+                                                <div></div>
                                                 <div class="flex flex-col justify-center">
                                                     <h6 class="mb-0 text-sm leading-normal">
                                                         <?= $key++ ?>
                                                     </h6>
-
                                                 </div>
                                             </div>
                                         </td>
                                         <td
                                                                                                                                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                            <p class="mb-0 text-xs font-semibold leading-tight">
-                                                <?= $value['name'] ?>
-                                            </p>
+                                            <div class="flex px-2 py-1 ml">
+                                                <div>
+                                                    <img src="<?= isset($value['img']) ? $value['img'] : 'upload/avatar-01.jpg' ?>"
+                                                                                                                                                                            class="inline-flex items-center  mr-4 text-sm text-white transition-all duration-200 ease-soft-in-out h-9 w-9 rounded-xl" />
 
-                                        </td>
-                                        <td
-                                                                                                                                                                class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                            <p class="mb-0 text-xs font-semibold leading-tight">
-                                                <?= $value['email'] ?>
-                                            </p>
-
+                                                </div>
+                                                <div class="flex flex-col justify-center">
+                                                    <h6 class="mb-0 text-sm leading-normal">
+                                                        <?= $value['name'] ?>
+                                                    </h6>
+                                                    <p class="mb-0 text-xs leading-tight text-slate-400">
+                                                        <?= $value['email'] ?>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td
                                                                                                                                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
@@ -97,25 +99,16 @@ if (empty($_SESSION['users'])) {
 
                                         <td
                                                                                                                                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                            <p class="mb-0 text-xs font-semibold leading-tight">
+                                            <p class="mb-0 px-4 text-xs font-semibold leading-tight">
                                                 <?= $value['role'] ? 'User' : 'Người  dùng' ?>
                                             </p>
 
                                         </td>
-
                                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent" style="display: flex;
-                    justify-content: center;
-                  align-items: center; gap:20px;padding: 52px 0;">
-                                                      <a href="?act=suauser&id=<?= $value['id'] ?>">
-                        <button class="c-button c-button--gooey"> Sửa
-                          <div class="c-button__blobs">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                          </div>
-                        </button>
-                      </a>
-                                        
+                                        justify-content: center;
+                                        align-items: center; gap:20px;padding: 52px 0;">
+
+
 
                                             <a href="<?= $GLOBALS['baseurl'] ?>?act=xoauser&id=<?= $value['id'] ?>">
                                                 <button class="noselect"
