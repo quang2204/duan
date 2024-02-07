@@ -3,7 +3,7 @@
 session_start();
 require_once "../model/connact.php";
 require_once './Controller/product.php';
-require_once './Controller/dk.php';
+
 require_once './Controller/dm.php';
 require_once './model/adproduct.php';
 require_once './model/product.php';
@@ -13,23 +13,22 @@ require_once '../model/singin.php';
 require_once '../model/dn.php';
 require_once '../model/dx.php';
 require_once '../model/function.php';
-require_once './model/dk.php';
+
 require_once './model/phantrang.php';
 require_once './model/profile.php';
 require_once "../model/binhluan.php";
 
 require_once "../model/user.php";
 
-
-
 ?>
-
 <?php
 $act = !empty($_GET['act']) ? $_GET['act'] : 'tongquan';
 $path = "view/{$act}.php";
 require_once 'view/inc/header.php';
 $ad = getAlldm();
-
+$countsp = countsp();
+$users = countuser();
+$bls = countbl();
 if ($act === 'sanpham') {
 
     $productData = getProductsPerPage($currentPage, $productsPerPage);
@@ -55,7 +54,7 @@ if ($act === 'sanpham') {
     $updatedm = updatedm($_GET['id']);
 
 } else if ($act === 'sign-up') {
-    $dk = dkadmin();
+    $dk = login();
 } else if ($act === 'sign-in') {
     $dn = dn();
 } else if ($act === 'dx') {
@@ -78,8 +77,11 @@ if ($act === 'sanpham') {
 } elseif ($act === 'profile') {
 
     $pro = getuser($_GET['id']);
+} elseif ($act === 'suapro') {
+    $pro = getuser($_GET['id']);
     $pros = updatepro($_GET['id']);
-
+} elseif ($act === 'tongquan') {
+    $tk = thongke();
 }
 
 if (file_exists($path)) {

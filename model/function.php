@@ -1,16 +1,23 @@
 <?php
 function select($sql)
 {
-    $stmt = $GLOBALS['conn']->prepare($sql);
+    try {
+        $stmt = $GLOBALS['conn']->prepare($sql);
 
-    $stmt->execute();
+        $stmt->execute();
 
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $result;
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+
 }
 function slectid($sql)
 {
-    $stmt = $GLOBALS['conn']->prepare($sql);
+    try {
+        $stmt = $GLOBALS['conn']->prepare($sql);
 
         $stmt->bindParam(":id", $_GET['id']);
 
@@ -18,4 +25,23 @@ function slectid($sql)
 
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+
+}
+function counts($sql)
+{
+    try {
+        $stmt = $GLOBALS['conn']->prepare($sql);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+
 }

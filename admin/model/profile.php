@@ -52,7 +52,7 @@ function updatepro()
 
             $stmt->execute();
 
-            header('Location: ?');
+            header('Location:?act=profile&id=' . $_POST["id"]);
             exit();
         } catch (Exception $e) {
             echo '<script>alert("' . $e->getMessage() . '")</script>';

@@ -40,20 +40,7 @@
             <input type="email" class="input" placeholder="Email" name='email' required=''>
         </div>
 
-        <div class="flex-column">
-            <label>Địa chỉ </label>
-        </div>
-        <div class="inputForm">
-            <i class="fa fa-location-arrow"></i>
-            <input type="text" class="input" placeholder="Địa chỉ" name="address" required=''>
-        </div>
-        <div class="flex-column">
-            <label>Số điện thoại </label>
-        </div>
-        <div class="inputForm">
-            <i class="fa fa-phone"></i>
-            <input type="tel" class="input" placeholder="Số điện thoại" name="tel" required=''>
-        </div>
+
         <div class="flex-column">
             <label>Mật khẩu </label>
         </div>
@@ -66,7 +53,7 @@
             </div>
             <select name="role" id="role" style="display:none;">
                 <option value="0">User</option>
-               
+
             </select>
         </div>
 
@@ -83,7 +70,7 @@
         </div> -->
 
         <button class="button-submit">Đăng ký</button>
-        <p class="p">Bạn đã có tài khoản? <a href="?act=login" class="span">Đăng nhập</a>
+        <p class="p">Bạn đã có tài khoản? <a href="?act=sign-in" class="span">Đăng nhập</a>
 
         </p>
 

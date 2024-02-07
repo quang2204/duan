@@ -107,17 +107,17 @@ $baseurl = 'http://php.test/duanmau/';
 					<div class="block2">
 						<div class="block2-pic hov-img0 label-new" data-label="New">
 							<img src="admin/<?= $value['img'] ?>" alt="IMG-PRODUCT">
-
-							<a href="<?= $baseurl ?>?act=product-detail&id=<?= $value['id'] ?>"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Mua ngay
+				
+							<a href="#"
+																																					class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-addwish-b2">
+								Add cart
 							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="?act=product-detail&id=<?= $value['id'] ?> &iddm=<?= $value['iddm'] ?>"
-																																						class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+																																						class="stext-107 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									<?= $value['name'] ?>
 								</a>
 
@@ -126,8 +126,6 @@ $baseurl = 'http://php.test/duanmau/';
 
 								</span>
 							</div>
-
-
 						</div>
 					</div>
 				</div>

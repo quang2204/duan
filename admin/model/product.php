@@ -1,39 +1,26 @@
 <?php
 function getAll()
 {
-    try {
-        // Câu truy vấn thường
-        $sql = "SELECT * FROM sanpham";
-        return select($sql);
 
-    } catch (Exception $e) {
-        echo 'ERROR: ' . $e->getMessage();
-        die;
-    }
+    $sql = "SELECT * FROM sanpham";
+    return select($sql);
 }
 
 function getid()
 {
-    try {
-        $sql = "SELECT * FROM sanpham WHERE id = :id LIMIT 1;";
+    $sql = "SELECT * FROM sanpham WHERE id = :id LIMIT 1;";
 
-        return slectid($sql);
+    return slectid($sql);
 
-    } catch (\Throwable $th) {
-        die();
-    }
 }
 
 function xoasp()
 {
-    try {
-        $sql = "DELETE FROM sanpham WHERE id = :id;";
-        return slectid($sql);
 
-    } catch (Exception $e) {
-        echo 'ERROR: ' . $e->getMessage();
-        die;
-    }
+    $sql = "DELETE FROM sanpham WHERE id = :id;";
+    return slectid($sql);
+
+
 }
 function updatesp()
 {
@@ -92,3 +79,44 @@ function updatesp()
         }
     }
 }
+
+function countsp()
+{
+
+    $sql = "SELECT COUNT(*) as total  FROM sanpham";
+    return counts($sql);
+
+}
+function countuser()
+{
+
+    $sql = "SELECT COUNT(*) as total  FROM taikhoan";
+    return counts($sql);
+
+}
+function countbl()
+{
+
+    $sql = "SELECT COUNT(*) as total  FROM binhluan";
+    return counts($sql);
+
+}
+function thongke()
+{
+
+    $sql = 'SELECT
+        dm.id as dm_id,
+        dm.name as dm_name,
+        count(sp.id) as sp_id,
+        min(sp.price) as min_sp,
+        max(sp.price) as max_sp,
+        avg(sp.price) as sp_price 
+    FROM sanpham as sp
+    INNER JOIN danhmuc as dm
+    ON dm.id = sp.iddm
+    GROUP by dm.id 
+    ORDER BY min(sp.price) ASC';
+    return select($sql);
+}
+
+

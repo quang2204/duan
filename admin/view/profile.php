@@ -43,7 +43,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
               <h6 class="mb-0">Profile Information</h6>
             </div>
             <div class="w-full max-w-full px-3 text-right shrink-0 md:w-4/12 md:flex-none">
-              <a href="javascript:;" data-target="tooltip_trigger" data-placement="top">
+              <a href="?act=suapro&id=<?= $pro['id'] ?>" data-target="tooltip_trigger" data-placement="top">
                 <i class="leading-normal fas fa-user-edit text-sm text-slate-400"></i>
               </a>
               <div data-target="tooltip" class="hidden px-2 py-1 text-center text-white bg-black rounded-lg text-sm"

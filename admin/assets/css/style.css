@@ -259,11 +259,25 @@ form .flex {
 .submit:hover {
     background-color: rgb(56, 90, 194);
 }
-.active{
+
+.active {
     background-image: linear-gradient(to top left, var(--tw-gradient-stops));
     --tw-gradient-from: #7928ca;
     --tw-gradient-to: rgb(121 40 202 / 0);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
     --tw-gradient-to: #ff0080;
     color: white;
+    border-radius: 0.75rem;
+
+}
+
+
+.hover>a:hover {
+    background-image: linear-gradient(to top left, var(--tw-gradient-stops));
+    --tw-gradient-from: #7928ca;
+
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+    --tw-gradient-to: #ff0080;
+    color: white;
+    border-radius: 0.75rem;
 }

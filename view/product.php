@@ -47,12 +47,12 @@
 			</div>
 
 			<!-- Search product -->
-			<div class="dis-none panel-search w-full p-t-10 p-b-15 ">
-				<form method="get" action="?act=product&search=" class="dis-flex p-l-15 bor2 bor10">
-					<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" type="submit">
-						<i class="zmdi zmdi-search" type="submit"></i>
+			<div class="dis-none panel-search w-full p-t-10 p-b-15">
+				<form id="searchForm" method="post" action="?act=product" class="dis-flex p-l-15 bor2 bor10">
+					<button id="searchButton" class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" type="button">
+						<i class="zmdi zmdi-search"></i>
 					</button>
-					<input class="mtext-107 cl2 size-114 plh2 p-r-15 m-t-20 align-content-center" type="text" name="search"
+					<input id="searchInput" class="mtext-107 cl2 size-114 plh2 p-r-15 m-t-20 align-content-center" type="text" name="search"
 																																			placeholder="Search">
 				</form>
 			</div>
@@ -72,15 +72,15 @@
 								</a>
 							</li>
 
-
+							<?php $link = isset($_GET['id']) ? '&id=' . $_GET['id'] : '' ?>
 							<li class="p-b-6">
-								<a href="?act=product&acs=price" class="filter-link stext-106 trans-04">
+								<a href="?act=product<?= $link ?>&orderBy=ASC" class="filter-link stext-106 trans-04">
 									Giá: thấp đến cao
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="?act=product&desc=price" class="filter-link stext-106 trans-04">
+								<a href="?act=product<?= $link ?>&orderBy=DESC" class="filter-link stext-106 trans-04">
 									Giá từ cao đến thấp
 								</a>
 							</li>
@@ -203,8 +203,6 @@
 						<div class="mtext-102 cl2 p-b-15">
 							Tags
 						</div>
-
-
 					</div>
 				</div>
 			</div>
@@ -219,15 +217,15 @@
 							<img src="admin/<?= $value['img'] ?>" alt="IMG-PRODUCT">
 							<!-- js-show-modal1	 -->
 							<a href=" #"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-								xem
+																																					class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-addwish-b2">
+								Thêm vào giỏ hàng
 							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
 								<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
-																																						class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+																																						class="stext-107 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									<?= $value['name'] ?>
 								</a>
 
@@ -236,24 +234,12 @@
 								</span>
 							</div>
 
-
 						</div>
 					</div>
 				</div>
 			<?php endforeach; ?>
 
-
-
 		</div>
-
 
 	</div>
 </div>
-<!-- Back to top -->
-<div class="btn-back-to-top" id="myBtn">
-	<span class="symbol-btn-back-to-top">
-		<i class="zmdi zmdi-chevron-up"></i>
-	</span>
-</div>
-
-<!-- Modal1 -->

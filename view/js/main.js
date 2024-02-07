@@ -1,31 +1,12 @@
 (function ($) {
   "use strict";
-  const menuItems = document.querySelectorAll(".main-menu a");
-
-  menuItems.forEach((item) => {
-    item.addEventListener("click", (event) => {
-      event.preventDefault();
-
-      // Loại bỏ class active khỏi tất cả các thẻ a
-      menuItems.forEach((otherItem) => {
-        otherItem.classList.remove("active");
-      });
-
-      // Thêm class active vào thẻ a đang được click
-      item.classList.add("active");
-
-      // Lấy giá trị href từ thẻ a và thay đổi địa chỉ URL
-      const href = item.getAttribute("href");
-      window.location.href = href;
-    });
-  });
 
   /*[ Load page ]
-    ===========================================================*/
+  ===========================================================*/
   $(".animsition").animsition({
     inClass: "fade-in",
     outClass: "fade-out",
-    inDuration: 1000,
+    inDuration: 1500,
     outDuration: 800,
     linkElement: ".animsition-link",
     loading: true,
@@ -45,7 +26,7 @@
   });
 
   /*[ Back to top ]
-    ===========================================================*/
+  ===========================================================*/
   var windowH = $(window).height() / 2;
 
   $(window).on("scroll", function () {
@@ -61,7 +42,7 @@
   });
 
   /*==================================================================
-    [ Fixed Header ]*/
+  [ Fixed Header ]*/
   var headerDesktop = $(".container-menu-desktop");
   var wrapMenu = $(".wrap-menu-desktop");
 
@@ -90,7 +71,7 @@
   });
 
   /*==================================================================
-    [ Menu mobile ]*/
+  [ Menu mobile ]*/
   $(".btn-show-menu-mobile").on("click", function () {
     $(this).toggleClass("is-active");
     $(".menu-mobile").slideToggle();
@@ -123,7 +104,7 @@
   });
 
   /*==================================================================
-    [ Show / hide modal search ]*/
+  [ Show / hide modal search ]*/
   $(".js-show-modal-search").on("click", function () {
     $(".modal-search-header").addClass("show-modal-search");
     $(this).css("opacity", "0");
@@ -139,7 +120,7 @@
   });
 
   /*==================================================================
-    [ Isotope ]*/
+  [ Isotope ]*/
   var $topeContainer = $(".isotope-grid");
   var $filter = $(".filter-tope-group");
 
@@ -179,7 +160,7 @@
   });
 
   /*==================================================================
-    [ Filter / Search product ]*/
+  [ Filter / Search product ]*/
   $(".js-show-filter").on("click", function () {
     $(this).toggleClass("show-filter");
     $(".panel-filter").slideToggle(400);
@@ -201,7 +182,7 @@
   });
 
   /*==================================================================
-    [ Cart ]*/
+  [ Cart ]*/
   $(".js-show-cart").on("click", function () {
     $(".js-panel-cart").addClass("show-header-cart");
   });
@@ -211,7 +192,7 @@
   });
 
   /*==================================================================
-    [ Cart ]*/
+  [ Cart ]*/
   $(".js-show-sidebar").on("click", function () {
     $(".js-sidebar").addClass("show-sidebar");
   });
@@ -221,7 +202,7 @@
   });
 
   /*==================================================================
-    [ +/- num product ]*/
+  [ +/- num product ]*/
   $(".btn-num-product-down").on("click", function () {
     var numProduct = Number($(this).next().val());
     if (numProduct > 0)
@@ -238,7 +219,7 @@
   });
 
   /*==================================================================
-    [ Rating ]*/
+  [ Rating ]*/
   $(".wrap-rating").each(function () {
     var item = $(this).find(".item-rating");
     var rated = -1;
@@ -280,7 +261,7 @@
   });
 
   /*==================================================================
-    [ Show modal1 ]*/
+  [ Show modal1 ]*/
   $(".js-show-modal1").on("click", function (e) {
     e.preventDefault();
     $(".js-modal1").addClass("show-modal1");

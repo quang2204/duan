@@ -11,7 +11,7 @@
     }
 
     .cuoi {
-        margin-bottom: 180px;
+        margin-bottom: 90px;
 
     }
 
@@ -26,7 +26,7 @@
     }
 
     .mt {
-        margin-top: 170px;
+        margin-top: 120px;
     }
 
     .btnn {
@@ -53,15 +53,14 @@
         color: #717fe0;
     }
 </style>
-
-<!-- Content page -->
-
 <div class="containe  mt">
     <img src="../view/images/404.png" alt="" style="width: 100%; max-width: 500px;">
     <br>
 
 </div>
-
+<div class="containe m-b-20">
+    <a href="?" class="btnn">Tham khảo sản phẩm </a>
+</div>
 <div class="containe cuoi">
     <a href="tel:0949699222">Gọi 0949699222 miễn phí</a>
 </div>

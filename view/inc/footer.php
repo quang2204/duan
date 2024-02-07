@@ -288,14 +288,14 @@
 	});
 
 	$('.js-addwish-b2').each(function () {
-		var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-		$(this).on('click', function () {
-			swal(nameProduct, "is added to wishlist !", "success");
+		var productName = $(this).closest('.block2').find('.js-name-b2').text();
 
+		$(this).on('click', function () {
+			swal(productName, "add cart  !", "success");
 			$(this).addClass('js-addedwish-b2');
-			$(this).off('click');
 		});
 	});
+
 
 	$('.js-addwish-detail').each(function () {
 		var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();

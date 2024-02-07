@@ -37,7 +37,7 @@ function login()
                 $insertUserStmt->execute();
 
                 // Redirect to login page if needed
-                header("Location:?act=login");
+                header("Location:?act=sign-in");
             }
         } catch (Exception $e) {
             die($e->getMessage());

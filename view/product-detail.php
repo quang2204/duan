@@ -183,11 +183,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
 
+		</div>
+		<div id='bl'></div>
 		<div class="bor10 m-t-50 p-t-43 p-b-40">
 			<!-- Tab01 -->
-			<div class="tab01" id='bl'>
+			<div class="tab01">
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs" role="tablist">
 					<li class="nav-item p-b-10">
@@ -293,7 +294,7 @@
 													</span>
 
 													<span class="fs-18 cl11">
-														<?php for ($i=0; $i < $value['rating']; $i++) { 
+														<?php for ($i = 0; $i < $value['rating']; $i++) {
 															echo '⭐';
 														} ?>
 													</span>
@@ -347,17 +348,6 @@
 																																										name="noidung"></textarea>
 											</div>
 
-											<!-- <div class="col-sm-6 p-b-5">
-												<label class="stext-102 cl3" for="name">Tên</label>
-												<input class="size-111 bor8 stext-102 cl2 p-lr-20 how-shadow1" id="name" type="text"
-																																										name="name">
-											</div>
-
-											<div class="col-sm-6 p-b-5">
-												<label class="stext-102 cl3" for="email">E-mail</label>
-												<input class="size-111 bor8 stext-102 cl2 p-lr-20 how-shadow1" id="email" type="text"
-																																										name="email">
-											</div> -->
 										</div>
 
 										<button type="submit"
@@ -408,15 +398,15 @@
 								<img src="admin/<?= $product['img'] ?>" alt="IMG-PRODUCT">
 
 								<a href="#"
-																																						class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-									xem
+																																						class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-addwish-b2">
+									Thêm vào giỏ hàng
 								</a>
 							</div>
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
 									<a href="?act=product-detail&id=<?= $product['id'] ?>&iddm=<?= $product['iddm'] ?>"
-																																							class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+																																							class="stext-107 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										<?= $product['name'] ?>
 									</a>
 
@@ -426,22 +416,11 @@
 									</span>
 								</div>
 
-								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="view/images/icons/icon-heart-01.png"
-																																								alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="view/images/icons/icon-heart-02.png"
-																																								alt="ICON">
-									</a>
-								</div>
+
 							</div>
 						</div>
 					</div>
 				<?php endforeach; ?>
-
-
-				<!-- -->
-
 
 			</div>
 		</div>

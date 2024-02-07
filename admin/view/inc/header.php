@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="../view/images/icons/favicon.png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> -->
     <title>CozaStore</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -17,6 +17,7 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
     <link href=" ./assets/css/style.css" rel="stylesheet" />
+    <link href=" ./assets/css/nucleo-icons.css" rel="stylesheet" />
 
     <link href=" ./assets/css/soft-ui-dashboard-tailwind.css?v=1.0.5" rel="stylesheet" />
 
@@ -52,7 +53,7 @@
 
         <div>
             <ul class="flex flex-col pl-0 mb-0">
-                <li class="mt-0.5 w-full">
+                <li class="mt-0.5 w-full hover">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 <?= ($act === 'tongquan') ? 'active' : '' ?> "
                                                                                                                                             href="?act=tongquan">
                         <div
@@ -81,7 +82,7 @@
                     </a>
                 </li>
 
-                <li class="mt-0.5 w-full">
+                <li class="mt-0.5 w-full hover ">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors <?= ($act === 'sanpham' || $act === 'adsp' || $act === 'sua') ? 'active' : '' ?>"
                                                                                                                                             href="?act=sanpham">
                         <div
@@ -110,7 +111,7 @@
                     </a>
                 </li>
 
-                <li class="mt-0.5 w-full">
+                <li class="mt-0.5 w-full hover">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors <?= ($act === 'danhmuc' || $act === 'suadm' || $act === 'themdm') ? 'active' : '' ?>"
                                                                                                                                             href=" ?act=danhmuc">
                         <div
@@ -139,7 +140,7 @@
                     </a>
                 </li>
 
-                <li class="mt-0.5 w-full">
+                <li class="mt-0.5 w-full hover">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors <?= ($act === 'user') ? 'active' : '' ?>"
                                                                                                                                             href="?act=user">
                         <div
@@ -155,7 +156,7 @@
                     </a>
                 </li>
 
-                <li class="mt-0.5 w-full">
+                <li class="mt-0.5 w-full hover">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors <?= ($act === 'order') ? 'active' : '' ?>"
                                                                                                                                             href="?act=order">
                         <div
@@ -169,7 +170,7 @@
                         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Order</span>
                     </a>
                 </li>
-                <li class="mt-0.5 w-full">
+                <li class="mt-0.5 w-full hover">
                     <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors <?= ($act === 'comment') ? 'active' : '' ?>"
                                                                                                                                             href="?act=comment">
                         <div
@@ -184,7 +185,7 @@
                     </a>
                 </li>
                 <?php if (empty($_SESSION['users'])): ?>
-                    <li class="mt-0.5 w-full">
+                    <li class="mt-0.5 w-full hover">
 
 
                         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors <?= ($act === 'sign-in') ? 'active' : '' ?>"
@@ -215,7 +216,7 @@
                         </a>
                     </li>
 
-                    <li class="mt-0.5 w-full">
+                    <li class="mt-0.5 w-full hover">
                         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors <?= ($act === 'sign-up') ? 'active' : '' ?>"
                                                                                                                                                 href="?act=sign-up">
                             <div
@@ -250,7 +251,7 @@
                         </a>
                     </li>
                 <?php else: ?>
-                    <li class="mt-0.5 w-full">
+                    <li class="mt-0.5 w-full hover">
                         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors <?= ($act === 'profile') ? 'active' : '' ?>"
                                                                                                                                                 href="?act=profile&id=<?= $_SESSION['users']['id'] ?>">
                             <div
@@ -281,12 +282,12 @@
                             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Profile</span>
                         </a>
                     </li>
-                    <li class="mt-0.5 w-full">
+                    <li class="mt-0.5 w-full hover">
                         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors"
                                                                                                                                                 href="?act=dx">
                             <div
                                                                                                                                                     class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="back" class="bi bi-box-arrow-left"
                                                                                                                                                         viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                                                                                                                                             d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z" />
@@ -298,14 +299,10 @@
                         </a>
                     </li>
                 <?php endif; ?>
-
-
-
             </ul>
         </div>
 
         <div class="mx-4">
-            <!-- load phantom colors for card after: -->
             <p
                                                                                                                                     class="invisible hidden text-gray-800 text-red-500 text-red-600 after:bg-gradient-to-tl after:from-gray-900 after:to-slate-800 after:from-blue-600 after:to-cyan-400 after:from-red-500 after:to-yellow-400 after:from-green-600 after:to-lime-400 after:from-red-600 after:to-rose-400 after:from-slate-600 after:to-slate-300 text-lime-500 text-cyan-500 text-slate-400 text-fuchsia-500">
             </p>
@@ -392,8 +389,6 @@
                         <li class="flex items-center px-2">
 
                         </li>
-
-                        <!-- notifications -->
 
                         <li class="relative flex items-center pr-2">
                             <p class="hidden transform-dropdown-show"></p>

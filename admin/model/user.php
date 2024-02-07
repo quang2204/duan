@@ -1,60 +1,26 @@
 <?php
 function getAlluser()
 {
-    try {
-        // Câu truy vấn thường
+
         $sql = "SELECT * FROM taikhoan";
-
-        // Chuẩn bị câu truy vấn
-        $stmt = $GLOBALS['conn']->prepare($sql);
-
-        // Thực hiện câu truy vấn
-        $stmt->execute();
-
-
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $result;
-    } catch (Exception $e) {
-        echo 'ERROR: ' . $e->getMessage();
-        die;
-    }
+        return select($sql);
 }
 function getiduser()
 {
-    try {
+
         $sql = "SELECT * FROM taikhoan WHERE id = :id LIMIT 1;";
 
-        $stmt = $GLOBALS['conn']->prepare($sql);
-
-        $stmt->bindParam(":id", $_GET['id']);
-
-        $stmt->execute();
-
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
-
-    } catch (\Throwable $th) {
-        die();
-    }
+       return slectid($sql);
 }
 
 function xoauser()
 {
-    try {
+    
         $sql = "DELETE FROM taikhoan WHERE id = :id;";
 
-        $stmt = $GLOBALS['conn']->prepare($sql);
-
-        $stmt->bindParam(":id", $_GET['id']);
-
-        $stmt->execute();
+       return slectid($sql);
         header('Location: ?act=user');
 
-    } catch (Exception $e) {
-        echo 'ERROR: ' . $e->getMessage();
-        die;
-    }
 
 }
 // function updateuser()

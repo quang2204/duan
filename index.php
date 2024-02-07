@@ -17,14 +17,12 @@ require_once 'Controller/user.php';
 $baseurl = 'http://php.test/duanmau/';
 
 
-
-
 $act = !empty($_GET['act']) ? $_GET['act'] : 'index';
+
 $productId = $_GET['id'];
 if ($act === 'index') {
     $data = getAll(4);
 } else if ($act === 'product-detail') {
-
 
     $productDetail = getByID($productId);
 
@@ -33,19 +31,21 @@ if ($act === 'index') {
 
     $insertbl = inserbl();
 
-} else if ($act === 'product') {
-    if (isset($_GET['search'])) {
-        $search = $_GET['search'];
-        $id = search($search);
-    } else if (isset($productId)) {
-        $id = getidm($productId);
-    } else if (isset($_GET['desc']) && $_GET['desc'] === 'price') {
-        $id = descByPrice();
-    } else if (isset($_GET['acs']) && $_GET['acs'] === 'price') {
-        $id = acsByPrice();
-    } else {
-        $id = getAlls();
+}
+if ($act === 'product') {
+    $orderBy = null;
+    $search = isset($_POST['search']) ? $_POST['search'] : null;
+    $productId = isset($productId) ? $productId : null;
+
+    if (isset($_GET['orderBy'])) {
+        $orderBy = strtoupper($_GET['orderBy']);
+        if ($orderBy !== 'ASC' && $orderBy !== 'DESC') {
+            // Mặc định là ASC nếu OrderBy không hợp lệ
+            $orderBy = 'ASC';
+        }
     }
+
+    $id = getProductData($orderBy, $search, $productId);
     $dm = getAlldm();
 } else if ($act === 'singup') {
     $dk = login();
@@ -53,7 +53,7 @@ if ($act === 'index') {
     $dn = dn();
 } else if ($act === 'dx') {
     $dx = dx();
-} else if ($act === 'portfolio') {
+} else if ($act === 'profile') {
     $pro = getuser($productId);
     $pros = user($productId);
 }

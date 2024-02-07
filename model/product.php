@@ -3,37 +3,11 @@
 
 function getAll($limit)
 {
-    try {
-        // Câu truy vấn thường
-        $sql = "SELECT * FROM sanpham ORDER BY id DESC LIMIT " . $limit;
-        return select($sql);
-    } catch (Exception $e) {
-        echo 'ERROR: ' . $e->getMessage();
-        die;
-    }
+    $sql = "SELECT * FROM sanpham ORDER BY id DESC LIMIT " . $limit;
+    return select($sql);
+
 }
 
-function getidm($iddm)
-{
-    try {
-        $sql = "SELECT * FROM sanpham WHERE iddm = :iddm";
-
-        $stmt = $GLOBALS['conn']->prepare($sql);
-
-        $stmt->bindParam(":iddm", $iddm);
-
-        $stmt->execute();
-
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-
-    } catch (PDOException $e) {
-        // Handle the exception, logging or displaying an error message
-        die("Error: " . $e->getMessage());
-    }
-}
-
-// Example of usage:
 function getidsp($iddm, $id)
 {
     try {
@@ -50,14 +24,14 @@ function getidsp($iddm, $id)
         return $result;
 
     } catch (PDOException $e) {
-        // Handle the exception, logging or displaying an error message
+
         die("Error: " . $e->getMessage());
     }
 }
 function getByID($id)
 {
-    try {
-        $sql = "SELECT 
+
+    $sql = "SELECT 
             sp.id as sp_id, 
             sp.name as sp_name, 
             sp.img as sp_img, 
@@ -72,60 +46,44 @@ function getByID($id)
             ON dm.id = sp.iddm
         WHERE sp.id = :id";
 
+    return slectid($sql);
+
+}
+function getProductData($orderBy = null, $search = null, $iddm = null)
+{
+    try {
+        $sql = "SELECT * FROM sanpham";
+
+        // Thêm điều kiện dựa trên các tham số
+        if ($search !== null) {
+            $sql .= " WHERE name LIKE :search";
+            $params = [':search' => '%' . $search . '%'];
+        } elseif ($iddm !== null) {
+            $sql .= " WHERE iddm = :iddm";
+            $params = [':iddm' => $iddm];
+        } else {
+            $params = [];
+        }
+
+        if ($orderBy !== null) {
+            $sql .= " ORDER BY price " . $orderBy;
+        }
+
         $stmt = $GLOBALS['conn']->prepare($sql);
 
-        $stmt->bindParam(':id', $id);
+        // Liên kết tham số nếu có
+        foreach ($params as $param => $value) {
+            $stmt->bindParam($param, $value);
+        }
 
         $stmt->execute();
 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
-    } catch (Exception $e) {
-        echo 'ERROR: ' . $e->getMessage();
-        die;
-    }
-}
-function desc()
-{
-    try {
-        // Câu truy vấn thường
-        $sql = "SELECT * FROM sanpham ORDER BY price DESC  ";
-        return select($sql);
-    } catch (Exception $e) {
-        echo 'ERROR: ' . $e->getMessage();
-        die;
-    }
-}
-function acs()
-{
-    try {
-        // Câu truy vấn thường
-        $sql = "SELECT * FROM sanpham ORDER BY price ASC  ";
-        return select($sql);
-    } catch (Exception $e) {
-        echo 'ERROR: ' . $e->getMessage();
-        die;
-    }
-}
-function getAlls()
-{
-    try {
-        // Câu truy vấn thường
-        $sql = "SELECT * FROM sanpham  ";
-        return select($sql);
-    } catch (Exception $e) {
-        echo 'ERROR: ' . $e->getMessage();
-        die;
-    }
-}
-function search($search)
-{
 
-    $sql = "SELECT * FROM sanpham WHERE name LIKE ?";
-    $stmt = $GLOBALS['conn']->prepare($sql);
-    $stmt->execute(['%' . $search . '%']);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
 
+        die("Error: " . $e->getMessage());
+    }
 }
 

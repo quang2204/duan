@@ -249,7 +249,7 @@
 			<div class="sidebar-content flex-w w-full p-lr-65 js-pscroll">
 				<ul class="sidebar-link w-full">
 					<li class="p-b-13">
-						<a href="?act=portfolio&id=<?= $_SESSION['users']['id'] ?>"
+						<a href="?act=profile&id=<?= $_SESSION['users']['id'] ?>"
 																																				class="stext-102 cl2 hov-cl1 trans-04">
 							Portfolio
 						</a>
