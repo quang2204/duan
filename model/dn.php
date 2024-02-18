@@ -10,9 +10,6 @@ function dn()
             $stmt = $GLOBALS['conn']->prepare($query);
             $stmt->bindParam(':email', $_POST['email']);
             $stmt->bindParam(':pass', $pass);
-
-
-
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -33,7 +30,7 @@ function dn()
 
                 ];
           
-                header('Location: index.php');
+                header('Location: ?');
                 exit();
             } else {
                 // Người dùng không tồn tại hoặc thông tin đăng nhập không chính xác

@@ -13,8 +13,6 @@ require_once '../model/singin.php';
 require_once '../model/dn.php';
 require_once '../model/dx.php';
 require_once '../model/function.php';
-
-require_once './model/phantrang.php';
 require_once './model/profile.php';
 require_once "../model/binhluan.php";
 
@@ -25,14 +23,19 @@ require_once "../model/user.php";
 $act = !empty($_GET['act']) ? $_GET['act'] : 'tongquan';
 $path = "view/{$act}.php";
 require_once 'view/inc/header.php';
-$ad = getAlldm();
-$countsp = countsp();
-$users = countuser();
-$bls = countbl();
+$perPage = 6; // Số lượng mục trên mỗi trang
+$page = isset($_GET['trang']) ? $_GET['trang'] : 1;
+
+$countsp = counttb('sanpham');
+$users = counttb('taikhoan');
+$bls = counttb('binhluan');
 if ($act === 'sanpham') {
 
-    $productData = getProductsPerPage($currentPage, $productsPerPage);
 
+
+    $totalItems = countAll('sanpham');
+    $totalPages = ceil($totalItems / $perPage);
+    $productData = getAll($page, $perPage);
 } else if ($act === 'adsp') {
     $get = addsp();
 
@@ -46,6 +49,11 @@ if ($act === 'sanpham') {
 } elseif ($act === 'xoadanhmuc') {
     $delete = deletedm($_GET['id']);
 
+} elseif ($act === 'danhmuc') {
+
+    $totalItems = countAll('danhmuc');
+    $totalPages = ceil($totalItems / $perPage);
+    $ad = getAlldms($page, $perPage);
 } elseif ($act === 'themdm') {
     $add = adddm();
 
@@ -60,7 +68,11 @@ if ($act === 'sanpham') {
 } else if ($act === 'dx') {
     $dx = dx();
 } else if ($act === 'user') {
-    $user = getAlluser();
+
+
+    $totalItems = countAll('taikhoan');
+    $totalPages = ceil($totalItems / $perPage);
+    $user = getAlluser($page, $perPage);
 } elseif ($act === 'xoauser') {
     $xoa = xoauser($_GET['id']);
 } elseif ($act === 'suauser') {
@@ -68,7 +80,14 @@ if ($act === 'sanpham') {
     $suauser = updatepro($_GET['id']);
 } elseif ($act === 'comment') {
 
-    $bl = allsbl();
+    $page = isset($_GET['trang']) ? ($_GET['trang']) : 1;
+    $perPage = 6;
+    $totalPages = ceil(countAll('sanpham') / $perPage);
+    $bl = allsbl(1, 6);
+
+} elseif ($act === 'xembl') {
+    $bls = allbl($_GET['id']);
+
 
 } elseif ($act === 'xoabl') {
 

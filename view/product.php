@@ -9,9 +9,8 @@
 </style>
 
 
+<div class="bg0 p-b-200 ">
 
-<!-- Product -->
-<div class="bg0 p-b-140 ">
 	<div class="container con">
 		<div class="flex-w flex-sb-m p-b-52">
 			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
@@ -21,13 +20,12 @@
 					</button>
 				</a>
 
-				<?php foreach ($dm as $key => $value): ?>
-					<a href="?act=product&id=<?= $value['id'] ?>">
+				<?php foreach ($product['dm'] as $category): ?>
+					<a href="?act=product&id=<?= $category['id'] ?>">
 						<button class="stext-106 cl6 hov1 trans-04 m-r-32 m-tb-5 how-active1">
-							<?= $value['name'] ?>
+							<?= $category['name'] ?>
 						</button>
 					</a>
-
 				<?php endforeach; ?>
 
 			</div>
@@ -48,12 +46,14 @@
 
 			<!-- Search product -->
 			<div class="dis-none panel-search w-full p-t-10 p-b-15">
-				<form id="searchForm" method="post" action="?act=product" class="dis-flex p-l-15 bor2 bor10">
-					<button id="searchButton" class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" type="button">
+				<form id="searchForm" method="get" class="dis-flex p-l-15 bor2 bor10"
+																																		onsubmit="return searchProduct();">
+					<button id="searchButton" class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04" type="submit">
 						<i class="zmdi zmdi-search"></i>
 					</button>
-					<input id="searchInput" class="mtext-107 cl2 size-114 plh2 p-r-15 m-t-20 align-content-center" type="text" name="search"
-																																			placeholder="Search">
+					<input id="searchInput" class="mtext-107 cl2 size-114 plh2 p-r-15 m-t-20 align-content-center" type="text"
+																																			name="search">
+
 				</form>
 			</div>
 
@@ -66,15 +66,10 @@
 						</div>
 
 						<ul>
-							<li class="p-b-6">
-								<a href="#" class="filter-link stext-106 trans-04">
-									Mặc định
-								</a>
-							</li>
 
-							<?php $link = isset($_GET['id']) ? '&id=' . $_GET['id'] : '' ?>
 							<li class="p-b-6">
 								<a href="?act=product<?= $link ?>&orderBy=ASC" class="filter-link stext-106 trans-04">
+
 									Giá: thấp đến cao
 								</a>
 							</li>
@@ -94,37 +89,39 @@
 
 						<ul>
 							<li class="p-b-6">
-								<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-									Tất cả
-								</a>
-							</li>
-
-							<li class="p-b-6">
-								<a href="#" class="filter-link stext-106 trans-04">
+								<a href="?act=product&minPrice=100000&maxPrice=200000<?= $link ?><?= $tk ?>"
+																																						class="filter-link stext-106 trans-04">
 									100.000 đ - 200.000 đ
 								</a>
+
 							</li>
 
+
+
 							<li class="p-b-6">
-								<a href="#" class="filter-link stext-106 trans-04">
+								<a href="?act=product&minPrice=200000&maxPrice=300000<?= $link ?><?= $tk ?>"
+																																						class="filter-link stext-106 trans-04">
 									200.000 đ - 300.000 đ
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="#" class="filter-link stext-106 trans-04">
+								<a href="?act=product&minPrice=300000&maxPrice=400000<?= $link ?><?= $tk ?>"
+																																						class="filter-link stext-106 trans-04">
 									300.000 đ - 400.000 đ
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="#" class="filter-link stext-106 trans-04">
+								<a href="?act=product&minPrice=400000&maxPrice=500000<?= $link ?><?= $tk ?>"
+																																						class="filter-link stext-106 trans-04">
 									400.000 đ - 500.000 đ
 								</a>
 							</li>
 
 							<li class="p-b-6">
-								<a href="#" class="filter-link stext-106 trans-04">
+								<a href="?act=product&minPrice=500000<?= $link ?><?= $tk ?>"
+																																						class="filter-link stext-106 trans-04">
 									500.000 đ+
 								</a>
 							</li>
@@ -209,37 +206,91 @@
 		</div>
 
 		<div class="row isotope-grid">
-			<?php foreach ($id as $key => $value): ?>
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="admin/<?= $value['img'] ?>" alt="IMG-PRODUCT">
-							<!-- js-show-modal1	 -->
-							<a href=" #"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-addwish-b2">
-								Thêm vào giỏ hàng
+			<?php $products = $product['product']['products'];
+		 foreach ($products as $key => $value): ?>
+			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+				<!-- Block2 -->
+				<div class="block2">
+					<div class="block2-pic hov-img0">
+						<img src="admin/<?= $value['img'] ?>" alt="IMG-PRODUCT">
+						<!-- js-show-modal1	 -->
+						<a href="<?= !isset($_SESSION['users']) ? '?act=sign-in' : '' ?>" class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04  <?= isset($_SESSION['users']) ? 'add-to-cart-btn js-addwish-b2' : '' ?> "
+						<?= !isset($_SESSION['users']) ? 'onclick="return confirm(\'Đăng nhập để thêm giỏ hàng\')"' : '' ?>
+
+																																				data-product-id='<?= $value['id'] ?>'>
+							Thêm vào giỏ hàng
+						</a>
+					</div>
+
+					<div class="block2-txt flex-w flex-t p-t-14">
+						<div class="block2-txt-child1 flex-col-l ">
+							<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
+																																					class="stext-107 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+								<?= $value['name'] ?>
 							</a>
+
+							<span class="stext-105 cl3">
+								<?= number_format($value['price'], 0, ',', '.') ?> đ
+							</span>
 						</div>
 
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
-																																						class="stext-107 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									<?= $value['name'] ?>
-								</a>
-
-								<span class="stext-105 cl3">
-									<?= number_format($value['price'], 0, ',', '.') ?> đ
-								</span>
-							</div>
-
-						</div>
 					</div>
 				</div>
-			<?php endforeach; ?>
-
+			</div>
+		<?php endforeach; ?>
 		</div>
-
+		<div class="flex-c-m flex-w w-full p-t-38">
+			<?php if ($page > 1): ?>
+				<a href="?act=product&page=<?= $page - 1; ?><?= $link ?><?= $order ?>"
+																																		class="flex-c-m how-pagination1 trans-04 m-all-7 ">
+					<i class="fa fa-arrow-left"></i>
+				</a>
+			<?php endif; ?>
+			<?php if ($totalPages > 1):
+				for ($i = 1; $i <= $totalPages; $i++): ?>
+					<a href="?act=product&page=<?= $i ?><?= $link ?><?= $order ?>"
+																																			class="flex-c-m how-pagination1 trans-04 m-all-7 <?= ($i == $page) ? 'active-pagination1' : ''; ?>">
+						<?= $i ?>
+					</a>
+				<?php endfor; endif; ?>
+			<?php if ($page < $totalPages): ?>
+				<a href="?act=product&page=<?= $page + 1; ?><?= $link ?><?= $order ?>"
+																																		class="flex-c-m how-pagination1 trans-04 m-all-7 ">
+					<i class="fa fa-arrow-right"></i>
+				</a>
+			<?php endif; ?>
+		</div>
 	</div>
 </div>
+</div>
+<script>
+	function searchProduct() {
+		var searchInput = document.getElementById('searchInput').value;
+		window.location.href = '?act=product&search=' + searchInput;
+		return false;
+	}
+</script>
+<!-- <script>
+	$(document).ready(function () {
+		$('.cart').on('click', function (event) {
+			event.preventDefault(); // Prevent the default behavior
+
+			var productId = $(this).data('product-id');
+
+			$.ajax({
+				url: '?act=cart&id=' + productId,
+				type: 'GET',
+				data: {
+					productId: productId
+				},
+				success: function (response) {
+					console.log(response);
+					// Update your cart display or perform any other necessary actions
+				},
+				error: function (xhr, status, error) {
+					console.log('Error: ' + error);
+				}
+			});
+		});
+	});
+</script> -->

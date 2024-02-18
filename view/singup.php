@@ -5,11 +5,21 @@
 
     .container {
         margin-top: 140px;
-        margin-bottom: 50px;
+        margin-bottom: 80px;
     }
 
     h1 {
         color: black;
+    }
+
+    .p {
+        text-align: center;
+    }
+
+    .form {
+        margin: auto;
+        box-shadow: 3px 4px 10px 0px #d3c5c5;
+
     }
 
     .input {
@@ -22,7 +32,7 @@
         box-shadow: none;
     }
 </style>
-<div class="container">
+<div class="container forms">
     <h1 style="text-align: center;margin-bottom: 30px;">Đăng Ký </h1>
     <form class="form" method="post" action="">
         <div class="flex-column">
@@ -57,17 +67,17 @@
             </select>
         </div>
 
-        <!-- <div class="flex-column">
+        <div class="flex-column">
             <label>Nhập lại mật khẩu </label>
         </div>
         <div class="inputForm">
             <i class="fa fa-lock"></i>
-            <input type="password" class="input" id="password" placeholder="Enter your Password" required="">
+            <input type="password" class="input" id="password" placeholder="Enter your Password" name="nhaplai" required="">
             <div class="mat">
                 <i class="fa fa-eye-slash"></i>
             </div>
 
-        </div> -->
+        </div>
 
         <button class="button-submit">Đăng ký</button>
         <p class="p">Bạn đã có tài khoản? <a href="?act=sign-in" class="span">Đăng nhập</a>

@@ -13,9 +13,9 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
     <!-- table 1 -->
 
     <div class="flex flex-wrap -mx-3">
-        <div class="flex-none w-full max-w-full px-3">
+        <div class="flex-none w-full max-w-full px-3 foots">
             <div
-                                                                                                                                    class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+                                                                                                                                    class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border ">
                 <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent ">
                     <h6>Sản phẩm </h6>
 
@@ -68,7 +68,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                                                                                                                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                             <div class="flex px-2 py-1 ml">
                                                 <div>
-                                                    <img src="<?= isset($value['img']) ? $value['img'] : 'upload/avatar-01.jpg' ?>"
+                                                    <img src="<?= isset($value['img']) ? $value['img'] : '../view/images/avartar.jpg' ?>"
                                                                                                                                                                             class="inline-flex items-center  mr-4 text-sm text-white transition-all duration-200 ease-soft-in-out h-9 w-9 rounded-xl" />
 
                                                 </div>
@@ -110,7 +110,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 
 
 
-                                            <a href="<?= $GLOBALS['baseurl'] ?>?act=xoauser&id=<?= $value['id'] ?>">
+                                            <a href="?act=xoauser&id=<?= $value['id'] ?>">
                                                 <button class="noselect"
                                                                                                                                                                         onclick="return confirm('Bạn có muốn xóa sản phẩm <?= $value['name'] ?>')">
                                                     <span class="text">Delete</span>
@@ -137,8 +137,26 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
             </div>
         </div>
     </div>
-
-    <!-- card 2 -->
-
-
 </div>
+<ul class="pagination d-flex justify-content-center">
+    <?php if ($page > 1): ?>
+        <li class="page-item">
+            <a class="page-link" href="?act=user&trang=<?= $page - 1; ?>">Prev</a>
+        </li>
+    <?php endif; ?>
+    <?php if ($totalPages > 1):
+        for ($i = 1; $i <= $totalPages; $i++): ?>
+            <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
+                <a class="page-link" href="?act=user&trang=<?= $i; ?>">
+                    <?= $i; ?>
+                </a>
+            </li>
+
+        <?php endfor; ?>
+    <?php endif; ?>
+    <?php if ($page < $totalPages): ?>
+        <li class="page-item">
+            <a class="page-link" href="?act=user&trang=<?= $page + 1; ?>">Next</a>
+        </li>
+    <?php endif; ?>
+</ul>

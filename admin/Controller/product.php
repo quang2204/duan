@@ -10,5 +10,6 @@ function delete($id)
 function deletebl($id)
 {
     $bl = xoabl($id);
-    header("location: ?act=comment");
+    header("location: ?act=xembl&id=" . $_GET['idpro']);
+
 }

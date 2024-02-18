@@ -1,14 +1,23 @@
 <?php
-function getAlldm()
+function getAlldms($page = '', $perPage = '')
 {
-        $sql = "SELECT * FROM danhmuc";
-        return select($sql);
+
+    $offset = ($page - 1) * $perPage;
+    $sql = "SELECT * FROM danhmuc LIMIT $offset, $perPage";
+    return select($sql);
+}
+
+function countAll($table)
+{
+    $sql = "SELECT COUNT(*) as count FROM $table";
+    $result = select($sql);
+    return $result[0]['count'];
 }
 function getiddm()
 {
-   
-        $sql = "SELECT * FROM danhmuc WHERE id = :id LIMIT 1;";
-        return slectid($sql);
+
+    $sql = "SELECT * FROM danhmuc WHERE id = :id LIMIT 1;";
+    return slectid($sql);
 }
 function adddm()
 {
@@ -20,7 +29,7 @@ function adddm()
             $stmt = $GLOBALS['conn']->prepare($sql);
             $stmt->bindParam(':name', $_POST['name']);
             $stmt->execute();
-            header('Location:?act=danhmuc'); 
+            header('Location:?act=danhmuc');
             return $stmt;
         } catch (Exception $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -40,7 +49,7 @@ function updatedm()
             $stmt = $GLOBALS['conn']->prepare($sql);
             $stmt->bindParam(':name', $_POST['name']);
 
-            $stmt->bindParam(':id', $_POST['id']); 
+            $stmt->bindParam(':id', $_POST['id']);
 
             $stmt->execute();
             header('Location: ?act=danhmuc');
@@ -52,6 +61,6 @@ function updatedm()
 }
 function xoadm()
 {
-        $sql = "DELETE FROM danhmuc WHERE id = :id;";
-        return slectid($sql);
+    $sql = "DELETE FROM danhmuc WHERE id = :id;";
+    return slectid($sql);
 }

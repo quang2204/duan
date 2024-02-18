@@ -11,7 +11,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
   <div class="flex flex-wrap -mx-3">
     <div class="flex-none w-full max-w-full px-3">
       <div
-                                                                                                                              class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
+                                                                                                                              class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border foots">
         <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent " style="    display: flex;
     align-items: center;
     justify-content: space-between;">
@@ -68,7 +68,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
               </thead>
               <tbody>
                 <?php
-                foreach ($products as $key => $value): ?>
+                foreach ($productData as $key => $value): ?>
                   <tr>
                     <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                       <div class="flex px-2 py-1">
@@ -109,8 +109,8 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                     </td>
                     <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent readonly">
                       <textarea class="mb-0 text-xs font-semibold w-full leading-tight pl-2" readonly>
-                                                                                                                                                <?= $value['sp_motact'] ?>
-                                                                                                                                                </textarea>
+                                                                                                                                                                  <?= $value['sp_motact'] ?>
+                                                                                                                                                                  </textarea>
                     </td>
 
                     <td class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"
@@ -148,3 +148,25 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
   </div>
 
 </div>
+<ul class="pagination d-flex justify-content-center">
+  <?php if ($page > 1): ?>
+    <li class="page-item">
+      <a class="page-link" href="?act=sanpham&trang=<?= $page - 1; ?>">Prev</a>
+    </li>
+  <?php endif; ?>
+  <?php
+  for ($i = 1; $i <= $totalPages; $i++): ?>
+    <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
+      <a class="page-link" href="?act=sanpham&trang=<?= $i; ?>">
+        <?= $i; ?>
+      </a>
+    </li>
+
+  <?php endfor; ?>
+
+  <?php if ($page < $totalPages): ?>
+    <li class="page-item">
+      <a class="page-link" href="?act=sanpham&trang=<?= $page + 1; ?>">Next</a>
+    </li>
+  <?php endif; ?>
+</ul>

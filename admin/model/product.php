@@ -1,8 +1,22 @@
 <?php
-function getAll()
+function getAll($page = '', $perPage = '')
 {
-
-    $sql = "SELECT * FROM sanpham";
+    $offset = ($page - 1) * $perPage;
+    $sql = "SELECT 
+    sp.id as sp_id, 
+    sp.name as sp_name, 
+    sp.img as sp_img, 
+    sp.price as sp_price, 
+    sp.luotxem as sp_luotxem, 
+    sp.mota as sp_mota, 
+    sp.motact as sp_motact, 
+    dm.name as dm_name,
+    sp.luotxem as sp_luotxem,
+    dm.id as dm_id
+FROM sanpham as sp
+INNER JOIN danhmuc as dm
+    ON dm.id = sp.iddm
+ORDER BY sp.id DESC LIMIT $offset, $perPage";
     return select($sql);
 }
 
@@ -80,24 +94,10 @@ function updatesp()
     }
 }
 
-function countsp()
+function counttb($table)
 {
 
-    $sql = "SELECT COUNT(*) as total  FROM sanpham";
-    return counts($sql);
-
-}
-function countuser()
-{
-
-    $sql = "SELECT COUNT(*) as total  FROM taikhoan";
-    return counts($sql);
-
-}
-function countbl()
-{
-
-    $sql = "SELECT COUNT(*) as total  FROM binhluan";
+    $sql = "SELECT COUNT(*) as total  FROM $table";
     return counts($sql);
 
 }

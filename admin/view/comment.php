@@ -42,9 +42,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                     <th
                                                                                                                                                             class=" py-3 font-bold  uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Comment </th>
-                                    <th
-                                                                                                                                                            class="3 py-3 pr-5 font-bold  uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Sao </th>
+
 
                                     <th
                                                                                                                                                             class=" pl-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
@@ -90,36 +88,18 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                                 <?= $value['comment_content'] ?>
                                             </p>
                                         </td>
-                                        <td
-                                                                                                                                                                class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                            <p class="mb-0 text-xs font-semibold leading-tight">
-                                                <?= $value['rating'] ?>
-                                            </p>
-                                        </td>
+
                                         <td
                                                                                                                                                                 class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
 
-                                            <a href="?act=xoabl&id=<?= $value['bl_id'] ?>" class="delete-btn">
-                                                <button class="noselect"
-                                                                                                                                                                        onclick="return confirm('Bạn có muốn xóa sản phẩm <?= $value['product_name'] ?>')">
-                                                    <span class="text">Delete</span>
-                                                    <span class="icon">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                                                                                                                                                viewBox="0 0 24 24">
-                                                            <path
-                                                                                                                                                                                    d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
-                                                            </path>
-                                                        </svg>
-                                                    </span>
+                                            <a href="?act=xembl&id=<?= $value['product_id'] ?>">
+                                                <button class="c-button c-button--gooey"> View detail
                                                 </button>
                                             </a>
 
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
-
-
-
                             </tbody>
                         </table>
                     </div>
@@ -132,33 +112,26 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 
 
 </div>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // Bắt sự kiện click vào nút Delete
-        $(".delete-btn").click(function () {
-            // Lấy thông tin cần thiết từ thuộc tính data của nút
-            var blId = $(this).data("id");
-            var productName = $(this).data("product-name");
 
-            // Hiển thị hộp thoại xác nhận
-            if (confirm("Bạn có muốn xóa sản phẩm " + productName + "?")) {
-                // Gửi yêu cầu AJAX để xóa
-                $.ajax({
-                    url: "?act=xoabl&id=" + blId,
-                    method: "GET",
-                    success: function (response) {
-                        // Xử lý phản hồi nếu cần
-                        console.log(response);
+<ul class="pagination d-flex justify-content-center">
+    <?php if ($page > 1): ?>
+        <li class="page-item">
+            <a class="page-link" href="?act=danhmuc&trang=<?= $page - 1; ?>">Prev</a>
+        </li>
+    <?php endif; ?>
+    <?php if ($totalPages > 1):
+        for ($i = 1; $i <= $totalPages; $i++): ?>
+            <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
+                <a class="page-link" href="?act=danhmuc&trang=<?= $i; ?>">
+                    <?= $i; ?>
+                </a>
+            </li>
 
-                        // Nếu muốn thực hiện bất kỳ hành động nào khác sau khi xóa, bạn có thể thực hiện ở đây
-                    },
-                    error: function (xhr, status, error) {
-                        // Xử lý lỗi nếu cần
-                        console.error(error);
-                    }
-                });
-            }
-        });
-    });
-</script> -->
+        <?php endfor; ?>
+    <?php endif; ?>
+    <?php if ($page < $totalPages): ?>
+        <li class="page-item">
+            <a class="page-link" href="?act=danhmuc&trang=<?= $page + 1; ?>">Next</a>
+        </li>
+    <?php endif; ?>
+</ul>

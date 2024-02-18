@@ -5,9 +5,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 }
 ?>
 
-<div class="w-full px-6 py-6 mx-auto">
-    <!-- table 1 -->
-
+<div class="w-full px-6 py-6 mx-auto">x
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div
@@ -114,15 +112,15 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                         <td
                                                                                                                                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent readonly">
                                             <textarea class="mb-0 text-xs font-semibold w-full leading-tight pl-2" readonly>
-                                                                                                                        <?= $value['sp_motact'] ?>
-                                                                                                                        </textarea>
+                                                                                                                            <?= $value['sp_motact'] ?>
+                                                                                                                            </textarea>
                                         </td>
 
                                         <td class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"
                                                                                                                                                                 style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 52px 0;">
                                             <a href="?act=sua&id=<?= $value['sp_id'] ?>">
                                                 <button class="c-button c-button--gooey"> Update
-                                                  
+
                                                 </button>
                                             </a>
                                             <a href="?act=xoa&id=<?= $value['sp_id'] ?>">

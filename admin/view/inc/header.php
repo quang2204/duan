@@ -356,15 +356,8 @@
                                     <span class="hidden sm:inline">Sign In</span>
                                 </a>
                             <?php else: ?>
-                                <?php
-                                if (!empty($_SESSION['users']['img'])):
-                                    ?>
-                                    <img src="<?= $_SESSION['users']['img'] ?>" alt="" style="  width: 40px; height:40px;border-radius: 50%;
+                                <img src="<?= isset($_SESSION['users']['img']) ? $_SESSION['users']['img'] : '../view/images/avartar.jpg' ?>" alt="" style="  width: 40px; height:40px;border-radius: 50%;
                                                 ">
-                                <?php else: ?>
-                                    <img src="../view\images\avatar-01.jpg" alt="" style="  width: 40px; height:40px;border-radius: 50%;
-    ">
-                                <?php endif; ?>
 
                                 <h6 class="px-4 mt-2">
                                     <?= $_SESSION['users']['name'] ?>

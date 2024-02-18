@@ -5,11 +5,20 @@
 
     .container {
         margin-top: 140px;
-        margin-bottom: 50px;
+        margin-bottom: 80px;
     }
 
     h1 {
         color: black;
+    }
+
+    .p {
+        text-align: center;
+    }
+
+    .form {
+        margin: auto;
+        box-shadow: 3px 4px 10px 0px #d3c5c5;
     }
 
     .input {

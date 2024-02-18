@@ -5,8 +5,8 @@
 <form class="form" method="post" enctype="multipart/form-data">
     <div class="d-flex align-items-center justify-content-between">
         <p class="title">Update product </p>
-        <a href="?act=sanpham">
-            <button class="btn">List product </button>
+        <a href="?act=profile&id=<?= $_SESSION['users']['id'] ?>">
+            <button class="btn">List user </button>
         </a>
 
     </div>

@@ -1,7 +1,3 @@
-<?php
-$baseurl = 'http://php.test/duanmau/';
-?>
-<!-- <img src="upload/about-01.jpg" alt=""> -->
 <section class="section-slide">
 	<div class="wrap-slick1 rs2-slick1">
 		<div class="slick1">
@@ -98,34 +94,33 @@ $baseurl = 'http://php.test/duanmau/';
 			</h3>
 		</div>
 
-
-		<div class="row isotope-grid">
+		<div class="row isotope-grid m-t-10 m-b-30">
 			<?php foreach ($data as $key => $value): ?>
-
 				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 					<!-- Block2 -->
 					<div class="block2">
-						<div class="block2-pic hov-img0 label-new" data-label="New">
+						<div class="block2-pic hov-img0">
 							<img src="admin/<?= $value['img'] ?>" alt="IMG-PRODUCT">
-				
-							<a href="#"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-addwish-b2">
-								Add cart
+
+							<a href="<?= !isset($_SESSION['users']) ? '?act=sign-in' : '' ?>" class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04  <?= isset($_SESSION['users']) ? 'add-to-cart-btn js-addwish-b2' : '' ?> "
+																																					<?= !isset($_SESSION['users']) ? 'onclick="return confirm(\'Đăng nhập để thêm giỏ hàng\')"' : '' ?>
+																																					data-product-id='<?= $value['id'] ?>'>
+								Thêm vào giỏ hàng
 							</a>
 						</div>
 
 						<div class="block2-txt flex-w flex-t p-t-14">
 							<div class="block2-txt-child1 flex-col-l ">
-								<a href="?act=product-detail&id=<?= $value['id'] ?> &iddm=<?= $value['iddm'] ?>"
+								<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
 																																						class="stext-107 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 									<?= $value['name'] ?>
 								</a>
 
 								<span class="stext-105 cl3">
 									<?= number_format($value['price'], 0, ',', '.') ?> đ
-
 								</span>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -134,5 +129,46 @@ $baseurl = 'http://php.test/duanmau/';
 
 		</div>
 
+		<div class="p-b-10">
+			<h3 class="ltext-103 cl5 m-b-10">
+				Sản phẩm xem nhiều
+			</h3>
+		</div>
+
+
+		<div class="row isotope-grid">
+			<?php foreach ($view as $key => $value): ?>
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="admin/<?= $value['img'] ?>" alt="IMG-PRODUCT">
+							<!-- js-show-modal1	 -->
+							<div id="toast"></div>
+
+							<a href="<?= !isset($_SESSION['users']) ? '?act=sign-in' : '' ?>" class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04  <?= isset($_SESSION['users']) ? 'add-to-cart-btn js-addwish-b2' : '' ?> "
+																																					<?= !isset($_SESSION['users']) ? 'onclick="return confirm(\'Đăng nhập để thêm giỏ hàng\')"' : '' ?>
+																																					data-product-id='<?= $value['id'] ?>'>
+								Thêm vào giỏ hàng
+							</a>
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
+																																						class="stext-107 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<?= $value['name'] ?>
+								</a>
+
+								<span class="stext-105 cl3">
+									<?= number_format($value['price'], 0, ',', '.') ?> đ
+								</span>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			<?php endforeach; ?>
+		</div>
 	</div>
 </section>

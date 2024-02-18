@@ -36,6 +36,7 @@
 <link rel="stylesheet" type="text/css" href="view/css/util.css">
 <link rel="stylesheet" type="text/css" href="view/css/main.css">
 <link rel="stylesheet" type="text/css" href="view/css/style.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <!--===============================================================================================-->
 </head>
 
@@ -85,9 +86,10 @@
 						<div class="flex-c-m h-full  gap">
 							<?php
 							if (!empty($_SESSION['users'])): ?>
-								<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart"
-																																						data-notify="2">
+								<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 <?= isset($_SESSION['cart']) ? 'icon-header-noti' : '' ?>  js-show-cart"
+																																						data-notify="<?= isset($_SESSION['cart']['info']) ? $_SESSION['cart']['info']['num_order'] : '' ?>">
 									<i class="zmdi zmdi-shopping-cart"></i>
+
 								</div>
 
 								<div class="flex-c-m h-full p-lr-19">
@@ -112,7 +114,7 @@
 							<?php endif; ?>
 							<?php
 							if (empty($_SESSION['users'])): ?>
-								<a href="?act=login"
+								<a href="?act=sign-in"
 																																						class="flex-c-m stext-104 cl0 size-104 bg1 bor2 hov-btn2 p-lr-15 trans-04 ">Đăng
 									nhập</a>
 								<a href="?act=singup" class="flex-c-m stext-104 cl0 size-104  bor2 hov-btn2 p-lr-15 trans-04 m-r-10"
@@ -155,7 +157,8 @@
 
 			<?php
 			if (empty($_SESSION['users'])): ?>
-				<a href="?act=login" class="flex-c-m stext-104 cl0 size-104 bg1 bor2 hov-btn2 p-lr-15 trans-04 m-r-10">Đăng
+				<a href="?act=sign-in"
+																																		class="flex-c-m stext-104 cl0 size-104 bg1 bor2 hov-btn2 p-lr-15 trans-04 m-r-10">Đăng
 					nhập</a>
 				<a href="?act=singup" class="flex-c-m stext-104  size-104  bor2 hov-btn2 p-lr-15 trans-04 "
 																																		style="border: 3px solid #717fe0;color: #717fe0;">Đăng
@@ -349,71 +352,56 @@
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
 
-		<div class="header-cart flex-col-l p-l-65 p-r-25">
+		<div class="header-cart flex-col-l p-l-45 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
 				<span class="mtext-103 cl2">
 					Your Cart
 				</span>
 
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+				<div class="fs-35 lh-10 cl2 m-r--20 pointer hov-cl1 trans-04 js-hide-cart">
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
 
 			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="view/images/item-cart-01.jpg" alt="IMG">
-						</div>
+				<ul class="header-cart-wrapitem w-full addcart">
+					<?php
 
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
+					foreach ($_SESSION['cart']['buy'] as $key => $value):
 
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
+						?>
+						<li class="header-cart-item flex-w flex-t m-b-12 p-b-20">
 
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="view/images/item-cart-02.jpg" alt="IMG">
-						</div>
+							<div class="header-cart-item-img js-addwish delete " data-id='<?= $value['id'] ?>'>
+								<img src="admin/<?= $value['img'] ?>" alt="IMG">
+							</div>
 
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
+							<div class="header-cart-item-txt ">
+								<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
+																																						class="header-cart-item-name m-b-18 hov-cl1 trans-04 ">
+									<?=
+										substr($value['name'], 0, 45) . '...';
+									?>
+								</a>
 
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
+								<span class="header-cart-item-info">
+									<?= $value['sl'] ?> x
+									<?= number_format($value['price'], 0, 0, ) ?> đ
+								</span>
+							</div>
+						</li>
+						<?php
 
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="view/images/item-cart-03.jpg" alt="IMG">
-						</div>
 
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
+					endforeach;
+					?>
 				</ul>
 
-				<div class="w-full">
+				<div class="w-full m-t--30">
 					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
+
+						Total:
+						<?= number_format($_SESSION['cart']['info']['total'], 0, 0, ) ?> đ
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">

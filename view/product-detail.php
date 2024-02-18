@@ -41,27 +41,6 @@
 						<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 						<div class="slick3 gallery-lb">
-							<!-- <div class="item-slick3" data-thumb="view/images/product-detail-01.jpg">
-								<div class="wrap-pic-w pos-relative">
-									<img src="view/images/product-detail-01.jpg" alt="IMG-PRODUCT">
-
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-																																							href="view/images/product-detail-01.jpg">
-										<i class="fa fa-expand"></i>
-									</a>
-								</div>
-							</div>
-
-							<div class="item-slick3" data-thumb="view/images/product-detail-02.jpg">
-								<div class="wrap-pic-w pos-relative">
-									<img src="view/images/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-									<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-																																							href="view/images/product-detail-02.jpg">
-										<i class="fa fa-expand"></i>
-									</a>
-								</div>
-							</div> -->
 
 							<div class="item-slick3" data-thumb="admin/<?= $productDetail['sp_img'] ?>">
 								<div class="wrap-pic-w pos-relative">
@@ -148,11 +127,13 @@
 										<i class="fs-16 zmdi zmdi-plus"></i>
 									</div>
 								</div>
+								<a href="<?= !isset($_SESSION['users']) ? '?act=sign-in' : '' ?>" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04  <?= isset($_SESSION['users']) ? 'add-to-cart-btn js-addwish-b2' : '' ?> "
+							<?= !isset($_SESSION['users']) ? 'onclick="return confirm(\'Đăng nhập để thêm giỏ hàng\')"' : '' ?>
 
-								<button
-																																						class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-									Thêm vào giỏ hàng
-								</button>
+																																					data-product-id='<?= $productDetail['sp_id'] ?>'>
+								Thêm vào giỏ hàng
+							</a>
+							
 							</div>
 						</div>
 					</div>
@@ -281,39 +262,44 @@
 							<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 								<div class="p-b-30 m-lr-15-sm">
 									<!-- Review -->
-									<?php foreach ($bl as $key => $value): ?>
-										<div class="flex-w flex-t p-b-68">
-											<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-												<img src="admin/<?= $value['user_img'] ?>" alt="AVATAR">
-											</div>
 
-											<div class="size-207">
-												<div class="flex-w flex-sb-m p-b-17">
-													<span class="mtext-108 cl2 p-r-20">
-														<?= $value['user_name'] ?>
-													</span>
-
-													<span class="fs-18 cl11">
-														<?php for ($i = 0; $i < $value['rating']; $i++) {
-															echo '⭐';
-														} ?>
-													</span>
+									<div id="reviewsContainer">
+										<?php foreach ($bl as $key => $value): ?>
+											<div class="flex-w flex-t p-b-68">
+												<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+													<img src="admin/<?= $value['user_img'] ? $value['user_img'] : '../view/images/avartar.jpg' ?> "
+																																											alt="AVATAR">
 												</div>
 
-												<p class="stext-102 cl6">
-													<?= $value['comment_content'] ?>
+												<div class="size-207">
+													<div class="flex-w flex-sb-m p-b-17">
+														<span class="mtext-108 cl2 p-r-20">
+															<?= $value['user_name'] ?>
+														</span>
 
-												</p>
-												<p>
-													<?= $value['ngaybinhluan'] ?>
-												</p>
+														<span class="fs-18 cl11">
+															<?php for ($i = 0; $i < $value['rating']; $i++) {
+																echo '⭐';
+															} ?>
+														</span>
+													</div>
+
+													<p class="stext-102 cl6">
+														<?= $value['comment_content'] ?>
+
+													</p>
+													<p>
+														<?= $value['ngaybinhluan'] ?>
+													</p>
+												</div>
 											</div>
-										</div>
-									<?php endforeach; ?>
+										<?php endforeach; ?>
+									</div>
+
 
 
 									<!-- Add review -->
-									<form class="w-full" method="post">
+									<form class="w-full" method="post" id=<?php echo isset($_SESSION['users']) ? 'reviewForm' : ''; ?>>
 										<h5 class="mtext-108 cl2 p-b-7">
 											Thêm một bài đánh giá
 										</h5>
@@ -350,10 +336,11 @@
 
 										</div>
 
-										<button type="submit"
+										<button
 																																								class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
 											Submit
 										</button>
+
 									</form>
 								</div>
 							</div>
@@ -397,10 +384,12 @@
 							<div class="block2-pic hov-img0">
 								<img src="admin/<?= $product['img'] ?>" alt="IMG-PRODUCT">
 
-								<a href="#"
-																																						class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-addwish-b2">
-									Thêm vào giỏ hàng
-								</a>
+								<a href="<?= !isset($_SESSION['users']) ? '?act=sign-in' : '' ?>" class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04  <?= isset($_SESSION['users']) ? 'add-to-cart-btn js-addwish-b2' : '' ?> "
+							<?= !isset($_SESSION['users']) ? 'onclick="return confirm(\'Đăng nhập để thêm giỏ hàng\')"' : '' ?>
+
+																																					data-product-id='<?= $product['id'] ?>'>
+								Thêm vào giỏ hàng
+							</a>
 							</div>
 
 							<div class="block2-txt flex-w flex-t p-t-14">
@@ -426,3 +415,72 @@
 		</div>
 	</div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function () {
+		// AJAX for submitting review form
+		$("#reviewForm").submit(function (e) {
+			e.preventDefault();
+
+			const idpro = $("input[name='idpro']").val();
+			const iduser = $("input[name='iduser']").val();
+			const rating = $("input[name='rating']").val();
+			const noidung = $("textarea[name='noidung']").val();
+
+			$.ajax({
+				url: "./model/bl.php",
+				method: "POST",
+				data: {
+					idpro,
+					iduser,
+					rating,
+					noidung
+				},
+				success: function (data) {
+					alert('Thành công');
+
+
+					// Parse the JSON data
+					const reviewData = JSON.parse(data);
+
+					// Generate HTML for the new review dynamically
+					const newReview = `
+				<div class="flex-w flex-t p-b-68">
+					<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
+						<img src="admin/${reviewData[0].user_img ? reviewData[0].user_img : '../view/images/avartar.jpg'}" alt="AVATAR">
+				</div>
+				<div class="size-207">
+					<div class="flex-w flex-sb-m p-b-17">
+						<span class="mtext-108 cl2 p-r-20">
+							${reviewData[0].user_name}
+						</span>
+						<span class="fs-18 cl11">
+							${'⭐'.repeat(reviewData[0].rating)}
+						</span>
+				</div>
+					<p class="stext-102 cl6">
+				${reviewData[0].comment_content}
+			</p>
+			<p>
+				${reviewData[0].ngaybinhluan}
+			</p>
+		</div>
+	</div>`;
+
+
+					// Append the new review to the reviews container
+					$("#reviewsContainer").prepend(newReview);
+
+					console.log(data);
+					// Clear the form fields
+
+					$("input[name='rating']").val('');
+					$("textarea[name='noidung']").val('');
+				},
+				error: function (xhr, status, error) {
+					console.error("AJAX Error: " + error);
+				}
+			});
+		});
+	});
+</script>

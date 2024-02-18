@@ -2,6 +2,7 @@
 function select($sql)
 {
     try {
+        
         $stmt = $GLOBALS['conn']->prepare($sql);
 
         $stmt->execute();

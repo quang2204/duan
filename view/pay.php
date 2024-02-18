@@ -3,14 +3,13 @@
     background-color: black;
   }
 
-  .con {
-    margin-top: 100px;
+  .form {
+    padding: 0;
   }
 </style>
 
-
-<!-- bánh mì -->
-<div class="container  m-b-30 con">
+<?php require_once "model/validate.php"; ?>
+<div class="container m-b-30 con m-t-140">
   <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
     <a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
       Trang chủ
@@ -25,35 +24,38 @@
 
 
 <!-- Shoping Cart -->
-<div class="thongtin" id="thongtin">
+<div class="thongtin m-b-60" id="myForm">
   <div id="t">
-    <form action="" class="form">
+
+    <form action="" class="form ">
       <div class="no">
         <div class="p">* Bắt buộc nhập</div>
-        <p id="ten-loi"></p>
-        <p id="dc-loi"></p>
-        <p id="tp-loi"></p>
-        <p id="sdt-loi"></p>
-        <p class="error" id="errorMessage" style="font-size: 18px"></p>
       </div>
 
       <h3 style="margin-bottom: 8px">Thông tin thanh toán</h3>
       <label for="name">Họ và tên * </label>
-      <input type="text" id="product-name" placeholder="Họ và tên" onblur="hoteen()" class="input" />
+      <input type="text" id="product-name" name="name" placeholder="Họ và tên" class="input">
+      </input />
+      <p id="ten-loi"></p>
       <label for="name">Tên công ty </label>
+      <input type="text" id="product-tency" name="tency" placeholder="Tên công ty" class="input" />
 
-      <input type="text" id="product-tency" placeholder="Tên công ty" class="input" />
       <label for="dc">Địa chỉ *</label>
-      <input type="text" placeholder="Địa chỉ" id="product-dc" onblur="diachi()" class="input" />
+      <input type="text" placeholder="Địa chỉ" id="product-dc" name="dc" class="input" />
+      <p id="dc-loi"></p>
       <label for="name">Tỉnh thành phố *</label>
-      <input type="text" id="product-tp" placeholder="Tỉnh thành phố" onblur="thanhpho()" class="input" />
+      <input type="text" id="product-tp" name="tp" placeholder="Tỉnh thành phố" class="input" />
+      <p id="tp-loi"></p>
       <label for="name">Số điện thoại *</label>
-      <input type="text" id="product-sdt" placeholder="Số điện thoại " onblur="dienthoai()" class="input" />
+      <input type="text" id="product-sdt" name="sdt" placeholder="Số điện thoại " class="input" />
+      <p id="sdt-loi"></p>
       <h3>Thông tin bổ sung</h3>
       <label for="">Ghi chú bổ sung</label>
       <textarea name="" id="textt" cols="2" rows="5" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."
                                                                                                                               class="input"></textarea>
+
     </form>
+
     <div class="donhang">
       <h3>ĐƠN HÀNG CỦA BẠN</h3>
       <table>
@@ -64,7 +66,7 @@
           </tr>
         </thead>
         <tbody class="cart1">
-          <tr class="cart">
+          <tr class="cart bor12 m-b-10">
             <td id="tt-name">
               Cà chua <strong class="tt-quantity">x1</strong>
             </td>
@@ -72,11 +74,11 @@
           </tr>
         </tbody>
         <tfoot>
-          <tr class="tvc">
+          <tr class="tvc m-b-10">
             <th class="left">Tiền vận chuyển</th>
             <td class="right">30.000₫</td>
           </tr>
-          <tr class="tvc" style="border-bottom: 2px solid #ccc">
+          <tr class="tvc m-b-10" style="border-bottom: 2px solid #ccc">
             <th>Tổng thanh toán</th>
             <td id="product-totals">30.000₫</td>
           </tr>
@@ -93,9 +95,12 @@
         </div>
 
       </div>
-      <button class="dathang m-t--19">
-        Đặt hàng
-      </button>
+      <form action="" method="post">
+        <button class="dathang m-t--19" type="submit">
+          Đặt hàng
+        </button>
+      </form>
+
       <p style="font-size: 15px; max-width: 660px">
         Your personal data will be used to process your order, support your
         experience throughout this website, and for other purposes described
@@ -104,40 +109,65 @@
     </div>
   </div>
 </div>
-<div class="chitiet">
-  <div class="chitiett">
-    <h2>Đơn hàng của bạn</h2>
-    <table>
-      <thead>
-        <tr class="">
-          <th class="left chitiet-p">Sản phẩm</th>
-          <th class="right">Tổng</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="left chitiet-p">
-            <p>Cà chua Đà Lạt <strong>x1</strong></p>
-          </td>
-          <td class="right">
-            <span>20.000d</span>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <th class="left chitiet-p">Tiền vận chuyển</th>
-          <td class="right">340.000₫</td>
-        </tr>
-        <tr>
-          <th class="left chitiet-p">Phương thức thanh toán:</th>
-          <td class="right">Chuyển khoản ngân hàng</td>
-        </tr>
-        <tr>
-          <th class="left chitiet-p">Tổng cộng:</th>
-          <td class="right">340.000₫</td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-</div>
+
+
+<script>
+  $(document).ready(function () {
+    $('#myForm').submit(function (event) {
+      event.preventDefault();
+
+      $.ajax({
+        url: 'model/validate.php',
+        type: 'POST',
+        data: {
+          name: $('#product-name').val(),
+          dc: $('#product-dc').val(),
+          tp: $('#product-tp').val(),
+          sdt: $('#product-sdt').val(),
+        },
+        success: function (response) {
+          var data = JSON.parse(response);
+          console.log(data)
+
+          // Clear previous error messages
+          $('#ten-loi').text('');
+          $('#dc-loi').text('');
+          $('#tp-loi').text('');
+          $('#sdt-loi').text('');
+          $('#product-name').css('border', '1px solid #ddd');
+          $('#product-dc').css('border', '1px solid #ddd');
+          $('#product-tp').css('border', '1px solid #ddd');
+          $('#product-sdt').css('border', '1px solid #ddd');
+
+          // Check and display error messages
+          if (data.errors.name) {
+            $('#ten-loi').text(data.errors.name);
+            $('#product-name').css('border', '1px solid red');
+
+          }
+
+          if (data.errors.dc) {
+            $('#dc-loi').text(data.errors.dc);
+            $('#product-dc').css('border', '1px solid red');
+
+          }
+
+          if (data.errors.tp) {
+            $('#tp-loi').text(data.errors.tp);
+            $('#product-tp').css('border', '1px solid red');
+
+          }
+
+          if (data.errors.sdt) {
+            $('#sdt-loi').text(data.errors.sdt);
+            $('#product-sdt').css('border', '1px solid #ddd');
+
+          }
+
+          // Add red border to the input field with id "product-tency" if there is an error
+
+        }
+      });
+    });
+  });
+</script>

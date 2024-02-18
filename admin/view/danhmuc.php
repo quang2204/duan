@@ -111,8 +111,26 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
       </div>
     </div>
   </div>
-
-  <!-- card 2 -->
-
-
 </div>
+<ul class="pagination d-flex justify-content-center">
+  <?php if ($page > 1): ?>
+    <li class="page-item">
+      <a class="page-link" href="?act=danhmuc&trang=<?= $page - 1; ?>">Prev</a>
+    </li>
+  <?php endif; ?>
+  <?php if ($totalPages > 1):
+    for ($i = 1; $i <= $totalPages; $i++): ?>
+      <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
+        <a class="page-link" href="?act=danhmuc&trang=<?= $i; ?>">
+          <?= $i; ?>
+        </a>
+      </li>
+
+    <?php endfor; ?>
+  <?php endif; ?>
+  <?php if ($page < $totalPages): ?>
+    <li class="page-item">
+      <a class="page-link" href="?act=danhmuc&trang=<?= $page + 1; ?>">Next</a>
+    </li>
+  <?php endif; ?>
+</ul>
