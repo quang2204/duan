@@ -5,7 +5,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 }
 ?>
 
-<div class="w-full px-6 py-6 mx-auto">x
+<div class="w-full px-6 py-6 mx-auto">
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div
@@ -40,32 +40,35 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                         Stt</th>
                                     <th
                                                                                                                                                             class="pr-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Tên </th>
+                                        Name </th>
                                     <th
                                                                                                                                                             class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Loại</th>
+                                        Address</th>
                                     <th
                                                                                                                                                             class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Giá</th>
+                                        Phone </th>
 
                                     <th
-                                                                                                                                                            class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Lượt xem</th>
+                                                                                                                                                            class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 pl-6">
+                                        Pay</th>
+                                    <th
+                                                                                                                                                            class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 pl-6">
+                                        Date order </th>
                                     <th
                                                                                                                                                             class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        ING </th>
+                                        Total</th>
                                     <th
                                                                                                                                                             class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        Mô tả chi tiết</th>
-
+                                        Status</th>
                                     <th
-                                                                                                                                                            class="pr-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                                                                            class="pr-6 py-3 font-semibold text-center capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                        Action
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                foreach ($products as $key => $value): ?>
+                                foreach ($order as $key => $value): ?>
                                     <tr>
                                         <td
                                                                                                                                                                 class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
@@ -82,7 +85,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                                                                                                                                                 class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                             <p class="mb-0 text-xs font-semibold leading-tight">
                                                 <?=
-                                                    substr($value['sp_name'], 0, 25) . '...';
+                                                    $value['name'];
                                                 ?>
 
                                             </p>
@@ -90,42 +93,60 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                         <td
                                                                                                                                                                 class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                             <p class="mb-0 text-xs font-semibold leading-tight">
-                                                <?= $value['dm_name'] ?>
+                                                <?= $value['address'] ?>
                                             </p>
                                         </td>
                                         <td
                                                                                                                                                                 class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                                             <p class="mb-0 text-xs font-semibold leading-tight">
-                                                <?= number_format($value['sp_price'], 0, ',', '.') ?> đ
+                                                <?= $value['phone'] ?>
                                             </p>
                                         </td>
                                         <td
                                                                                                                                                                 class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                            <p class="mb-0 text-xs font-semibold leading-tight">
-                                                <?= $value['sp_luotxem'] ?>
+                                            <p class="mb-0 text-xs font-semibold leading-tight text-center">
+                                                <?= $value['pay'] ? 'Thanh toán online' : 'Cod' ?>
                                             </p>
                                         </td>
                                         <td
                                                                                                                                                                 class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                                            <img src="<?= $value['sp_img'] ?>" style="width: 80px;" alt="">
+                                            <p class="mb-0 text-xs font-semibold leading-tight">
+                                                <?= $value['created_time'] ?>
+                                            </p>
                                         </td>
                                         <td
                                                                                                                                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent readonly">
-                                            <textarea class="mb-0 text-xs font-semibold w-full leading-tight pl-2" readonly>
-                                                                                                                            <?= $value['sp_motact'] ?>
-                                                                                                                            </textarea>
+                                            <p class="mb-0 text-xs font-semibold leading-tight">
+                                                <?= $value['total'] ?>
+                                            </p>
                                         </td>
+                                        <td
+                                                                                                                                                                class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent readonly">
+                                            <p class="mb-0 text-xs font-semibold leading-tight text-center">
+                                                <?= $value['status'] ? 'Thành công' : 'Đang xác nhận' ?>
+                                            </p>
+                                        </td>
+                                        <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent" style="display: flex;
+                    justify-content: center;
+                  align-items: center; gap:20px;padding: 52px 0;">
+                                            <form action="?act=updateorder" method="post">
+                                                <input type="hidden" name='status' value='1'>
+                                                <input type="hidden" name='id' value='<?= $value['id'] ?>'>
+                                                <button class="btn mt-1 pl-1" style='border:2px solid green;padding: 7px 10px;'
+                                                                                                                                                                        type='submit'>
+                                                    Confirm
+                                                </button>
+                                            </form>
 
-                                        <td class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"
-                                                                                                                                                                style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 52px 0;">
-                                            <a href="?act=sua&id=<?= $value['sp_id'] ?>">
-                                                <button class="c-button c-button--gooey"> Update
+
+                                            <a href="?act=order_detail&id=<?= $value['id'] ?>">
+                                                <button class="c-button c-button--gooey"> Detail
 
                                                 </button>
                                             </a>
-                                            <a href="?act=xoa&id=<?= $value['sp_id'] ?>">
+                                            <a href="?act=xoaorder&id=<?= $value['id'] ?>">
                                                 <button class="noselect"
-                                                                                                                                                                        onclick="return confirm('Bạn có muốn xóa sản phẩm <?= $value['sp_name'] ?>')">
+                                                                                                                                                                        onclick="return confirm('Bạn có muốn xóa không <?= $value['name'] ?>')">
                                                     <span class="text">Delete</span>
                                                     <span class="icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -137,12 +158,10 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                                     </span>
                                                 </button>
                                             </a>
+
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
-
-
-
                             </tbody>
                         </table>
                     </div>
@@ -150,11 +169,4 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
             </div>
         </div>
     </div>
-
-    <!-- card 2 -->
-
-
 </div>
-<?php
-require_once 'view/phantrang.php';
-?>

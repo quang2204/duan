@@ -41,7 +41,6 @@
 </head>
 
 <body class="animsition">
-
 	<!-- Header -->
 	<header class="header-v3">
 		<!-- Header desktop -->
@@ -219,24 +218,7 @@
 			</ul>
 		</div>
 
-		<!-- Modal Search -->
-		<!-- <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-			<button class="flex-c-m btn-hide-modal-search trans-04">
-				<i class="zmdi zmdi-close"></i>
-			</button>
-
-			<form class="container-search-header">
-				<div class="wrap-search-header">
-					<input class="plh0" type="text" name="search" placeholder="Search...">
-
-					<button class="flex-c-m trans-04">
-						<i class="zmdi zmdi-search"></i>
-					</button>
-				</div>
-			</form>
-		</div> -->
 	</header>
-
 
 	<!-- Sidebar -->
 	<aside class="wrap-sidebar js-sidebar">
@@ -259,7 +241,7 @@
 					</li>
 
 					<li class="p-b-13">
-						<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="?act=order&id=<?= $_SESSION['users']['id'] ?>" class="stext-102 cl2 hov-cl1 trans-04">
 							Order
 						</a>
 					</li>
@@ -363,59 +345,66 @@
 				</div>
 			</div>
 
-			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full addcart">
-					<?php
+			<?php
+			$numOrder = isset($_SESSION['cart']['info']['num_order']) ? $_SESSION['cart']['info']['num_order'] : '';
 
-					foreach ($_SESSION['cart']['buy'] as $key => $value):
-
-						?>
-						<li class="header-cart-item flex-w flex-t m-b-12 p-b-20">
-
-							<div class="header-cart-item-img js-addwish delete " data-id='<?= $value['id'] ?>'>
-								<img src="admin/<?= $value['img'] ?>" alt="IMG">
-							</div>
-
-							<div class="header-cart-item-txt ">
-								<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
-																																						class="header-cart-item-name m-b-18 hov-cl1 trans-04 ">
-									<?=
-										substr($value['name'], 0, 45) . '...';
-									?>
-								</a>
-
-								<span class="header-cart-item-info">
-									<?= $value['sl'] ?> x
-									<?= number_format($value['price'], 0, 0, ) ?> đ
-								</span>
-							</div>
-						</li>
+			if ($numOrder > 0 && isset($_SESSION['cart'])): ?>
+				<div class="header-cart-content flex-w js-pscroll block">
+					<ul class="header-cart-wrapitem w-full addcart">
 						<?php
 
+						foreach ($_SESSION['cart']['buy'] as $key => $value):
 
-					endforeach;
-					?>
-				</ul>
+							?>
+							<li class="header-cart-item flex-w flex-t m-b-12 p-b-20">
 
-				<div class="w-full m-t--30">
-					<div class="header-cart-total w-full p-tb-40">
+								<div class="header-cart-item-img js-addwish delete " data-id='<?= $value['id'] ?>'>
+									<img src="admin/<?= $value['img'] ?>" alt="IMG">
+								</div>
 
-						Total:
-						<?= number_format($_SESSION['cart']['info']['total'], 0, 0, ) ?> đ
-					</div>
+								<div class="header-cart-item-txt ">
+									<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
+																																							class="header-cart-item-name m-b-18 hov-cl1 trans-04 ">
+										<?=
+											substr($value['name'], 0, 45) . '...';
+										?>
+									</a>
 
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="?act=shoping-cart"
-																																				class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							View Cart
-						</a>
+									<span class="header-cart-item-info">
+										<?= $value['sl'] ?> x
+										<?= number_format($value['price'], 0, 0, ) ?> đ
+									</span>
+								</div>
+							</li>
+							<?php
 
-						<a href="?act=pay"
-																																				class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
+
+						endforeach;
+						?>
+					</ul>
+
+					<div class="w-full m-t--30">
+						<div class="header-cart-total w-full p-tb-40">
+							<?php $info = isset($_SESSION['cart']['infos']['total']) ? $_SESSION['cart']['infos']['total'] : $_SESSION['cart']['info']['total']; ?>
+							Total:
+							<?= number_format($info, 0, 0, ) ?> đ
+						</div>
+
+						<div class="header-cart-buttons flex-w w-full">
+							<a href="?act=shoping-cart"
+																																					class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+								View Cart
+							</a>
+
+							<a href="?act=pay"
+																																					class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+								Check Out
+							</a>
+						</div>
 					</div>
 				</div>
-			</div>
+				<h2 class="m-auto none" style='display: none;'>Không có sản phẩm </h2>
+
+			<?php endif ?>
 		</div>
 	</div>

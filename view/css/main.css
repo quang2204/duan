@@ -3288,6 +3288,18 @@ input.num-product::-webkit-inner-spin-button {
   color: #717fe0;
 }
 
+.hov-btn4:hover {
+  border: 1px solid red !important;
+  background-color: #fff !important;
+  color: red;
+}
+
+.hov-btn4 {
+  background-color: red !important;
+  color: white;
+  width: 150px !important;
+}
+
 /*---------------------------------------------*/
 .hov-btn3:hover {
   border-color: #717fe0;
@@ -4101,7 +4113,7 @@ table {
   padding: 1px 10px;
 }
 
-.thongtin form {
+.form {
   display: flex;
   flex-direction: column;
 
@@ -4188,7 +4200,7 @@ table {
 }
 
 .error {
-  color: red;
+  border: 1px solid red;
 }
 
 #ten-loi,

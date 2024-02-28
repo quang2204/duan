@@ -359,16 +359,36 @@
 			event.preventDefault();
 
 			var productId = $(this).data('product-id');
-
+			var quantity = $('input[name="' + productId + '"]').val();
+			var color = $('.color').val();
+			var size = $('.size').val();
 			$.ajax({
-				url: '?act=cart&id=' + productId,
+				url: '?act=cart&id=' + productId + '&color=' + color + '&size=' + size,
 				type: 'GET',
-				success: function (data) {
-					const cartData = JSON.parse(data);
+				data: {
+					productId: productId,
+					quantity: quantity,
+					color:color,
+					size:size
+
+				},
+				success: function (datas) {
+					const cartData = JSON.parse(datas);
 					updateCartCount(cartData.info.num_order);
 					updateCartItems(cartData.buy);
 					updateTotal(cartData.info.total);
+
 					console.log(cartData)
+					console.log(datas)
+					if (cartData.info.num_order > 0) {
+						console.log('Show .block');
+						$('.block').show();
+						$('.none').hide();
+					} else {
+						console.log('Show .none');
+						$('.block').hide();
+						$('.none').show();
+					}
 				},
 				error: function (xhr, status, error) {
 					console.log('Error: ' + error);
@@ -377,55 +397,54 @@
 		});
 
 		function updateCartItems(items) {
-
 			$(".addcart").empty();
 
-
 			$.each(items, function (key, value) {
-
 				const newReview = `
-				<li class="header-cart-item flex-w flex-t m-b-12 ">
-					<div class="header-cart-item-img js-addwish delete " data-id=${value.id}>
-						<img src="admin/${value.img}" alt="IMG" >
-					</div>
-					<div class="header-cart-item-txt p-t-8">
-						<a href="?act=product-detail&id=${value.id}&iddm=${value.iddm}" class="header-cart-item-name  m-b-18 js-name-b2 hov-cl1 trans-04">
-							${value.name}
-						</a>
-						<span class="header-cart-item-info ">
-							${value.sl} x ${value.price.toLocaleString('vi-VN')} đ
-						</span>
-					</div>
-				</li>`;
+					<li class="header-cart-item flex-w flex-t m-b-12 ">
+						<div class="header-cart-item-img js-addwish delete " data-id=${value.id}>
+							<img src="admin/${value.img}" alt="IMG" >
+						</div>
+						<div class="header-cart-item-txt p-t-8">
+							<a href="?act=product-detail&id=${value.id}&iddm=${value.iddm}" class="header-cart-item-name  m-b-18 js-name-b2 hov-cl1 trans-04">
+								${value.name}
+							</a>
+							<span class="header-cart-item-info ">
+								${value.sl} x ${value.price.toLocaleString('vi-VN')} đ
+							</span>
+						</div>
+					</li>`;
 
 				$(".addcart").append(newReview);
 			});
 		}
 
 		function updateCartCount(count) {
+
 			$('.js-show-cart').attr('data-notify', count);
 		}
+
 		function updateTotal(newTotal) {
 			var formattedTotal = newTotal.toLocaleString('vi-VN');
 			$('.header-cart-total').text('Total: ' + formattedTotal + ' đ');
 		}
 	});
-
 </script>
+
 <script>
 	$(document).ready(function () {
 
-		$(document).on('click', '.js-addwish.delete', function (event) {
+		$(document).on('click', '.delete', function (event) {
 			event.preventDefault();
 
 			var productId = $(this).data('id');
 			var rowElement = $(this).closest('tr');
 			var deletes = $(this).closest('.header-cart-item');
 
-
 			$.ajax({
 				url: '?act=xoacart&id=' + productId,
 				type: 'GET',
+
 				success: function (data) {
 
 					const cartData = JSON.parse(data);
@@ -433,11 +452,19 @@
 					updateCartCount(cartData.info.num_order);
 					updateTotal(cartData.info.total);
 					Total(cartData.info.total);
-					updateContent(data);
-					
 
 					rowElement.remove();
 					deletes.remove();
+					if (cartData.info.num_order > 0) {
+						console.log('Show .block');
+						$('.block').show();
+						$('.none').hide();
+					} else {
+						console.log('Show .none');
+						$('.block').hide();
+						$('.none').show();
+					}
+
 
 				},
 				error: function (xhr, status, error) {
@@ -455,20 +482,13 @@
 			var formattedTotal = newTotal.toLocaleString('vi-VN');
 			$('.xoa').text(formattedTotal + ' đ');
 		}
+
 		function Total(newTotal) {
 			var formattedTotal = newTotal.toLocaleString('vi-VN');
 			$('.header-cart-total').text('Total: ' + formattedTotal + ' đ');
 		}
-		function updateContent(data) {
-			if (data.num_order >= 1) {
-				$('.block').show();
-			} else {
-				$('.block').hide();
-				$('.none').show();
-			}
-		}
-
 	});
+
 </script>
 <script src="view/js/main.js"></script>
 

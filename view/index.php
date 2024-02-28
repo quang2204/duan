@@ -101,11 +101,9 @@
 					<div class="block2">
 						<div class="block2-pic hov-img0">
 							<img src="admin/<?= $value['img'] ?>" alt="IMG-PRODUCT">
-
-							<a href="<?= !isset($_SESSION['users']) ? '?act=sign-in' : '' ?>" class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04  <?= isset($_SESSION['users']) ? 'add-to-cart-btn js-addwish-b2' : '' ?> "
-																																					<?= !isset($_SESSION['users']) ? 'onclick="return confirm(\'Đăng nhập để thêm giỏ hàng\')"' : '' ?>
-																																					data-product-id='<?= $value['id'] ?>'>
-								Thêm vào giỏ hàng
+							<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
+																																					class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+								View detail
 							</a>
 						</div>
 
@@ -146,10 +144,9 @@
 							<!-- js-show-modal1	 -->
 							<div id="toast"></div>
 
-							<a href="<?= !isset($_SESSION['users']) ? '?act=sign-in' : '' ?>" class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04  <?= isset($_SESSION['users']) ? 'add-to-cart-btn js-addwish-b2' : '' ?> "
-																																					<?= !isset($_SESSION['users']) ? 'onclick="return confirm(\'Đăng nhập để thêm giỏ hàng\')"' : '' ?>
-																																					data-product-id='<?= $value['id'] ?>'>
-								Thêm vào giỏ hàng
+							<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
+																																					class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+								View detail
 							</a>
 						</div>
 

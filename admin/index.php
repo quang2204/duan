@@ -3,7 +3,7 @@
 session_start();
 require_once "../model/connact.php";
 require_once './Controller/product.php';
-
+require_once "../model/pay.php";
 require_once './Controller/dm.php';
 require_once './model/adproduct.php';
 require_once './model/product.php';
@@ -17,6 +17,7 @@ require_once './model/profile.php';
 require_once "../model/binhluan.php";
 
 require_once "../model/user.php";
+require_once "../model/pay.php";
 
 ?>
 <?php
@@ -25,14 +26,11 @@ $path = "view/{$act}.php";
 require_once 'view/inc/header.php';
 $perPage = 6; // Số lượng mục trên mỗi trang
 $page = isset($_GET['trang']) ? $_GET['trang'] : 1;
-
+$order = orderall();
 $countsp = counttb('sanpham');
 $users = counttb('taikhoan');
 $bls = counttb('binhluan');
 if ($act === 'sanpham') {
-
-
-
     $totalItems = countAll('sanpham');
     $totalPages = ceil($totalItems / $perPage);
     $productData = getAll($page, $perPage);
@@ -45,6 +43,7 @@ if ($act === 'sanpham') {
 } elseif ($act === 'sua') {
     $update = getid($_GET['id']);
     $sua = updatesp($_GET['id']);
+    $ad = getdm();
 
 } elseif ($act === 'xoadanhmuc') {
     $delete = deletedm($_GET['id']);
@@ -67,6 +66,10 @@ if ($act === 'sanpham') {
     $dn = dn();
 } else if ($act === 'dx') {
     $dx = dx();
+} else if ($act === 'order_detail') {
+    $detail = order($_GET['id']);
+} else if ($act === 'xoaorder') {
+    $detail = deleteorder($_GET['id']);
 } else if ($act === 'user') {
 
 
@@ -101,6 +104,8 @@ if ($act === 'sanpham') {
     $pros = updatepro($_GET['id']);
 } elseif ($act === 'tongquan') {
     $tk = thongke();
+} elseif ($act === 'updateorder') {
+    $update = updateorder();
 }
 
 if (file_exists($path)) {

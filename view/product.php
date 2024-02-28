@@ -207,37 +207,35 @@
 
 		<div class="row isotope-grid">
 			<?php $products = $product['product']['products'];
-		 foreach ($products as $key => $value): ?>
-			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-				<!-- Block2 -->
-				<div class="block2">
-					<div class="block2-pic hov-img0">
-						<img src="admin/<?= $value['img'] ?>" alt="IMG-PRODUCT">
-						<!-- js-show-modal1	 -->
-						<a href="<?= !isset($_SESSION['users']) ? '?act=sign-in' : '' ?>" class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04  <?= isset($_SESSION['users']) ? 'add-to-cart-btn js-addwish-b2' : '' ?> "
-						<?= !isset($_SESSION['users']) ? 'onclick="return confirm(\'Đăng nhập để thêm giỏ hàng\')"' : '' ?>
-
-																																				data-product-id='<?= $value['id'] ?>'>
-							Thêm vào giỏ hàng
-						</a>
-					</div>
-
-					<div class="block2-txt flex-w flex-t p-t-14">
-						<div class="block2-txt-child1 flex-col-l ">
+			foreach ($products as $key => $value): ?>
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="admin/<?= $value['img'] ?>" alt="IMG-PRODUCT">
+							<!-- js-show-modal1	 -->
 							<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
-																																					class="stext-107 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-								<?= $value['name'] ?>
+																																					class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+								View detail
 							</a>
-
-							<span class="stext-105 cl3">
-								<?= number_format($value['price'], 0, ',', '.') ?> đ
-							</span>
 						</div>
 
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
+																																						class="stext-107 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<?= $value['name'] ?>
+								</a>
+
+								<span class="stext-105 cl3">
+									<?= number_format($value['price'], 0, ',', '.') ?> đ
+								</span>
+							</div>
+
+						</div>
 					</div>
 				</div>
-			</div>
-		<?php endforeach; ?>
+			<?php endforeach; ?>
 		</div>
 		<div class="flex-c-m flex-w w-full p-t-38">
 			<?php if ($page > 1): ?>

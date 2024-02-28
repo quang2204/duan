@@ -16,6 +16,10 @@
 		padding: 10px;
 	}
 
+	.table-shopping-cart .column-5 {
+		padding-right: 0;
+	}
+
 	@media (max-width: 990px) {
 		.container {
 			margin-top: 0;
@@ -49,6 +53,7 @@
 
 <!-- bánh mì -->
 <div class="container">
+	<?php print_r($_SESSION['cart']) ?>
 	<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 		<a href="index.php" class="stext-109 cl8 hov-cl1 trans-04">
 			Trang chủ
@@ -61,9 +66,8 @@
 	</div>
 </div>
 
-
 <!-- Shoping Cart -->
-<form class="bg0 p-t-75 p-b-85 m-t--60">
+<form class="bg0 p-t-75 p-b-85 m-t--60 " method="post">
 	<div class="container">
 
 		<?php
@@ -77,7 +81,7 @@
 							<table class="table-shopping-cart">
 								<tr class="table_head">
 
-									<th class="column-1 ">Sản phẩm</th>
+									<th class="column-1 " style='padding-left: 30px;'>Sản phẩm</th>
 									<th class="column-2"></th>
 									<th class="column-3">Giá</th>
 									<th class="column-4">Số lượng</th>
@@ -106,31 +110,42 @@
 										</td>
 
 										<td class="column-2 p-l-10">
+											<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
+																																									style='color: black;'>
+												<p class="m-b-4">
+													<?= $value['name'] ?>
+												</p>
+											</a>
 
-											<p class="m-b-4"></p>
-											<p class="m-b-4">Size : s - Color : trắng</p>
-
-
+											<p class="m-b-4">Size :
+												<?= $value['size'] ?> - Color :
+												<?= $value['color'] ?>
+											</p>
 										</td>
-										<td class="column-3 text-center">
+										<td class="column-3 text-center subtotal-for-product-<?= $value['id'] ?>">
 											<?= number_format($value['price'], 0, 0, ) ?> đ
 										</td>
 										<td class="column-4">
 											<div class="wrap-num-product flex-w m-l-auto m-r-0">
-												<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+												<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m sl" name="<?= $value['id'] ?>"
+																																										data-id="<?= $value['id'] ?>">
 													<i class="fs-16 zmdi zmdi-minus"></i>
 												</div>
 
-												<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1"
-																																										value="<?= $value['sl'] ?>">
+												<input class="mtext-104 cl3 txt-center num-product sll" type="number" name="<?= $value['id'] ?>" value="<?= $value['sl'] ?>"
+																																										data-id="<?= $value['id'] ?>">
 
-												<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+												<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m sl" data-id="<?= $value['id'] ?>"
+																																										name="<?= $value['id'] ?>">
 													<i class="fs-16 zmdi zmdi-plus"></i>
 												</div>
 											</div>
 										</td>
-										<td class="column-5 text-center">
-											<?= number_format($value['tong'], 0, 0, ) ?> đ
+
+										<td class="column-5 text-center tong-<?= $value['id'] ?>">
+
+											<?= number_format(isset($value['total']) ? $value['total'] : $value['tong'], 0, 0, ) ?>
+											đ
 										</td>
 									</tr>
 								<?php endforeach; ?>
@@ -152,12 +167,14 @@
 								</a>
 
 							</div>
+							<a href="#">
+								<div
+																																						class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
 
-							<div
-																																					class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+									Cập nhật
+								</div>
+							</a>
 
-								Cập nhật
-							</div>
 						</div>
 					</div>
 				</div>
@@ -193,7 +210,10 @@
 
 							<div class="size-209 p-t-1 text-right">
 								<span class="mtext-110 cl2 xoa">
-									<?= number_format($_SESSION['cart']['info']['total'], 0, 0, ) ?> đ
+									<?php
+									$info = isset($_SESSION['cart']['infos']['total']) ? $_SESSION['cart']['infos']['total'] : $_SESSION['cart']['info']['total'];
+									?>
+									<?= number_format($info, 0, 0, ) ?> đ
 								</span>
 							</div>
 						</div>
@@ -218,16 +238,77 @@
 			<div class="text-center m-t-140 m-b-100  none" style='display: none;'>
 				<h3>Chưa có sản phẩm nào trong giỏ hàng </h3>
 				<br>
-				<button class="btn w-25 d-flex ml-auto mr-auto hov-btn2">Quay lại cửa hàng </button>
+				<a href="?act=product" id="productLink">
+					<button class="btn w-25 d-flex ml-auto mr-auto hov-btn2">Quay lại cửa hàng</button>
+				</a>
+
 			</div>
 		<?php else: ?>
 			<div class="text-center m-t-140 m-b-100 ">
 				<h3>Chưa có sản phẩm nào trong giỏ hàng </h3>
 				<br>
-				<button class="btn w-25 d-flex ml-auto mr-auto hov-btn2">Quay lại cửa hàng </button>
+				<a href="?act=product" id="productLink">
+					<button class="btn w-25 d-flex ml-auto mr-auto hov-btn2">Quay lại cửa hàng</button>
+				</a>
+
 			</div>
 
 		<?php endif ?>
 
 	</div>
 </form>
+<script>
+	$(document).ready(function () {
+		$('.sl, .sll').on('click blur', function (event) {
+			event.preventDefault();
+
+			var productId = $(this).data('id');
+			var quantity = $('input[name="' + productId + '"]').val();
+
+			var text = $(this).closest('.column-5');
+
+			$.ajax({
+				url: '?act=update&id=' + productId + '&qty=' + quantity,
+				type: 'GET',
+				data: {
+					productId: productId,
+					quantity: quantity
+				},
+				success: function (datas) {
+					const cartData = JSON.parse(datas);
+
+					Total(cartData.sub_total);
+					updateTotal(cartData.total);
+					updateCartCount(cartData.num_order);
+					// console.log(cartData);
+					// console.log(datas);
+				},
+				error: function (xhr, status, error) {
+					console.log('Error: ' + error);
+				}
+			});
+
+			function Total(newTotal) {
+				var formattedTotal = newTotal.toLocaleString('vi-VN');
+				$('.tong-' + productId).text(' ' + formattedTotal + ' đ');
+			}
+
+			function updateTotal(newTotal) {
+				var formattedTotal = newTotal.toLocaleString('vi-VN');
+				$('.xoa').text(formattedTotal + ' đ');
+			}
+
+			function updateCartCount(count) {
+				$('.js-show-cart').attr('data-notify', count);
+			}
+		});
+	});
+</script>
+<script>
+	$(document).ready(function () {
+		$('#productLink').click(function (event) {
+			event.preventDefault();
+			window.location.href = $(this).attr('href');
+		});
+	});
+</script>

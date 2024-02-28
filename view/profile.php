@@ -14,6 +14,7 @@
         color: black;
     }
 </style>
+
 <div class="container m-t-150 p-b-60 d-flex ">
     <div>
         <div class='d-flex  m-b-30  p-b-10' style='gap:15px'>
@@ -23,7 +24,8 @@
                     <strong>
                         <?= $pro['name'] ?>
                     </strong>
-                    <a href="?act=portfolio&id=<?= $_SESSION['users']['id'] ?>">
+
+                    <a href="?act=profile&id=<?= $_SESSION['users']['id'] ?>">
                         <p style="color:black"> <svg xmlns="http://www.w3.org/2000/svg" style='width: 15px;' viewBox="0 0 512 512"
                                                                                                                                                     class='op-06 m-r-3'>
                                 <path
@@ -40,7 +42,7 @@
         </div>
         <div class="dropdown p-l-16 m-t-15">
             <div class='m-b-15'>
-                <a href="?act=portfolio&id=<?= $_SESSION['users']['id'] ?>">
+                <a href="?act=profile&id=<?= $_SESSION['users']['id'] ?>">
                     <span>Hồ sơ</span>
 
                 </a>
@@ -54,7 +56,7 @@
 
         </div>
         <div class="thongbao">
-            <a href="">
+            <a href="?act=order&id=<?= $_SESSION['users']['id'] ?>">
                 <h5><i class="fa fa-cart-arrow-down"></i> Order</h5>
             </a>
 
@@ -66,8 +68,6 @@
 
         </div>
     </div>
-
-
     <form class='m-b-50 d-flex justify-content-around align-items-center bor4 p-b-30 p-t-30 m-lr-auto p-r-30 p-l-30 p-t-30 p-b-30'
                                                                                                                             method="post"
                                                                                                                             enctype="multipart/form-data"

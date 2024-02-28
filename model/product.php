@@ -7,6 +7,18 @@ function getAll($limit)
     return select($sql);
 
 }
+function size()
+{
+    $sql = "SELECT * FROM product_size  ";
+    return select($sql);
+
+}
+function color()
+{
+    $sql = "SELECT * FROM product_color  ";
+    return select($sql);
+
+}
 function getview($limit)
 {
     $sql = "SELECT * FROM sanpham ORDER BY luotxem DESC LIMIT " . $limit;

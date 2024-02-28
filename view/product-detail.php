@@ -84,11 +84,10 @@
 
 							<div class="size-204 respon6-next">
 								<div class="rs1-select2 bor8 bg0">
-									<select class="js-select2" name="time">
-										<option>Size S</option>
-										<option>Size M</option>
-										<option>Size L</option>
-										<option>Size XL</option>
+									<select class="size js-select2" name="time" >
+									<?php foreach ($size as $key => $value) : ?>
+										<option value="<?= $value['size']?>"><?= $value['size'] ?></option>
+									<?php endforeach;?>
 									</select>
 									<div class="dropDownSelect2"></div>
 								</div>
@@ -102,11 +101,10 @@
 
 							<div class="size-204 respon6-next">
 								<div class="rs1-select2 bor8 bg0">
-									<select class="js-select2" name="time">
-										<option>Red</option>
-										<option>Blue</option>
-										<option>White</option>
-										<option>Grey</option>
+									<select class="js-select2 color" name="time">
+									<?php foreach ($color as $key => $value) : ?>
+										<option value="<?= $value['color']?>"><?= $value['color'] ?></option>
+									<?php endforeach;?>
 									</select>
 									<div class="dropDownSelect2"></div>
 								</div>
@@ -114,13 +112,14 @@
 						</div>
 
 						<div class="flex-w flex-r-m p-b-10">
+							
 							<div class="size-204 flex-w flex-m respon6-next">
 								<div class="wrap-num-product flex-w m-r-20 m-tb-10">
 									<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 										<i class="fs-16 zmdi zmdi-minus"></i>
 									</div>
 
-									<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product"
+									<input class="mtext-104 cl3 txt-center num-product" type="number" name="<?= $productDetail['sp_id'] ?>"
 																																							value="1">
 
 									<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
@@ -139,7 +138,7 @@
 					</div>
 
 					<!--  -->
-					<div class="flex-w flex-m p-l-100 p-t-40 respon7">
+					<div class="flex-w flex-m p-l-100 p-t-40 respon7 sl">
 						<div class="flex-m bor9 p-r-10 m-r-11">
 							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
 																																					data-tooltip="Add to Wishlist">
@@ -384,11 +383,9 @@
 							<div class="block2-pic hov-img0">
 								<img src="admin/<?= $product['img'] ?>" alt="IMG-PRODUCT">
 
-								<a href="<?= !isset($_SESSION['users']) ? '?act=sign-in' : '' ?>" class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04  <?= isset($_SESSION['users']) ? 'add-to-cart-btn js-addwish-b2' : '' ?> "
-							<?= !isset($_SESSION['users']) ? 'onclick="return confirm(\'Đăng nhập để thêm giỏ hàng\')"' : '' ?>
-
-																																					data-product-id='<?= $product['id'] ?>'>
-								Thêm vào giỏ hàng
+									<a href="?act=product-detail&id=<?= $product['id'] ?>&iddm=<?= $product['iddm'] ?>"
+											class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+								View detail
 							</a>
 							</div>
 
@@ -415,7 +412,6 @@
 		</div>
 	</div>
 </section>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function () {
 		// AJAX for submitting review form

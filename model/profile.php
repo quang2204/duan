@@ -3,9 +3,7 @@ function updatepro()
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
-            // Check if the database connection is established. Adjust the connection details accordingly.
-            // $conn = new PDO("mysql:host=localhost;dbname=your_database", "your_username", "your_password");
-            // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 
             $sql = "UPDATE taikhoan 
                     SET 
@@ -67,4 +65,3 @@ function updatepro()
         }
     }
 }
-?>

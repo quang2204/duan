@@ -83,8 +83,6 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 
                         </button>
                       </a>
-
-
                       <a href="?act=xoadanhmuc&id=<?= $value['id'] ?>">
                         <button class="noselect"
                                                                                                                                                 onclick="return confirm('Bạn có muốn xóa sản phẩm <?= $value['name'] ?>')">

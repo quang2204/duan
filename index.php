@@ -6,12 +6,13 @@ require_once "model/singin.php";
 require_once "model/dn.php";
 require_once "model/dx.php";
 require_once "model/cart.php";
-
+require_once "model/updatecart.php";
 require_once "model/danhmuc.php";
 require_once "model/binhluan.php";
 require_once "admin/model/profile.php";
 require_once "model/user.php";
 require_once "model/function.php";
+require_once "model/pay.php";
 require_once "Controller/product.php";
 // require_once 'Controller/product.php';
 require_once 'Controller/user.php';
@@ -20,7 +21,8 @@ $baseurl = 'http://php.test/duanmau/';
 
 
 $act = !empty($_GET['act']) ? $_GET['act'] : 'index';
-
+$size = size();
+$color = color();
 $productId = isset($_GET['id']) ? $_GET['id'] : '';
 if ($act === 'index') {
     $data = getAll(4);
@@ -48,11 +50,22 @@ if ($act === 'index') {
 } else if ($act === 'cart') {
     $cart = cart();
 } else if ($act === 'xoacart') {
-    $xoa=deletecart();
-}
- else if ($act === 'profile') {
+    $xoa = deletecart();
+} else if ($act === 'update') {
+    $xoa = updatecart();
+} else if ($act === 'pay') {
+    $pay = pay();
+} else if ($act === 'hoadon') {
+    $order = order($productId);
+    $orders = orderid($productId);
+
+} else if ($act === 'order') {
     $pro = getuser($productId);
-    $pros = user($productId);
+    $order = getOrderDetailsByUserId($productId);
+} else if ($act === 'profile') {
+    $pro = getuser($productId);
+    $pros = updatepro($_GET['id']);
+
 }
 
 

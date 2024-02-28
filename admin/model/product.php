@@ -119,4 +119,9 @@ function thongke()
     return select($sql);
 }
 
+function getdm()
+{
 
+    $sql = "SELECT * FROM danhmuc;";
+    return select($sql);
+}
