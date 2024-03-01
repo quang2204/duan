@@ -1,7 +1,7 @@
 <?php
 
 
-function getAll($limit)
+function getAlls($limit)
 {
     $sql = "SELECT * FROM sanpham ORDER BY id DESC LIMIT " . $limit;
     return select($sql);

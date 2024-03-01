@@ -174,12 +174,6 @@
 					<li class="nav-item p-b-10">
 						<a class="nav-link active" data-toggle="tab" href="#description" role="tab">ĐẶC ĐIỂM NỔI BẬT</a>
 					</li>
-
-					<!-- <li class="nav-item p-b-10">
-						<a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional
-							information</a>
-					</li> -->
-
 					<li class="nav-item p-b-10">
 						<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Đánh giá </a>
 					</li>
@@ -294,53 +288,6 @@
 											</div>
 										<?php endforeach; ?>
 									</div>
-
-
-
-									<!-- Add review -->
-									<form class="w-full" method="post" id=<?php echo isset($_SESSION['users']) ? 'reviewForm' : ''; ?>>
-										<h5 class="mtext-108 cl2 p-b-7">
-											Thêm một bài đánh giá
-										</h5>
-										<input type="hidden" value='<?= $productDetail['sp_id'] ?>' name='idpro'>
-
-										<input type="hidden" value='<?= $_SESSION['users']['id'] ?>' name="iduser">
-										<p class="stext-102 cl6">
-											Địa chỉ email của bạn sẽ không được công bố.Các trường bắt buộc được đánh
-											dấu*
-										</p>
-
-										<div class="flex-w flex-m p-t-50 p-b-23">
-											<span class="stext-102 cl3 m-r-16">
-												Đánh giá của bạn
-											</span>
-
-											<span class="wrap-rating fs-18 cl11 pointer">
-												<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-												<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-												<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-												<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-												<i class="item-rating pointer zmdi zmdi-star-outline"></i>
-												<input class="dis-none" type="number" name="rating">
-
-											</span>
-										</div>
-
-										<div class="row p-b-25">
-											<div class="col-12 p-b-5">
-												<label class="stext-102 cl3" for="review">Đánh giá của bạn</label>
-												<textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10 how-shadow1" id="review"
-																																										name="noidung"></textarea>
-											</div>
-
-										</div>
-
-										<button
-																																								class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-											Submit
-										</button>
-
-									</form>
 								</div>
 							</div>
 						</div>
@@ -351,10 +298,6 @@
 	</div>
 
 	<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
-		<!-- <span class="stext-107 cl6 p-lr-25">
-			SKU: JAK-01
-		</span> -->
-
 		<span class="stext-107 cl6 p-lr-25">
 			Thể loại:
 			<?= $productDetail['dm_name'] ?>
@@ -412,71 +355,3 @@
 		</div>
 	</div>
 </section>
-<script>
-	$(document).ready(function () {
-		// AJAX for submitting review form
-		$("#reviewForm").submit(function (e) {
-			e.preventDefault();
-
-			const idpro = $("input[name='idpro']").val();
-			const iduser = $("input[name='iduser']").val();
-			const rating = $("input[name='rating']").val();
-			const noidung = $("textarea[name='noidung']").val();
-
-			$.ajax({
-				url: "./model/bl.php",
-				method: "POST",
-				data: {
-					idpro,
-					iduser,
-					rating,
-					noidung
-				},
-				success: function (data) {
-					alert('Thành công');
-
-
-					// Parse the JSON data
-					const reviewData = JSON.parse(data);
-
-					// Generate HTML for the new review dynamically
-					const newReview = `
-				<div class="flex-w flex-t p-b-68">
-					<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-						<img src="admin/${reviewData[0].user_img ? reviewData[0].user_img : '../view/images/avartar.jpg'}" alt="AVATAR">
-				</div>
-				<div class="size-207">
-					<div class="flex-w flex-sb-m p-b-17">
-						<span class="mtext-108 cl2 p-r-20">
-							${reviewData[0].user_name}
-						</span>
-						<span class="fs-18 cl11">
-							${'⭐'.repeat(reviewData[0].rating)}
-						</span>
-				</div>
-					<p class="stext-102 cl6">
-				${reviewData[0].comment_content}
-			</p>
-			<p>
-				${reviewData[0].ngaybinhluan}
-			</p>
-		</div>
-	</div>`;
-
-
-					// Append the new review to the reviews container
-					$("#reviewsContainer").prepend(newReview);
-
-					console.log(data);
-					// Clear the form fields
-
-					$("input[name='rating']").val('');
-					$("textarea[name='noidung']").val('');
-				},
-				error: function (xhr, status, error) {
-					console.error("AJAX Error: " + error);
-				}
-			});
-		});
-	});
-</script>

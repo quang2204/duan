@@ -2,7 +2,7 @@
 
 session_start();
 require_once "../model/connact.php";
-require_once './Controller/product.php';
+require_once './Controller/main.php';
 require_once "../model/pay.php";
 require_once './Controller/dm.php';
 require_once './model/adproduct.php';
@@ -10,11 +10,14 @@ require_once './model/product.php';
 require_once './model/danhmuc.php';
 require_once './model/user.php';
 require_once '../model/singin.php';
+require_once '../model/danhmuc.php';
+require_once '../model/product.php';
 require_once '../model/dn.php';
 require_once '../model/dx.php';
 require_once '../model/function.php';
 require_once './model/profile.php';
 require_once "../model/binhluan.php";
+
 
 require_once "../model/user.php";
 require_once "../model/pay.php";
@@ -29,7 +32,11 @@ $page = isset($_GET['trang']) ? $_GET['trang'] : 1;
 $order = orderall();
 $countsp = counttb('sanpham');
 $users = counttb('taikhoan');
-$bls = counttb('binhluan');
+$bls = counttb('orders');
+$orders = counttotal();
+$ad = getAlldm();
+$size = size();
+$color = color();
 if ($act === 'sanpham') {
     $totalItems = countAll('sanpham');
     $totalPages = ceil($totalItems / $perPage);
@@ -67,7 +74,7 @@ if ($act === 'sanpham') {
 } else if ($act === 'dx') {
     $dx = dx();
 } else if ($act === 'order_detail') {
-    $detail = order($_GET['id']);
+    $detail = ordersid($_GET['id']);
 } else if ($act === 'xoaorder') {
     $detail = deleteorder($_GET['id']);
 } else if ($act === 'user') {
@@ -77,7 +84,7 @@ if ($act === 'sanpham') {
     $totalPages = ceil($totalItems / $perPage);
     $user = getAlluser($page, $perPage);
 } elseif ($act === 'xoauser') {
-    $xoa = xoauser($_GET['id']);
+    $xoa = deleteuser($_GET['id']);
 } elseif ($act === 'suauser') {
     $sua = getiduser($_GET['id']);
     $suauser = updatepro($_GET['id']);
@@ -105,7 +112,7 @@ if ($act === 'sanpham') {
 } elseif ($act === 'tongquan') {
     $tk = thongke();
 } elseif ($act === 'updateorder') {
-    $update = updateorder();
+    $update = status();
 }
 
 if (file_exists($path)) {

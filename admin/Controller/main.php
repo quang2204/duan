@@ -20,3 +20,16 @@ function deleteorder($id)
     header("location: ?act=order");
 
 }
+function deleteuser($id)
+{
+    $xoa = xoauser($id);
+    header("location: ?act=user");
+
+}
+function status()
+{
+    $status=updateorder();
+    header('Location: ?act=order');
+
+}
+

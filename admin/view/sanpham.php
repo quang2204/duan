@@ -109,8 +109,8 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                     </td>
                     <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent readonly">
                       <textarea class="mb-0 text-xs font-semibold w-full leading-tight pl-2" readonly>
-                                                                                                                                                                  <?= $value['sp_motact'] ?>
-                                                                                                                                                                  </textarea>
+                                                                                                                                                                    <?= $value['sp_motact'] ?>
+                                                                                                                                                                    </textarea>
                     </td>
 
                     <td class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"
@@ -154,15 +154,16 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
       <a class="page-link" href="?act=sanpham&trang=<?= $page - 1; ?>">Prev</a>
     </li>
   <?php endif; ?>
-  <?php
-  for ($i = 1; $i <= $totalPages; $i++): ?>
-    <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
-      <a class="page-link" href="?act=sanpham&trang=<?= $i; ?>">
-        <?= $i; ?>
-      </a>
-    </li>
+  <?php if ($totalPages > 1):
+    for ($i = 1; $i <= $totalPages; $i++): ?>
+      <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
+        <a class="page-link" href="?act=danhmuc&trang=<?= $i; ?>">
+          <?= $i; ?>
+        </a>
+      </li>
 
-  <?php endfor; ?>
+    <?php endfor; ?>
+  <?php endif; ?>
 
   <?php if ($page < $totalPages): ?>
     <li class="page-item">

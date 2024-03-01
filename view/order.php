@@ -2,6 +2,7 @@
     span,
     h5 {
         color: black;
+
     }
 </style>
 
@@ -57,53 +58,86 @@
 
         </div>
     </div>
+
     <div>
-        <?php foreach ($order as $key => $value): ?>
+
+        <?php foreach ($orders as $key => $values): ?>
             <div class="container how-shadow1 m-b-30 bor2 " style="width: 900px">
                 <div class="bor12 p-t-20  text-right p-b-20 text-danger">
-                    <?= $value['status'] ? 'Thành công' : ' Đang xác nhận' ?>
+                    <?php if ($values['status'] == 1) {
+                        echo 'Thành công';
+                    } elseif ($values['status'] == 0) {
+                        echo ' Đang xác nhận';
+                    } else {
+                        echo 'Đã hủy';
+                    }
+                    ?>
                 </div>
-                <div class='d-flex justify-content-between align-items-center bor12'>
-                    <div class="d-flex p-t-20 " style='gap:20px'>
-                        <img src="admin/<?= $value['img'] ?>" style="width: 80px;height: 80px;margin-bottom: 10px;">
-                        <div style="line-height: 2;">
-                            <h5 style='max-width: 670px;'>
-                                <?= $value['name'] ?>
-                            </h5>
-                            <p>Phân loại hàng : Size:
-                                <?= $value['sizes'] ?>, Color:
-                                <?= $value['colors'] ?>
-                            </p>
-                            <strong>x
-                                <?= $value['quantity'] ?>
-                            </strong>
+
+                <?php foreach ($order as $key => $value): ?>
+
+                    <?php if ($values['id'] == $value['order_id']): ?>
+
+                        <div class='d-flex justify-content-between align-items-center bor12'>
+                            <div class="d-flex p-t-20 " style='gap:20px'>
+                                <img src="admin/<?= $value['img'] ?>" style="width: 80px;height: 80px;margin-bottom: 10px;">
+                                <div style="line-height: 2;">
+                                    <h5 style='max-width: 600px;'>
+                                        <?= $value['name'] ?>
+                                    </h5>
+                                    <p>Phân loại hàng : Size:
+                                        <?= $value['sizes'] ?>, Color:
+                                        <?= $value['colors'] ?>
+                                        <input type="hidden">
+                                    </p>
+                                    <strong>x
+                                        <?= $value['quantity'] ?>
+                                    </strong>
+                                </div>
+                            </div>
+                            <div>
+                                <p style="color: red;" class='fs-20 m-b-20 m-l-80'>
+                                    <?= number_format($value['price'], 0, 0, ) ?> đ
+
+                                </p>
+                                <?php if ($values['status'] == 1): ?>
+                                    <div class="d-flex " style='gap:20px;'>
+                                        <input type="hidden" name='size' class="size" value='<?= $value['sizes'] ?>'>
+                                        <input type="hidden" name='color' class="color" value='<?= $value['colors'] ?>'>
+                                        <h5 class="cursor add-to-cart-btn js-addwish-b2" data-product-id='<?= $value['id_product'] ?>'>
+                                            Mua Lại</h5>
+                                        <a href="?act=commen&id=<?= $value['id_product'] ?>">
+                                            <button class="cursor ">
+                                                Bình luận
+                                            </button>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
                         </div>
-
-
-                    </div>
-                    <p style="color: red;" class='fs-20'>
-                        <?= number_format($value['price'], 0, 0, ) ?> đ
-                    </p>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+                <div>
+                    <h4 class="text-right m-t-30">Ship : <strong> 30.000 đ</strong> </h4>
                 </div>
                 <div class="d-flex justify-content-end align-items-center">
                     <h6 class='text-right m-t-30 m-b-30 p-'>Thành Tiền : </h6>
                     <div class='fs-30 p-l-10' style='color: red;'>
-                        <?= number_format($value['price'], 0, 0, ) ?> đ
+                        <?= number_format($values['total'], 0, 0, ) ?> đ
                     </div>
                 </div>
+                <?php if ($values['status'] == 0): ?>
+                    <form action="?act=updateorder" method="post" class='d-flex justify-content-end '>
+                        <input type="hidden" name='status' value='2'>
+                        <input type="hidden" name='id' value='<?= $value['id'] ?>'>
+                        <button class="btn mt-1  m-b-30 hov-btn4" style='background-color: red;padding: 7px 10px; max-width: 130px; height:40px'
+                                                                                                                                                type='submit'>
+                            Hủy đơn hàng
+                        </button>
+                    </form>
+                <?php endif ?>
 
-                <div class="text-right d-flex justify-content-end m-b-30" style='gap: 20px;'>
-                    <a href="?act=product-detail&id=<?= $value['sp_id'] ?>&iddm=<?= $value['sp_iddm'] ?>">
-                        <Button class="btn hov-btn3 m-b-30" style='border: 1px solid blue;width: 150px ;'>Mua lại</Button>
-                    </a>
-
-
-                    <button class="btn hov-btn4">Bình luận</button>
-                </div>
             </div>
-
         <?php endforeach; ?>
-
     </div>
-
 </div>

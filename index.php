@@ -16,16 +16,12 @@ require_once "model/pay.php";
 require_once "Controller/product.php";
 // require_once 'Controller/product.php';
 require_once 'Controller/user.php';
-
-$baseurl = 'http://php.test/duanmau/';
-
-
 $act = !empty($_GET['act']) ? $_GET['act'] : 'index';
 $size = size();
 $color = color();
 $productId = isset($_GET['id']) ? $_GET['id'] : '';
 if ($act === 'index') {
-    $data = getAll(4);
+    $data = getAlls(4);
     $view = getview(4);
 } else if ($act === 'product-detail') {
 
@@ -55,6 +51,8 @@ if ($act === 'index') {
     $xoa = updatecart();
 } else if ($act === 'pay') {
     $pay = pay();
+} else if ($act === 'commen') {
+    $bl = addbl();
 } else if ($act === 'hoadon') {
     $order = order($productId);
     $orders = orderid($productId);
@@ -62,10 +60,13 @@ if ($act === 'index') {
 } else if ($act === 'order') {
     $pro = getuser($productId);
     $order = getOrderDetailsByUserId($productId);
+    $orders = orderiduser();
 } else if ($act === 'profile') {
     $pro = getuser($productId);
     $pros = updatepro($_GET['id']);
 
+} elseif ($act === 'updateorder') {
+    $update = statusa();
 }
 
 

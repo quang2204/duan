@@ -106,21 +106,29 @@
                                                                                                                                           name="email"
                                                                                                                                           required='' />
                 </div>
-                <div class="mb-4">
-                  <input type="password" class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
-                                                                                                                                          placeholder="Mật khẩu"
+                <div class="mb-4 relative">
+                  <input type="password" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
+                                                                                                                                          placeholder="Password"
                                                                                                                                           aria-label="Password"
                                                                                                                                           aria-describedby="password-addon"
-                                                                                                                                          name='pass'
-                                                                                                                                          required='' />
+                                                                                                                                          required
+                                                                                                                                          name="pass"
+                                                                                                                                          id="password" />
+                  <div class="mat absolute top-3 right-4">
+                    <i class="fa fa-eye-slash"></i>
+                  </div>
                 </div>
-                <div class="mb-4">
-                  <input type="password" class="text-sm focus:shadow-soft-primary-outline leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding py-2 px-3 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:bg-white focus:text-gray-700 focus:outline-none focus:transition-shadow"
-                                                                                                                                          placeholder="Nhập lại mật khẩu"
+                <div class="mb-4 relative">
+                  <input type="password" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
+                                                                                                                                          placeholder="Password"
                                                                                                                                           aria-label="Password"
                                                                                                                                           aria-describedby="password-addon"
-                                                                                                                                          name='nhaplai'
-                                                                                                                                          required='' />
+                                                                                                                                          required
+                                                                                                                                          name="nhaplai"
+                                                                                                                                          id="passwords" />
+                  <div class="ii absolute top-3 right-4">
+                    <i class="fa fa-eye-slash"></i>
+                  </div>
                 </div>
 
                 <div class="mb-4 ">

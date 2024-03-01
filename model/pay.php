@@ -10,8 +10,8 @@ function pay()
                 unset($_SESSION['error']['name']);
             }
 
-            if (empty($_POST['dc']) || strlen($_POST['dc']) < 5 || strlen($_POST['dc']) > 30) {
-                $_SESSION['error']['dc'] = 'Địa chỉ từ 5 đến 30 ký tự';
+            if (empty($_POST['dc']) || strlen($_POST['dc']) < 5 || strlen($_POST['dc']) > 50) {
+                $_SESSION['error']['dc'] = 'Địa chỉ từ 5 đến 50 ký tự';
             } else {
                 unset($_SESSION['error']['dc']);
             }
@@ -87,6 +87,7 @@ function order()
         die;
     }
 }
+
 function getOrderDetailsByUserId($userId)
 {
     try {
@@ -122,7 +123,32 @@ function getOrderDetailsByUserId($userId)
         die;
     }
 }
-
+function ordersid($id)
+{
+    try {
+        $sql = 'SELECT 
+                    `orders`.id as id,
+                    `orders`.status as status,
+                    detail.order_id as order_id,
+                    detail.quantity as quantity,
+                    detail.price as price,
+                    detail.id_product as id_product,
+                    detail.colors as colors,
+                    detail.sizes as sizes,
+                    detail.name as name
+                FROM orders as `orders`
+                INNER JOIN order_detail AS detail ON detail.order_id = `orders`.id
+                WHERE `orders`.id = :order_id';
+        $stmt = $GLOBALS['conn']->prepare($sql);
+        $stmt->bindParam(":order_id", $id); 
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+}
 
 
 
@@ -134,6 +160,28 @@ function orderid()
 
 }
 
+function bl()
+{
+    try {
+        if (isset($_POST['submit_comment'])) {
+            $id = $_POST['id'];
+            $sql = "SELECT * FROM order_detail WHERE id_product = :id_product LIMIT 1;";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+
+            $stmt->bindParam(":id_product", $id);
+
+            $stmt->execute();
+
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        }
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+}
+
+
 function orderall()
 {
     $sql = "SELECT * FROM orders ";
@@ -141,6 +189,25 @@ function orderall()
     return select($sql);
 
 }
+function orderiduser()
+{
+    try {
+        $sql = "SELECT * FROM orders WHERE id_us = :id_us";
+
+        $stmt = $GLOBALS['conn']->prepare($sql);
+
+        $stmt->bindParam(":id_us", $_GET['id']);
+
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+}
+
 function xoaorder()
 {
 
@@ -164,7 +231,7 @@ function updateorder()
             $stmt->bindParam(':id', $_POST['id']);
 
             $stmt->execute();
-            header('Location: ?act=order');
+            // header('Location: ?act=order');
         } catch (Exception $e) {
             echo 'ERROR: ' . $e->getMessage();
             die;

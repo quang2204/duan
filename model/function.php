@@ -18,14 +18,14 @@ function select($sql)
 function slectid($sql)
 {
     try {
-        $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt = $GLOBALS['conn']->prepare($sql);
 
-        $stmt->bindParam(":id", $_GET['id']);
+            $stmt->bindParam(":id", $_GET['id']);
 
-        $stmt->execute();
+            $stmt->execute();
 
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result;
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
     } catch (Exception $e) {
         echo 'ERROR: ' . $e->getMessage();
         die;

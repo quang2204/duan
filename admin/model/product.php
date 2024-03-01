@@ -101,6 +101,23 @@ function counttb($table)
     return counts($sql);
 
 }
+function counttotal()
+{
+    try {
+        $sql = "SELECT  sum(total) as total  FROM orders";
+
+        $stmt = $GLOBALS['conn']->prepare($sql);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['total'];
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+
+
+}
 function thongke()
 {
 

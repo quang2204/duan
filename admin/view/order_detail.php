@@ -10,24 +10,9 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
         <div class="flex-none w-full max-w-full px-3">
             <div
                                                                                                                                     class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
-                <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent " style="display: flex;
-    align-items: center;
-    justify-content: space-between;">
+                <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent ">
                     <h6>Product</h6>
-                    <a href="?act=adsp">
-                        <button type="button" class="button" style="background-color: #3aa856;">
-                            <span class="button__text">Add product</span>
-                            <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round"
-                                                                                                                                                        stroke-linecap="round"
-                                                                                                                                                        stroke="currentColor"
-                                                                                                                                                        height="24"
-                                                                                                                                                        fill="none"
-                                                                                                                                                        class="svg">
-                                    <line y2="19" y1="5" x2="12" x1="12"></line>
-                                    <line y2="12" y1="12" x2="19" x1="5"></line>
-                                </svg></span>
-                        </button>
-                    </a>
+
 
                 </div>
                 <div class="flex-auto px-0 pt-0 ">
@@ -59,6 +44,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <?php
                                 foreach ($detail as $key => $value): ?>
                                     <tr style='height: 60px;'>
@@ -109,12 +95,17 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                             </tbody>
                         </table>
                         <div class="d-flex justify-center align-items-center " style='gap:20px; margin:50px 0 10px'>
-                            <a href="?act=confirm&id=<?= $value['id'] ?>">
-                                <button class="btn mt-1 pl-1" style='border:2px solid green;padding: 7px 10px;'>
-                                    Confirm
+                            <?php if ($value['status'] == 0): ?>
 
-                                </button>
-                            </a>
+                                <form action="?act=updateorder" method="post">
+                                    <input type="hidden" name='status' value='1'>
+                                    <input type="hidden" name='id' value='<?= $value['id'] ?>'>
+                                    <button class="btn mt-1 pl-1" style='border:2px solid green;padding: 7px 10px;'
+                                                                                                                                                            type='submit'>
+                                        Confirm
+                                    </button>
+                                </form>
+                            <?php endif; ?>
                             <a href="?act=xoaorder&id=<?= $value['order_id'] ?>">
                                 <button class="noselect"
                                                                                                                                                         onclick="return confirm('Bạn có muốn xóa không <?= $value['name'] ?>')">

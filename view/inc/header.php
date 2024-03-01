@@ -58,12 +58,12 @@
 						<ul class="main-menu ">
 							<li>
 
-								<a href="?" class="<?= ($act === 'index') ? 'active' : '' ?>">Home</a>
+								<a href="?" class="<?= ($act === 'index') ? 'active' : '' ?>">Trang chủ</a>
 
 							</li>
 
 							<li>
-								<a href="?act=product" class="<?= ($act === 'product') ? 'active' : '' ?>">Product</a>
+								<a href="?act=product" class="<?= ($act === 'product') ? 'active' : '' ?>">Sản phẩm</a>
 							</li>
 
 							<li>
@@ -71,11 +71,11 @@
 							</li>
 
 							<li>
-								<a href="?act=about" class="<?= ($act === 'about') ? 'active' : '' ?>">About</a>
+								<a href="?act=about" class="<?= ($act === 'about') ? 'active' : '' ?>">Về chúng tôi</a>
 							</li>
 
 							<li>
-								<a href="?act=contact" class="<?= ($act === 'contact') ? 'active' : '' ?>">Connact</a>
+								<a href="?act=contact" class="<?= ($act === 'contact') ? 'active' : '' ?>">Liên hệ</a>
 							</li>
 						</ul>
 					</div>
@@ -142,11 +142,11 @@
 			<?php
 			if (!empty($_SESSION['users'])): ?>
 				<div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
-					<div class="flex-c-m h-full p-r-5">
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart"
-																																				data-notify="2">
-							<i class="zmdi zmdi-shopping-cart"></i>
-						</div>
+					<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 <?= isset($_SESSION['cart']) ? 'icon-header-noti' : '' ?>  js-show-cart"
+																																			data-notify="<?= isset($_SESSION['cart']['info']) ? $_SESSION['cart']['info']['num_order'] : '' ?>">
+						<i class="zmdi zmdi-shopping-cart" style='color: black;'></i>
+
+
 					</div>
 				</div>
 
@@ -175,33 +175,33 @@
 		<div class="menu-mobile">
 			<ul class="main-menu-m">
 				<li>
-					<a href="?">Home</a>
+					<a href="?">Trang chủ</a>
 
 				</li>
 
 				<li>
-					<a href="?act=product">Product</a>
+					<a href="?act=product">Sản phẩm</a>
 				</li>
 				<li>
 					<a href="?act=blog">Blog</a>
 				</li>
 
 				<li>
-					<a href="?act=about">About</a>
+					<a href="?act=about">Về Chúng tôi</a>
 				</li>
 				<?php
 				if (!empty($_SESSION['users'])): ?>
 					<li>
-						<a href="?act=portfolio&id=<?= $_SESSION['users']['id'] ?>">Portfolio</a>
+						<a href="?act=profile&id=<?= $_SESSION['users']['id'] ?>">Tài khoản của tôi</a>
 						<ul class="sub-menu-m" style="padding-bottom: 0;">
 							<li>
-								<a href="?act=portfolio">Portfolio</a>
+								<a href="?act=profile&id=<?= $_SESSION['users']['id'] ?>">Tài khoản của tôi</a>
 							</li>
 							<li>
-								<a href="?act=dx">Log out</a>
+								<a href="?act=dx">Đăng xuất</a>
 							</li>
 							<li>
-								<a href="#">Order</a>
+								<a href="#">Đơnơn hàng</a>
 							</li>
 						</ul>
 						<span class="arrow-main-menu-m">
@@ -211,7 +211,7 @@
 
 				<?php endif; ?>
 				<li>
-					<a href="?act=contact">Connact</a>
+					<a href="?act=contact">Liên hệ</a>
 				</li>
 
 
@@ -393,12 +393,12 @@
 						<div class="header-cart-buttons flex-w w-full">
 							<a href="?act=shoping-cart"
 																																					class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-								View Cart
+								Xem giỏ hàng
 							</a>
 
 							<a href="?act=pay"
 																																					class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-								Check Out
+								 Thanh toán
 							</a>
 						</div>
 					</div>

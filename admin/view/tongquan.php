@@ -16,8 +16,9 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
               <div>
                 <p class="mb-0 font-sans text-sm font-semibold leading-normal">Total product </p>
                 <h5 class="mb-0 font-bold">
-                  <?= $countsp ?>
-                  <span class="text-sm leading-normal font-weight-bolder text-lime-500">+55%</span>
+
+                  <?= number_format($orders, 0, 0, ) ?> đ
+
                 </h5>
               </div>
             </div>
@@ -41,7 +42,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                 <p class="mb-0 font-sans text-sm font-semibold leading-normal">Total Users</p>
                 <h5 class="mb-0 font-bold">
                   <?= $users ?>
-                  <span class="text-sm leading-normal font-weight-bolder text-lime-500">+3%</span>
+
                 </h5>
               </div>
             </div>
@@ -62,11 +63,9 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
           <div class="flex flex-row -mx-3">
             <div class="flex-none w-2/3 max-w-full px-3">
               <div>
-                <p class="mb-0 font-sans text-sm font-semibold leading-normal">Total comment</p>
+                <p class="mb-0 font-sans text-sm font-semibold leading-normal">Order</p>
                 <h5 class="mb-0 font-bold">
                   <?= $bls ?>
-
-                  <span class="text-sm leading-normal text-red-600 font-weight-bolder">-2%</span>
                 </h5>
               </div>
             </div>
@@ -87,10 +86,10 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
           <div class="flex flex-row -mx-3">
             <div class="flex-none w-2/3 max-w-full px-3">
               <div>
-                <p class="mb-0 font-sans text-sm font-semibold leading-normal">Sales</p>
+                <p class="mb-0 font-sans text-sm font-semibold leading-normal">Product</p>
                 <h5 class="mb-0 font-bold">
-                  $103,430
-                  <span class="text-sm leading-normal font-weight-bolder text-lime-500">+5%</span>
+                  <?= $countsp ?>
+
                 </h5>
               </div>
             </div>

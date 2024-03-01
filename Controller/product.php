@@ -33,3 +33,9 @@ function product()
         'page' => $page,
     ];
 }
+function statusa()
+{
+    $status = updateorder();
+    header('Location: ?act=order&id=' . $_SESSION['users']['id']);
+
+}

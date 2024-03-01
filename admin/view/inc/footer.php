@@ -62,6 +62,37 @@
 <!-- main script file  -->
 <script src="./assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script>
 
+<script>
+    $(document).ready(function () {
+        $(".ii").click(function () {
+            var passwordInput = $("#passwords");
+
+            if (passwordInput.attr("type") === "password") {
+                passwordInput.attr("type", "text");
+
+                $(this).html('<i class="fa fa-eye"></i>');
+            } else {
+                passwordInput.attr("type", "password");
+                $(this).html('<i class="fa fa-eye-slash"></i>  ');
+            }
+        });
+    });
+    $(document).ready(function () {
+        $(".mat").click(function () {
+            var passwordInput = $("#password");
+
+            if (passwordInput.attr("type") === "password") {
+                passwordInput.attr("type", "text");
+
+                $(this).html('<i class="fa fa-eye"></i>');
+            } else {
+                passwordInput.attr("type", "password");
+                $(this).html('<i class="fa fa-eye-slash"></i>  ');
+            }
+        });
+    });
+</script>
+
 
 
 </html>

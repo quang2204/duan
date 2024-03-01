@@ -43,7 +43,7 @@
       </p>
       <label for="dc">Địa chỉ *</label>
       <input type="text" placeholder="Địa chỉ" id="product-dc" name="dc" class="input <?= isset($_SESSION['error']['dc']) ? 'error' : '' ?>"
-                                                                                                                              value='<?= isset($_SESSION['users']['	address']) ? $_SESSION['users']['	address'] : '' ?>' />
+                                                                                                                              value='<?= isset($_SESSION['users']['address']) ? $_SESSION['users']['address'] : '' ?>' />
 
       <p id="dc-loi">
         <?= isset($_SESSION['error']['dc']) ? $_SESSION['error']['dc'] : '' ?>
@@ -51,7 +51,7 @@
 
       <label for="name">Số điện thoại *</label>
       <input type="text" id="product-sdt" name="sdt" placeholder="Số điện thoại " class="input <?= isset($_SESSION['error']['sdt']) ? 'error' : '' ?>  "
-                                                                                                                              value='<?= isset($_SESSION['users']['	address']) ? $_SESSION['users']['	address'] : '' ?>' />
+                                                                                                                              value='<?= isset($_SESSION['users']['tel']) ? $_SESSION['users']['tel'] : '' ?>' />
 
       <p id="sdt-loi">
         <?= isset($_SESSION['error']['sdt']) ? $_SESSION['error']['sdt'] : '' ?>
@@ -144,65 +144,3 @@
     </div>
   </div>
 </form>
-
-<!-- 
-<script>
-  $(document).ready(function () {
-    $('#myForm').submit(function (event) {
-      event.preventDefault();
-
-      $.ajax({
-        url: 'model/validate.php',
-        type: 'POST',
-        data: {
-          name: $('#product-name').val(),
-          dc: $('#product-dc').val(),
-          tp: $('#product-tp').val(),
-          sdt: $('#product-sdt').val(),
-        },
-        success: function (response) {
-          var data = JSON.parse(response);
-          console.log(data)
-
-          // Clear previous error messages
-          $('#ten-loi').text('');
-          $('#dc-loi').text('');
-          $('#tp-loi').text('');
-          $('#sdt-loi').text('');
-          $('#product-name').css('border', '1px solid #ddd');
-          $('#product-dc').css('border', '1px solid #ddd');
-          $('#product-tp').css('border', '1px solid #ddd');
-          $('#product-sdt').css('border', '1px solid #ddd');
-
-          // Check and display error messages
-          if (data.errors.name) {
-            $('#ten-loi').text(data.errors.name);
-            $('#product-name').css('border', '1px solid red');
-
-          }
-
-          if (data.errors.dc) {
-            $('#dc-loi').text(data.errors.dc);
-            $('#product-dc').css('border', '1px solid red');
-
-          }
-
-          if (data.errors.tp) {
-            $('#tp-loi').text(data.errors.tp);
-            $('#product-tp').css('border', '1px solid red');
-
-          }
-
-          if (data.errors.sdt) {
-            $('#sdt-loi').text(data.errors.sdt);
-            $('#product-sdt').css('border', '1px solid #ddd');
-
-          }
-
-          // Add red border to the input field with id "product-tency" if there is an error
-
-        }
-      });
-    });
-  });
-</script> -->

@@ -94,22 +94,36 @@ if (empty($_SESSION['users'])) {
         </textarea>
 
     </label>
-    <label>
-        <span>Màu sắc</span>
-        <div class="d-flex">
-            <label class="check">
-                <input type="checkbox">
-                <div class="checkmark"></div>
-                <p>Trắng</p>
-            </label>
-            <label class="check">
-                <input type="checkbox">
-                <div class="checkmark"></div>
-                <p>Đen</p>
-            </label>
+    <!-- <label>
+        <span>Size</span>
+        <div class="d-flex" style='gap:20px'>
+            <?php foreach ($size as $key => $value): ?>
+                <label class="check">
+                    <input type="checkbox" name='size[]' value='<?= $value['id'] ?>'>
+                    <div class="checkmark"></div>
+                    <p>
+                        <?= $value['size'] ?>
+                    </p>
+                </label>
+            <?php endforeach; ?>
         </div>
-
     </label>
+
+    <label style="margin-top:-30px;">
+        <span>Màu sắc</span>
+        <div class="d-flex " style='gap:20px'>
+            <?php foreach ($color as $key => $value): ?>
+                <label class="check">
+                    <input type="checkbox" name='color[]' value='<?= $value['id'] ?>'>
+                    <div class="checkmark"></div>
+                    <p>
+                        <?= $value['color'] ?>
+                    </p>
+                </label>
+            <?php endforeach; ?>
+        </div>
+    </label> -->
+
 
     <label>
         <span>Loại</span>

@@ -10,25 +10,8 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
         <div class="flex-none w-full max-w-full px-3">
             <div
                                                                                                                                     class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
-                <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent " style="display: flex;
-    align-items: center;
-    justify-content: space-between;">
+                <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent ">
                     <h6>Product</h6>
-                    <a href="?act=adsp">
-                        <button type="button" class="button" style="background-color: #3aa856;">
-                            <span class="button__text">Add product</span>
-                            <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round"
-                                                                                                                                                        stroke-linecap="round"
-                                                                                                                                                        stroke="currentColor"
-                                                                                                                                                        height="24"
-                                                                                                                                                        fill="none"
-                                                                                                                                                        class="svg">
-                                    <line y2="19" y1="5" x2="12" x1="12"></line>
-                                    <line y2="12" y1="12" x2="19" x1="5"></line>
-                                </svg></span>
-                        </button>
-                    </a>
-
                 </div>
                 <div class="flex-auto px-0 pt-0 ">
                     <div class="p-0 overflow-x-auto">
@@ -66,6 +49,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                     </th>
                                 </tr>
                             </thead>
+                   
                             <tbody>
                                 <?php
                                 foreach ($order as $key => $value): ?>
@@ -123,13 +107,22 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                         <td
                                                                                                                                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent readonly">
                                             <p class="mb-0 text-xs font-semibold leading-tight text-center">
-                                                <?= $value['status'] ? 'Thành công' : 'Đang xác nhận' ?>
+                                                <?php if ($value['status'] == 1) {
+                                                    echo 'Thành công';
+                                                } elseif ($value['status'] == 0) {
+                                                    echo ' Đang xác nhận';
+                                                } else {
+                                                    echo 'Đã hủy';
+                                                }
+                                                ?>
                                             </p>
                                         </td>
                                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent" style="display: flex;
                     justify-content: center;
                   align-items: center; gap:20px;padding: 52px 0;">
-                                            <form action="?act=updateorder" method="post">
+                  <?php if ($value['status']==0) : ?>
+
+                      <form action="?act=updateorder" method="post">
                                                 <input type="hidden" name='status' value='1'>
                                                 <input type="hidden" name='id' value='<?= $value['id'] ?>'>
                                                 <button class="btn mt-1 pl-1" style='border:2px solid green;padding: 7px 10px;'
@@ -137,6 +130,8 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                                     Confirm
                                                 </button>
                                             </form>
+                    <?php endif; ?>
+                                          
 
 
                                             <a href="?act=order_detail&id=<?= $value['id'] ?>">

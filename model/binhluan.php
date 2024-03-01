@@ -36,7 +36,33 @@ function allbl($productId)
         die;
     }
 }
+function addbl()
+{
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        try {
 
+            $productID = $_POST['idpro'];
+            $rating = $_POST['rating'];
+            $userID = $_POST['iduser'];
+            $date = date("Y-m-d");
+            $noidung = $_POST['noidung'];
+
+            $sql = "INSERT INTO binhluan (idpro, iduser, noidung, ngaybinhluan, rating) VALUES (:idpro, :iduser, :noidung, :ngaybinhluan, :rating)";
+            $stmt = $GLOBALS['conn']->prepare($sql);
+
+            $stmt->bindParam(':idpro', $productID);
+            $stmt->bindParam(':iduser', $userID);
+            $stmt->bindParam(':noidung', $noidung);
+            $stmt->bindParam(':ngaybinhluan', $date);
+            $stmt->bindParam(':rating', $rating);
+
+            $stmt->execute();
+            header('Location:?act=order&id=' . $userID);
+        } catch (PDOException $e) {
+            echo "Lỗi: " . $e->getMessage();
+        }
+    }
+}
 function allsbl($page = 1, $perPage = 6)
 {
 
