@@ -32,23 +32,23 @@ function addsp()
 
             $stmt->execute();
 
-            // $lastId = $GLOBALS['conn']->lastInsertId();
+            $lastId = $GLOBALS['conn']->lastInsertId();
 
-            // $selectedColors = $_POST['color'];
-            // $selectedSizes = $_POST['size'];
+            $selectedColors = $_POST['color'];
+            $selectedSizes = $_POST['size'];
 
-            // foreach ($selectedColors as $color) {
-            //     foreach ($selectedSizes as $size) {
-            //         $sql = "INSERT INTO product_variants (id_product, id_colors, id_sizes)
-            //                 VALUES (:id_product, :id_colors, :id_sizes)";
+            foreach ($selectedColors as $color) {
+                foreach ($selectedSizes as $size) {
+                    $sql = "INSERT INTO product_variants (id_product, id_colors, id_sizes)
+                            VALUES (:id_product, :id_colors, :id_sizes)";
 
-            //         $stmtVariant = $GLOBALS['conn']->prepare($sql);
-            //         $stmtVariant->bindParam(':id_product', $lastId);
-            //         $stmtVariant->bindParam(':id_colors', $color);
-            //         $stmtVariant->bindParam(':id_sizes', $size);
-            //         $stmtVariant->execute();
-            //     }
-            // }
+                    $stmtVariant = $GLOBALS['conn']->prepare($sql);
+                    $stmtVariant->bindParam(':id_product', $lastId);
+                    $stmtVariant->bindParam(':id_colors', $color);
+                    $stmtVariant->bindParam(':id_sizes', $size);
+                    $stmtVariant->execute();
+                }
+            }
 
             header('Location:?act=sanpham'); // Replace with your success page
 

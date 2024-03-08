@@ -82,7 +82,7 @@
                             <div class="d-flex p-t-20 " style='gap:20px'>
                                 <img src="admin/<?= $value['img'] ?>" style="width: 80px;height: 80px;margin-bottom: 10px;">
                                 <div style="line-height: 2;">
-                                    <h5 style='max-width: 600px;'>
+                                    <h5 style='max-width: 580px;'>
                                         <?= $value['name'] ?>
                                     </h5>
                                     <p>Phân loại hàng : Size:
@@ -100,20 +100,28 @@
                                     <?= number_format($value['price'], 0, 0, ) ?> đ
 
                                 </p>
+
                                 <?php if ($values['status'] == 1): ?>
-                                    <div class="d-flex " style='gap:20px;'>
+                                    <div class="d-flex justify-content-end align-items-center" style='gap:20px;'>
                                         <input type="hidden" name='size' class="size" value='<?= $value['sizes'] ?>'>
                                         <input type="hidden" name='color' class="color" value='<?= $value['colors'] ?>'>
+                                        <?php if ($value['is_comment'] == 0):
+                                            ?>
+                                            <a href="?act=commen&idbl=<?= $value['id_product'] ?>&id=<?= $value['detail_id'] ?>">
+
+                                                <button class="cursor fs-18">
+                                                    Bình luận
+                                                </button>
+                                            </a>
+                                        <?php endif; ?>
                                         <h5 class="cursor add-to-cart-btn js-addwish-b2" data-product-id='<?= $value['id_product'] ?>'>
                                             Mua Lại</h5>
-                                        <a href="?act=commen&id=<?= $value['id_product'] ?>">
-                                            <button class="cursor ">
-                                                Bình luận
-                                            </button>
-                                        </a>
+
+
                                     </div>
                                 <?php endif; ?>
                             </div>
+
                         </div>
                     <?php endif; ?>
                 <?php endforeach; ?>

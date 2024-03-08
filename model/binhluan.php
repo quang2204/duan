@@ -40,7 +40,6 @@ function addbl()
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
-
             $productID = $_POST['idpro'];
             $rating = $_POST['rating'];
             $userID = $_POST['iduser'];
@@ -57,12 +56,23 @@ function addbl()
             $stmt->bindParam(':rating', $rating);
 
             $stmt->execute();
-            header('Location:?act=order&id=' . $userID);
+
+            $sqls = 'UPDATE order_detail 
+                    SET is_comment = :is_comment
+                    WHERE id = :id';
+            $stmt = $GLOBALS['conn']->prepare($sqls);
+            $stmt->bindParam(':is_comment', $_POST['is_comment']);
+            $stmt->bindParam(':id', $_GET['id']);
+
+            $stmt->execute();
+
+            header('Location: ?act=order&id=' . $userID);
         } catch (PDOException $e) {
             echo "Lỗi: " . $e->getMessage();
         }
     }
 }
+
 function allsbl($page = 1, $perPage = 6)
 {
 

@@ -38,6 +38,7 @@
 " value='<?= $_SESSION['users']['name'] ?>'>
 
       </input />
+      <input type="hidden" name='email' value="<?= $_SESSION['users']['email'] ?>">
       <p id="ten-loi">
         <?= isset($_SESSION['error']['name']) ? $_SESSION['error']['name'] : '' ?>
       </p>

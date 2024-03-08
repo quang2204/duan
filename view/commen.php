@@ -5,10 +5,10 @@
                 Thêm một bài đánh giá
 
             </h5>
-            <input type="hidden" value='<?= $_GET['id'] ?>' name='idpro'>
+            <input type="hidden" value='<?= $_GET['idbl'] ?>' name='idpro'>
 
             <input type="hidden" value='<?= $_SESSION['users']['id'] ?>' name="iduser">
-
+            <input type="hidden" value='1' name='id'>
             <div class="flex-w flex-m p-t-20 p-b-23">
                 <span class="stext-102 cl3 m-r-16">
                     Đánh giá của bạn
@@ -33,7 +33,7 @@
                 </div>
 
             </div>
-
+            <input type="hidden" name='is_comment' value='1'>
             <button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
                 Submit
             </button>

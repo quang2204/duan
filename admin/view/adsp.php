@@ -94,7 +94,7 @@ if (empty($_SESSION['users'])) {
         </textarea>
 
     </label>
-    <!-- <label>
+    <label>
         <span>Size</span>
         <div class="d-flex" style='gap:20px'>
             <?php foreach ($size as $key => $value): ?>
@@ -122,7 +122,7 @@ if (empty($_SESSION['users'])) {
                 </label>
             <?php endforeach; ?>
         </div>
-    </label> -->
+    </label>
 
 
     <label>

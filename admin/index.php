@@ -17,8 +17,6 @@ require_once '../model/dx.php';
 require_once '../model/function.php';
 require_once './model/profile.php';
 require_once "../model/binhluan.php";
-
-
 require_once "../model/user.php";
 require_once "../model/pay.php";
 
@@ -27,7 +25,7 @@ require_once "../model/pay.php";
 $act = !empty($_GET['act']) ? $_GET['act'] : 'tongquan';
 $path = "view/{$act}.php";
 require_once 'view/inc/header.php';
-$perPage = 6; // Số lượng mục trên mỗi trang
+$perPage = 6;
 $page = isset($_GET['trang']) ? $_GET['trang'] : 1;
 $order = orderall();
 $countsp = counttb('sanpham');
@@ -48,9 +46,10 @@ if ($act === 'sanpham') {
     $xoa = delete($_GET['id']);
 
 } elseif ($act === 'sua') {
-    $update = getid($_GET['id']);
+    $update = getByID($_GET['id']);
     $sua = updatesp($_GET['id']);
     $ad = getdm();
+    $variants = variants($_GET['id']);
 
 } elseif ($act === 'xoadanhmuc') {
     $delete = deletedm($_GET['id']);

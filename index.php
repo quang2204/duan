@@ -13,7 +13,10 @@ require_once "admin/model/profile.php";
 require_once "model/user.php";
 require_once "model/function.php";
 require_once "model/pay.php";
+require_once "model/resetpass.php";
 require_once "Controller/product.php";
+require_once "Controller/mail.php";
+
 // require_once 'Controller/product.php';
 require_once 'Controller/user.php';
 $act = !empty($_GET['act']) ? $_GET['act'] : 'index';
@@ -28,8 +31,8 @@ if ($act === 'index') {
     $productDetail = getByID($productId);
 
     $id = getidsp($_GET['iddm'], $productId);
-    $bl = allbl($productId);
-
+    // $bl = allbl($productId);
+    $variants = variants($productId);
 } else if ($act === 'product') {
     $product = product();
     $link = $product['link'];
@@ -53,6 +56,7 @@ if ($act === 'index') {
     $pay = pay();
 } else if ($act === 'commen') {
     $bl = addbl();
+
 } else if ($act === 'hoadon') {
     $order = order($productId);
     $orders = orderid($productId);
@@ -67,6 +71,10 @@ if ($act === 'index') {
 
 } elseif ($act === 'updateorder') {
     $update = statusa();
+} elseif ($act === 'pass' || $act === 'email') {
+    $update = resset();
+} elseif ($act === 'reset_password') {
+    $update = updatetoken();
 }
 
 

@@ -63,7 +63,7 @@ function updatesp()
 
                     // Xóa ảnh cũ nếu có
                     if ($_POST['img-current'] && $_POST['img-current'] != $pathSaveDB) {
-                        unlink($_POST['img-current']);
+                        unlink(__DIR__ . '/../' . $_POST['img-current']);
                     }
                 }
             }
@@ -84,8 +84,30 @@ function updatesp()
             }
 
             $stmt->bindParam(':id', $_POST['id']);
-
             $stmt->execute();
+
+            //Xóa các biến thể sản phẩm hiện có
+            $sqlClearVariants = "DELETE FROM product_variants WHERE id_product = :id";
+            $stmtClearVariants = $GLOBALS['conn']->prepare($sqlClearVariants);
+            $stmtClearVariants->bindParam(':id', $_POST['id']);
+            $stmtClearVariants->execute();
+
+            //Chèn các biến thể sản phẩm mới
+            $sqlInsertVariant = "INSERT INTO product_variants (id_product, id_colors, id_sizes) VALUES (:id_product, :id_colors, :id_sizes)";
+            $stmtInsertVariant = $GLOBALS['conn']->prepare($sqlInsertVariant);
+
+            $selectedColors = $_POST['color'];
+            $selectedSizes = $_POST['size'];
+
+            foreach ($selectedColors as $color) {
+                foreach ($selectedSizes as $size) {
+                    $stmtInsertVariant->bindParam(':id_product', $_POST['id']);
+                    $stmtInsertVariant->bindParam(':id_colors', $color);
+                    $stmtInsertVariant->bindParam(':id_sizes', $size);
+                    $stmtInsertVariant->execute();
+                }
+            }
+
             header('Location: ?act=sanpham');
         } catch (Exception $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -93,6 +115,7 @@ function updatesp()
         }
     }
 }
+
 
 function counttb($table)
 {

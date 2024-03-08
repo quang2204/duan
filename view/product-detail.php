@@ -28,8 +28,6 @@
 		</span>
 	</div>
 </div>
-
-
 <!-- Product Detail -->
 <section class="sec-product-detail bg0 p-t-65 p-b-60">
 	<div class="container">
@@ -85,8 +83,8 @@
 							<div class="size-204 respon6-next">
 								<div class="rs1-select2 bor8 bg0">
 									<select class="size js-select2" name="time" >
-									<?php foreach ($size as $key => $value) : ?>
-										<option value="<?= $value['size']?>"><?= $value['size'] ?></option>
+									<?php foreach ($variants as $key => $value) : ?>
+										<option value="<?= $value['size_name']?>"><?= $value['size_name'] ?></option>
 									<?php endforeach;?>
 									</select>
 									<div class="dropDownSelect2"></div>
@@ -102,8 +100,8 @@
 							<div class="size-204 respon6-next">
 								<div class="rs1-select2 bor8 bg0">
 									<select class="js-select2 color" name="time">
-									<?php foreach ($color as $key => $value) : ?>
-										<option value="<?= $value['color']?>"><?= $value['color'] ?></option>
+									<?php foreach ($variants as $key => $value) : ?>
+										<option value="<?= $value['color_name']?>"><?= $value['color_name'] ?></option>
 									<?php endforeach;?>
 									</select>
 									<div class="dropDownSelect2"></div>

@@ -62,7 +62,10 @@
                 <input type="checkbox">
                 <label class="m-t-5">Nhớ mật khẩu </label>
             </div>
-            <span class="span">Quên mật khẩu</span>
+            <a href="?act=pass">
+                <span class="span">Quên mật khẩu</span>
+            </a>
+
         </div>
         <button class="button-submit" type="submit">Sign In</button>
         <p class="p">Bạn chưa có tài khoản? <a href="?act=singup" class="span">Đăng ký</a>

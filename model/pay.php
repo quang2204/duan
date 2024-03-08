@@ -29,15 +29,17 @@ function pay()
             }
 
             if (empty($_SESSION['error'])) {
+                $name = $_POST['name'];
+                $total = $_POST['total'];
                 $date = date("Y-m-d");
                 $sql = 'INSERT INTO orders(name, phone, address, note, total, created_time, id_us,pay)
                         VALUES(:name, :phone, :address, :note, :total, :created_time, :id_us,:pay)';
                 $stmt = $GLOBALS['conn']->prepare($sql);
-                $stmt->bindParam(':name', $_POST['name']);
+                $stmt->bindParam(':name', $name);
                 $stmt->bindParam(':phone', $_POST['sdt']);
                 $stmt->bindParam(':address', $_POST['dc']);
                 $stmt->bindParam(':note', $_POST['note']);
-                $stmt->bindParam(':total', $_POST['total']);
+                $stmt->bindParam(':total', $total);
                 $stmt->bindParam(':created_time', $date);
                 $stmt->bindParam(':id_us', $_POST['user']);
 
@@ -60,7 +62,154 @@ function pay()
                         $stmt_order_detail->execute();
                     }
                 }
+                $to = $_POST['email'];
+                $key = 1;
+                $subject = "Đặt hàng Thành công";
+                $body = '<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .table-responsive {
+            max-width: 600px;
+        }
+
+        .table td,
+        .table th {
+            padding: 0.75rem 0;
+            vertical-align: top;
+            border: 0;
+        }
+
+        .container {
+            margin: auto;
+            width: 600px;
+        }
+
+        .col {
+            width: 300px;
+            text-align: left;
+        }
+
+        .img {
+            margin: 20px 0;
+            line-height: 2;
+            
+        }
+
+        th {
+            text-align: left;
+        }
+        
+        .img img {
+            margin: auto;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .img p {
+            text-align: left;
+        }
+    .red{
+        color: red;
+    }
+    hr{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, .1);
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="img">
+        <img src="https://home.quangluong.id.vn/view/images/icons/logo-01.png">
+            <p>
+                Xin chào ' . ($name) . ',
+            </p>
+            <p >
+                Đơn hàng # <strong class="red">#' . ($order_id) . '</strong> của bạn đã đặt thành công ngày ' . ($date) . '.
+            </p>
+        </div>
+        <hr>
+        <div class="conten">
+            <h4>
+                <strong>
+                    THÔNG TIN ĐƠN HÀNG - DÀNH CHO NGƯỜI MUA
+                </strong>
+            </h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <td scope="col" class="col" >
+                            Mã đơn hàng:
+                        </td>
+                        <td scope="col" class="col red">#' . ($order_id) . '</td>
+                    </tr>
+                    <tr>
+                        <td scope="col" class="col">
+                            Ngày đặt hàng:
+                        </td>
+                        <td scope="col" class="col ">' . ($date) . '</td>
+                    </tr>
+                </table>';
+
+                foreach ($_SESSION['cart']['buy'] as $value) {
+                    $body .= '<table class="table">
+                    <tr>
+                        <td class="th"><img src="https://home.quangluong.id.vn/admin/' . $value['img'] . '" alt="" style="width: 100px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">' . ($key++) . '.' . ($value['name']) . '</td>
+                    </tr>
+                    <tr>
+                        <td id="th" style="width: 300px;" >Size:</td>
+                        <td class="th">' . ($value['size']) . '</td>
+                    </tr>   
+                    <tr>
+                    <td id="th"  >Color:</td>
+                    <td class="th">' . ($value['color']) . '</td>
+                </tr>
+                    <tr>
+                        <td class="th">Số lượng:</td>
+                        <td class="th">' . ($value['sl']) . '</td>
+                    </tr>
+                    <tr>
+                        <td class="th">Giá:</td>
+                        <td class="th">' . (number_format($value['tong'], 0, 0, )) . '</td>
+                    </tr>
+                </table>
+                <hr>
+               ';
+                }
+
+                $body .= '
+            <table class="table">
+                <tr>
+                    <td style="width: 300px;" >Phí vận chuyển:</td>
+                    <td>30.000 đ</td>
+                </tr>
+                <tr>
+                    <td>Tổng thanh toán:</td>
+                    <td>' . (number_format($total, 0, 0, )) . '</td>
+                </tr>
+                
+            </table>
+                </div>
+        </div>
+    </div>
+</body>
+
+</html>';
+
+                sendmail($to, $subject, $body);
                 unset($_SESSION['cart']);
+
                 header('Location: ?act=hoadon&id=' . $order_id);
                 exit();
             }
@@ -97,9 +246,11 @@ function getOrderDetailsByUserId($userId)
                     detail.order_id as order_id,
                     detail.quantity as quantity,
                     detail.price as price,
+                    detail.id as detail_id,
                     detail.id_product as id_product,
                     detail.colors as colors,
                     detail.sizes as sizes,
+                    detail.is_comment as is_comment,
                     user.id as id_user,
                     sp.img as img,
                     sp.id as sp_id,
@@ -140,7 +291,7 @@ function ordersid($id)
                 INNER JOIN order_detail AS detail ON detail.order_id = `orders`.id
                 WHERE `orders`.id = :order_id';
         $stmt = $GLOBALS['conn']->prepare($sql);
-        $stmt->bindParam(":order_id", $id); 
+        $stmt->bindParam(":order_id", $id);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;

@@ -49,21 +49,55 @@ function getByID($id)
 {
 
     $sql = "SELECT 
-            sp.id as sp_id, 
-            sp.name as sp_name, 
-            sp.img as sp_img, 
-            sp.price as sp_price, 
-            sp.luotxem as sp_luotxem, 
-            sp.mota as sp_mota, 
-            sp.motact as sp_motact, 
-            dm.name as dm_name,
-            dm.id as dm_id
-        FROM sanpham as sp
-        INNER JOIN danhmuc as dm
-            ON dm.id = sp.iddm
-        WHERE sp.id = :id";
+    sp.id as sp_id, 
+    sp.name as sp_name, 
+    sp.img as sp_img, 
+    sp.price as sp_price, 
+    sp.luotxem as sp_luotxem, 
+    sp.mota as sp_mota, 
+    sp.motact as sp_motact, 
+    dm.name as dm_name,
+    dm.id as dm_id,
+    v.id_product as id_product,
+    v.id_colors as id_colors,
+    v.id_sizes as id_sizes
+FROM sanpham as sp
+INNER JOIN danhmuc as dm ON dm.id = sp.iddm
+INNER JOIN product_variants as v ON v.id_product = sp.id
+WHERE sp.id = :id   
+";
 
     return slectid($sql);
+
+}
+function variants()
+{
+    try {
+        $sql = "SELECT 
+        v.id as variant_id,
+        v.id_product as id_product,
+        v.id_colors as id_colors,
+        v.id_sizes as id_sizes,
+        c.id as color_id,
+        c.color as color_name,
+        s.id as size_id,
+        s.size as size_name
+    FROM product_variants as v
+    INNER JOIN product_color as c ON c.id = v.id_colors
+    INNER JOIN product_size as s ON s.id = v.id_sizes
+    WHERE v.id_product = :id_product";
+        $stmt = $GLOBALS['conn']->prepare($sql);
+
+        $stmt->bindParam(":id_product", $_GET['id']);
+
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
 
 }
 function getProductData($orderBy = null, $search = null, $iddm = null, $minPrice = null, $maxPrice = null, $productsPerPage = null, $page = null)

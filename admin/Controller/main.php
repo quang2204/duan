@@ -3,6 +3,7 @@ require_once "./model/product.php";
 require_once "../model/binhluan.php";
 require_once "../model/pay.php";
 
+
 function delete($id)
 {
     $xoa = xoasp($id);
@@ -28,8 +29,20 @@ function deleteuser($id)
 }
 function status()
 {
-    $status=updateorder();
+    $status = updateorder();
     header('Location: ?act=order');
 
 }
 
+function deletenxb($id)
+{
+    $xoa = xoanxb($id);
+    header("location: ?act=nhaxuatban");
+
+}
+function deletesach($id)
+{
+    $xoa = xoasach($id);
+    header("location: ?act=sach");
+
+}

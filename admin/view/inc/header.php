@@ -185,6 +185,7 @@
                         <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Comment</span>
                     </a>
                 </li>
+
                 <?php if (empty($_SESSION['users'])): ?>
                     <li class="mt-0.5 w-full hover">
 

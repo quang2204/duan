@@ -109,8 +109,8 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                     </td>
                     <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent readonly">
                       <textarea class="mb-0 text-xs font-semibold w-full leading-tight pl-2" readonly>
-                                                                                                                                                                    <?= $value['sp_motact'] ?>
-                                                                                                                                                                    </textarea>
+                                                                                                                                                                        <?= $value['sp_motact'] ?>
+                                                                                                                                                                        </textarea>
                     </td>
 
                     <td class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"
