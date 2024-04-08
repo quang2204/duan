@@ -15,7 +15,7 @@ function product()
 
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
-    $productsPerPage = isset($limit) ? $limit : 8;
+    $productsPerPage = isset($limit) ? $limit : 12;
 
     $minPrice = isset($_GET['minPrice']) ? $_GET['minPrice'] : null;
     $maxPrice = isset($_GET['maxPrice']) ? $_GET['maxPrice'] : null;

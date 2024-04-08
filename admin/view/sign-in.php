@@ -30,18 +30,22 @@
                                                                                                                                             required
                                                                                                                                             name="pass"
                                                                                                                                             id="password" />
-                    <div class="mat absolute top-3 right-4">
+                    <div class="mat absolute right-4" style='top: 0.5rem;'>
                       <i class="fa fa-eye-slash"></i>
                     </div>
                   </div>
 
-                  <div class="min-h-6 mb-0.5 block pl-12">
+                  <div class="min-h-6 mb-0.5 block pl-12 ">
                     <input id="rememberMe" class="mt-0.54 rounded-10 duration-250 ease-soft-in-out after:rounded-circle after:shadow-soft-2xl after:duration-250 checked:after:translate-x-5.25 h-5 relative float-left -ml-12 w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:border-slate-800/95 checked:bg-slate-800/95 checked:bg-none checked:bg-right"
                                                                                                                                             type="checkbox"
                                                                                                                                             checked="" />
-                    <label class="mb-2 ml-1 font-normal cursor-pointer select-none text-sm text-slate-700"
-                                                                                                                                            for="rememberMe">Remember
-                      me</label>
+                    <div class="d-flex justify-content-between">
+                      <label class="mb-2 ml-1 font-normal cursor-pointer select-none text-sm text-slate-700"
+                                                                                                                                              for="rememberMe">Remember
+                        me</label>
+                      <a href='?act=resetpass'>Quên mật khẩu</a>
+                    </div>
+
                   </div>
                   <div class="text-center">
                     <button type="submit"

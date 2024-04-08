@@ -1,5 +1,5 @@
 <?php
-if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
+if (empty ($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
   header('Location: ?act=sign-in');
   exit();
 }
@@ -16,7 +16,10 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
       <div class="flex-none w-auto max-w-full px-3">
         <div
                                                                                                                                 class="text-base ease-soft-in-out h-18.5 w-18.5 relative inline-flex items-center justify-center rounded-xl text-white transition-all duration-200">
-          <img src="<?= $pro['img'] ?>" alt="profile_image" class="w-full shadow-soft-sm rounded-xl" />
+
+          <img src="<?= isset ($_SESSION['users']['img']) ? $_SESSION['users']['img'] : '../view/images/avartar.jpg' ?>" alt=""
+                                                                                                                                  class="w-full shadow-soft-sm rounded-xl">
+
         </div>
       </div>
       <div class="flex-none w-auto max-w-full px-3 my-auto">
@@ -79,7 +82,12 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
               <strong class="text-slate-700"> Address:</strong> &nbsp;
               <?= $pro['address'] ?>
             </li>
+            <li class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
+              <a href="?act=doimk">
+                <strong class="text-slate-700"> Đổi mật khẩu</strong>
+              </a>
 
+            </li>
           </ul>
         </div>
       </div>

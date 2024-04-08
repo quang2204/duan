@@ -109,6 +109,20 @@ p {
     background-color: #ffe500;
 }
 
+.c-button--gooeys {
+    color: #000;
+    text-transform: uppercase;
+
+    border: 4px solid #aa299f;
+    border-radius: 5px;
+    position: relative;
+    transition: all 400ms ease;
+}
+
+.c-button--gooeys:hover {
+    color: #fff;
+    background-color: #aa299f;
+}
 
 
 .button {
@@ -280,4 +294,183 @@ form .flex {
     --tw-gradient-to: #ff0080;
     color: white;
     border-radius: 0.75rem;
+}
+
+.check input {
+    display: none;
+}
+
+.check {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 1em;
+    width: 1em;
+    background-color: #2196F300;
+    border-radius: 0.25em;
+    transition: all 0.25s;
+}
+
+/* When the checkbox is checked, add a blue background */
+.check input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    transform: rotate(0deg);
+    border: 0.1em solid black;
+    left: 0;
+    top: 0;
+    width: 1em;
+    height: 1em;
+    border-radius: 0.25em;
+    transition: all 0.25s, border-width 0.1s;
+}
+
+/* Show the checkmark when checked */
+.check input:checked~.checkmark:after {
+    left: 0.4em;
+    top: 0.2em;
+    width: 0.25em;
+    height: 0.5em;
+    border-color: #fff0 white white #fff0;
+    border-width: 0 0.15em 0.15em 0;
+    border-radius: 0em;
+    transform: rotate(45deg);
+}
+
+.radio-inputs {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0.5rem;
+    background-color: #EEE;
+    box-sizing: border-box;
+    box-shadow: 0 0 0px 1px rgba(0, 0, 0, 0.06);
+    padding: 0.25rem;
+    width: 300px;
+    font-size: 14px;
+    margin: auto;
+}
+
+.radio-inputs .radio {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.radio-inputs .radio input {
+    display: none;
+}
+
+.radio-inputs .radio .name {
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: none;
+    padding: .5rem 0;
+    color: rgba(51, 65, 85, 1);
+    transition: all .15s ease-in-out;
+}
+
+.radio-inputs .radio input:checked+.name {
+    background-color: #fff;
+    font-weight: 600;
+}
+
+.header-cart-item-img {
+
+    position: relative;
+    margin-right: 20px;
+    cursor: pointer;
+    width: 100px;
+}
+
+.header-cart-item-img img {
+    width: 100%;
+}
+
+.header-cart-item-img::after {
+    content: 'X';
+    font-family: Linearicons-Free;
+    font-size: 16px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    opacity: 0;
+}
+
+.header-cart-item-img:hover:after {
+    opacity: 1;
+}
+
+.form {
+    max-width: 500px;
+}
+
+
+.file-input {
+    width: 350px;
+    max-width: 100%;
+    color: #444;
+    padding: 2px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid rgba(8, 8, 8, 0.288);
+}
+
+.file-input::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #084cdf;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+.file-input::file-selector-button:hover {
+    background: #0d45a5;
+}
+
+.hov-btn4:hover {
+    border: 1px solid red !important;
+    background-color: #fff !important;
+    color: red;
+}
+
+.hov-btn4 {
+    background-color: red !important;
+    color: white;
+    width: 150px !important;
 }

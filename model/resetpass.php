@@ -2,7 +2,7 @@
 function resset()
 {
     try {
-        if (!empty($_POST)) {
+        if (!empty ($_POST)) {
             $email = $_POST['email'];
 
             $query = "SELECT * FROM taikhoan WHERE email = :email";
@@ -13,14 +13,14 @@ function resset()
 
             if ($stmt->rowCount() > 0) {
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                $name = $result['name']; // Assuming 'name' is the column in your table
+                $name = $result['name']; 
                 $_SESSION['email'] = [
                     'email' => $result['email'],
 
                 ];
                 $token = bin2hex(random_bytes(32));
-            
-                $reset_link = 'http://php.test/duanmau/?act=reset_password&email=' . urlencode($email) . '&token=' . $token;
+
+                $reset_link = 'http://php.test/duan1/?act=reset_password&email=' . urlencode($email) . '&token=' . $token;
                 $to = $email;
                 $subject = "Welcome";
                 $body = '<!DOCTYPE html>
@@ -63,6 +63,7 @@ function resset()
         .img img {
             margin: auto;
             margin-bottom: 30px;
+            display: block;
         }
 
         .img p {
@@ -82,10 +83,10 @@ function resset()
     </style>
                         </head>
                         <body>
-                            <br><br><br><br><br><br>
+                    
                             <div class="container ">
                                 <div class="img">
-                                    <img src="https://ci3.googleusercontent.com/meips/ADKq_NZeQ-9ttJt5qhDEfFUUJY3w5IQwEwT5sxCCMEf1U0zAdp8tXCS_iaSOWjPSU541ndfBKkR2VUUxcRfbDeQoVKanMAZweqddb-aY-29A8Cep=s0-d-e1-ft#https://cf.shopee.sg/file/0cd023d64f04491f3dc8076d6932dfdc">
+                                    <img src="https://home.quangluong.id.vn/view/images/icons/logo-01.png">
                                     <p>
                                         Xin chào ' . htmlspecialchars($name) . ',
                                     </p>
@@ -127,8 +128,6 @@ function updatetoken()
             $stmt->bindParam(':email', $_GET['email']);
 
             $stmt->execute();
-            echo '<script>alert("Thay đổi mật khẩu thành công");</script>';
-
             header('Location: ?act=sign-in');
         } catch (Exception $e) {
             echo 'ERROR: ' . $e->getMessage();
@@ -136,3 +135,40 @@ function updatetoken()
         }
     }
 }
+function doimk()
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset ($_POST['pass'], $_POST['thaypas'], $_POST['nhaplai'])) {
+            $pass = $_POST['pass'];
+            $updatepass = $_POST['thaypas'];
+            $nhaplai = $_POST['nhaplai'];
+
+       
+            if (isset ($_SESSION['users']['pass'], $_SESSION['users']['id'])) {
+                $pro=getuser();
+                $ktpass = $pro['pass'];
+                if ($pass == $ktpass) {
+                  
+                    if ($updatepass == $nhaplai) {
+                        $sql = 'UPDATE taikhoan SET pass=:pass WHERE id=:id';
+                        $stmt = $GLOBALS['conn']->prepare($sql);
+                        $stmt->bindParam(':pass', $updatepass);
+                        $stmt->bindParam(':id', $_SESSION['users']['id']);
+                        $stmt->execute();
+                        header('Location: ?act=profile');
+                        exit();
+                    } else {
+                        echo '<script>alert("Mật khẩu nhập lại không đúng ")</script>';
+                    }
+                } else {
+                    echo '<script>alert("Mật khẩu hiện tại sai")</script>';
+                }
+            } else {
+                echo '<script>alert("Thông tin tài khoản không hợp lệ")</script>';
+            }
+        } else {
+            echo '<script>alert("Không có mật khẩu mới được cung cấp")</script>';
+        }
+    }
+}
+

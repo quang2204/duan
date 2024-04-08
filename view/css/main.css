@@ -118,7 +118,7 @@
   position: fixed;
   width: 40px;
   height: 38px;
-  bottom: 0px;
+  bottom: 30px;
   right: 40px;
   background-color: #717fe0;
   opacity: 0.5;
@@ -1359,6 +1359,10 @@
   opacity: 1;
 }
 
+.slick1-dots li:not(:hover) .caption-dots-slick1 {
+  opacity: 0.5;
+}
+
 .slick1-dots li.slick-active .caption-dots-slick1 {
   opacity: 1;
 }
@@ -1537,13 +1541,13 @@
 }
 
 button.mfp-arrow-right {
-  background-image: url(../view/images/icons/icon-next.png);
+  background-image: url(https://home.quangluong.id.vn/view/images/icons/icon-next.png);
   background-position: center center;
   background-repeat: no-repeat;
 }
 
 button.mfp-arrow-left {
-  background-image: url(../view/images/icons/icon-prev.png);
+  background-image: url(https://home.quangluong.id.vn/view/images/icons/icon-prev.png);
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -3297,6 +3301,18 @@ input.num-product::-webkit-inner-spin-button {
 
 .hov-btn4 {
   background-color: red !important;
+  color: white;
+  width: 150px !important;
+}
+
+.hov-btn5:hover {
+  border: 1px solid blue !important;
+  background-color: #fff !important;
+  color: blue;
+}
+
+.hov-btn5 {
+  background-color: blue !important;
   color: white;
   width: 150px !important;
 }

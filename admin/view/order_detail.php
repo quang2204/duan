@@ -11,9 +11,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
             <div
                                                                                                                                     class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
                 <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent ">
-                    <h6>Product</h6>
-
-
+                    <h6>Order_detail</h6>
                 </div>
                 <div class="flex-auto px-0 pt-0 ">
                     <div class="p-0 overflow-x-auto">
@@ -86,19 +84,85 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                         <td
                                                                                                                                                                 class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent readonly">
                                             <p class="mb-0 text-xs font-semibold leading-tight">
-                                                <?= number_format($value['price'], 0, 0, ) ?>
+                                                <?= number_format($value['price'], 0, 0, ) ?> đ
                                             </p>
                                         </td>
 
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
-                        </table>
-                        <div class="d-flex justify-center align-items-center " style='gap:20px; margin:50px 0 10px'>
-                            <?php if ($value['status'] == 0): ?>
 
+                        </table>
+
+                        <form action="?act=updateorder" id="statusForm" method="post">
+                            <input type="hidden" name='id' value="<?= htmlspecialchars($_GET['id']) ?>">
+                            <div class="radio-inputs " style='margin: 40px auto; width: 660px'>
+                                <label class="radio">
+                                    <input type="radio" name="status" value='0' onclick="submitForm();" <?= $orders['status'] === 0 ? 'checked' : '' ?>>
+                                    <span class="name">Đang xác nhận </span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="status" value='3' onclick="submitForm();" <?= $orders['status'] === 3 ? 'checked' : '' ?>>
+                                    <span class="name">Xác nhận </span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="status" value='2' onclick="submitForm();" <?= $orders['status'] === 2 ? 'checked' : '' ?>>
+                                    <span class="name">Hủy </span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="status" value='-1' onclick="submitForm();" <?= $orders['status'] === -1 ? 'checked' : '' ?>>
+                                    <span class="name">Đang vận chuyển </span>
+                                </label>
+                                <label class="radio">
+                                    <input type="radio" name="status" value='-2' onclick="submitForm();" <?= $orders['status'] === -2 ? 'checked' : '' ?>>
+                                    <span class="name">Vận chuyển thành công </span>
+                                </label>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function submitForm() {
+        document.getElementById("statusForm").submit();
+    }
+</script>
+<!-- <div class="d-flex justify-center align-items-center " style='gap:20px; margin:50px 0 10px'>
+                            <?php if ($value['status'] == 0): ?>
                                 <form action="?act=updateorder" method="post">
-                                    <input type="hidden" name='status' value='1'>
+
+                                    <?php if ($value['status'] == 0): ?>
+                                        <input type="hidden" name='status' value='-1'>
+                                    <?php elseif ($value['status'] == -1): ?>
+                                        <input type="hidden" name='status' value='-2'>
+
+                                    <?php else: ?>
+                                        <input type="hidden" name='status' value='1'>
+
+                                    <?php endif; ?>
+
+                                    <input type="hidden" name='id' value='<?= $value['id'] ?>'>
+                                    <button class="btn mt-1 pl-1" style='border:2px solid green;padding: 7px 10px;'
+                                                                                                                                                            type='submit'>
+                                        Confirm
+                                    </button>
+                                </form>
+                            <?php elseif ($value['status'] == -1 || $value['status'] == -2): ?>
+                                <form action="?act=updateorder" method="post">
+                                    <?php if ($value['status'] == 0): ?>
+                                        <input type="hidden" name='status' value='-1'>
+                                    <?php elseif ($value['status'] == -1): ?>
+                                        <input type="hidden" name='status' value='-2'>
+                                    <?php else: ?>
+                                        <input type="hidden" name='status' value='1'>
+
+                                    <?php endif; ?>
+
                                     <input type="hidden" name='id' value='<?= $value['id'] ?>'>
                                     <button class="btn mt-1 pl-1" style='border:2px solid green;padding: 7px 10px;'
                                                                                                                                                             type='submit'>
@@ -106,24 +170,5 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                     </button>
                                 </form>
                             <?php endif; ?>
-                            <a href="?act=xoaorder&id=<?= $value['order_id'] ?>">
-                                <button class="noselect"
-                                                                                                                                                        onclick="return confirm('Bạn có muốn xóa không <?= $value['name'] ?>')">
-                                    <span class="text">Delete</span>
-                                    <span class="icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                                                                                                                                viewBox="0 0 24 24">
-                                            <path
-                                                                                                                                                                    d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
-                                            </path>
-                                        </svg>
-                                    </span>
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                        
+                        </div> -->

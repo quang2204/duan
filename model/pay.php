@@ -1,8 +1,9 @@
 <?php
-function pay()
+function pay($pay = null, $id_order = null)
 {
     try {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
 
             if (empty($_POST['name']) || strlen($_POST['name']) < 5 || strlen($_POST['name']) > 30) {
                 $_SESSION['error']['name'] = 'Tên từ 5 đến 30 ký tự';
@@ -32,8 +33,8 @@ function pay()
                 $name = $_POST['name'];
                 $total = $_POST['total'];
                 $date = date("Y-m-d");
-                $sql = 'INSERT INTO orders(name, phone, address, note, total, created_time, id_us,pay)
-                        VALUES(:name, :phone, :address, :note, :total, :created_time, :id_us,:pay)';
+                $sql = 'INSERT INTO orders(id,name, phone, address, note, total, created_time, id_us,pay,voucher)
+                        VALUES(:id,:name, :phone, :address, :note, :total, :created_time, :id_us,:pay,:voucher)';
                 $stmt = $GLOBALS['conn']->prepare($sql);
                 $stmt->bindParam(':name', $name);
                 $stmt->bindParam(':phone', $_POST['sdt']);
@@ -42,17 +43,20 @@ function pay()
                 $stmt->bindParam(':total', $total);
                 $stmt->bindParam(':created_time', $date);
                 $stmt->bindParam(':id_us', $_POST['user']);
+                $stmt->bindParam(':id', $id_order);
+                $stmt->bindParam(':voucher', $_SESSION['voucher']['name']);
 
-                $stmt->bindParam(':pay', $_POST['tt']);
+                $stmt->bindParam(':pay', $pay);
                 $stmt->execute();
                 if ($stmt) {
-                    $order_id = $GLOBALS['conn']->lastInsertId();
+
+
                     foreach ($_SESSION['cart']['buy'] as $value) {
                         $sql_order_detail = '
                         INSERT INTO order_detail(order_id, quantity, price, id_product,colors,sizes,name)
                         VALUES(:order_id, :quantity, :price, :id_product,:colors,:sizes,:name)';
                         $stmt_order_detail = $GLOBALS['conn']->prepare($sql_order_detail);
-                        $stmt_order_detail->bindParam(':order_id', $order_id);
+                        $stmt_order_detail->bindParam(':order_id', $id_order);
                         $stmt_order_detail->bindParam(':quantity', $value['sl']);
                         $stmt_order_detail->bindParam(':name', $value['name']);
                         $stmt_order_detail->bindParam(':price', $value['tong']);
@@ -61,6 +65,17 @@ function pay()
                         $stmt_order_detail->bindParam(':sizes', $value['size']);
                         $stmt_order_detail->execute();
                     }
+                    foreach ($_SESSION['cart']['buy'] as $value) {
+                        $sqlupdate = 'UPDATE sanpham 
+                                      SET quantity = quantity - :quantity
+                                      WHERE id = :id';
+
+                        $stmtupdate = $GLOBALS['conn']->prepare($sqlupdate);
+                        $stmtupdate->bindParam(':quantity', $value['sl']);
+                        $stmtupdate->bindParam(':id', $value['id']);
+                        $stmtupdate->execute();
+                    }
+
                 }
                 $to = $_POST['email'];
                 $key = 1;
@@ -132,7 +147,7 @@ function pay()
                 Xin chào ' . ($name) . ',
             </p>
             <p >
-                Đơn hàng # <strong class="red">#' . ($order_id) . '</strong> của bạn đã đặt thành công ngày ' . ($date) . '.
+                Đơn hàng <strong class="red">#' . ($id_order) . '</strong> của bạn đã đặt thành công ngày ' . ($date) . '.
             </p>
         </div>
         <hr>
@@ -148,7 +163,7 @@ function pay()
                         <td scope="col" class="col" >
                             Mã đơn hàng:
                         </td>
-                        <td scope="col" class="col red">#' . ($order_id) . '</td>
+                        <td scope="col" class="col red">#' . ($id_order) . '</td>
                     </tr>
                     <tr>
                         <td scope="col" class="col">
@@ -191,6 +206,18 @@ function pay()
                 $body .= '
             <table class="table">
                 <tr>
+                    <td>Tổng tiền:</td>
+                    <td>' . (number_format($_SESSION['cart']['info']['total'], 0, 0, )) . '</td>
+                </tr>
+                <tr>
+                    <td>Voucher :</td>
+                    <td>' . (number_format($_SESSION['voucher']['discount'], 0, 0, )) . '</td>
+                </tr>
+                <tr>
+                <td>Mã giảm giá  :</td>
+                <td>' . ($_SESSION['voucher']['name']) . '</td>
+            </tr>
+                <tr>
                     <td style="width: 300px;" >Phí vận chuyển:</td>
                     <td>30.000 đ</td>
                 </tr>
@@ -209,9 +236,15 @@ function pay()
 
                 sendmail($to, $subject, $body);
                 unset($_SESSION['cart']);
+                unset($_SESSION['voucher']);
+                if (isset($_POST['cod'])) {
+                    header('Location: ?act=hoadon&id=' . $id_order);
+                    exit();
+                } elseif (isset($_POST['redirect'])) {
+                    header('https://sandbox.vnpayment.vn/paymentv2/vpcpay.html');
+                    exit();
+                } 
 
-                header('Location: ?act=hoadon&id=' . $order_id);
-                exit();
             }
         }
     } catch (Exception $e) {
@@ -237,7 +270,7 @@ function order()
     }
 }
 
-function getOrderDetailsByUserId($userId)
+function getOrderDetailsByUserId()
 {
     try {
         $sql = 'SELECT 
@@ -263,7 +296,7 @@ function getOrderDetailsByUserId($userId)
                 WHERE user.id = :id_user';
 
         $stmt = $GLOBALS['conn']->prepare($sql);
-        $stmt->bindParam(':id_user', $userId);
+        $stmt->bindParam(':id_user', $_SESSION['users']['id']);
         $stmt->execute();
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -301,8 +334,6 @@ function ordersid($id)
     }
 }
 
-
-
 function orderid()
 {
     $sql = "SELECT * FROM orders WHERE id = :id LIMIT 1;";
@@ -332,22 +363,49 @@ function bl()
     }
 }
 
-
-function orderall()
+function orderall($keyword,$page = '', $perPage = '')
 {
-    $sql = "SELECT * FROM orders ";
 
+    $offset = ($page - 1) * $perPage;
+
+$sql = "SELECT * FROM orders WHERE id LIKE '%$keyword%' OR id LIKE '%$keyword%' ORDER BY created_time DESC LIMIT $offset, $perPage";
     return select($sql);
-
 }
+// function orderall($page = null, $perPage = null)
+// {
+//     // Calculate the offset for pagination
+//     $offset = ($page - 1) * $perPage;
+
+//     // Fix the SQL query
+//     $sql = "SELECT `order`.id as order_id,
+//                     `order`.name as order_name,
+//                     `order`.phone as phone,
+//                     `order`.address as address,
+//                     `order`.note as note,
+//                     `order`.total as total,
+//                     `order`.created_time as created_time,
+//                     `order`.pay as pay,
+//                     `order`.status as status,
+//                     `order`.id_voucher as id_voucher,
+//                     gg.id as gg_id,
+//                     gg.name as gg_name
+//             FROM orders AS `order`
+//             INNER JOIN magiamgia AS gg 
+//             ON gg.id = `order`.id_voucher
+//             ORDER BY `order`.created_time DESC 
+//             LIMIT $offset, $perPage";
+
+//     // Assuming 'select' is a function to execute SQL queries
+//     return select($sql);
+// }
 function orderiduser()
 {
     try {
-        $sql = "SELECT * FROM orders WHERE id_us = :id_us";
+        $sql = "SELECT * FROM orders WHERE id_us = :id_us ORDER BY created_time DESC";
 
         $stmt = $GLOBALS['conn']->prepare($sql);
 
-        $stmt->bindParam(":id_us", $_GET['id']);
+        $stmt->bindParam(":id_us", $_SESSION['users']['id']);
 
         $stmt->execute();
 

@@ -1,3 +1,9 @@
+<?php
+if (empty($_SESSION['users'])) {
+    header('Location: ?act=sign-in');
+
+}
+?>
 <style>
   .header-v3 .wrap-menu-desktop {
     background-color: black;
@@ -34,28 +40,29 @@
       <input type="hidden" name="user" value='<?= $_SESSION['users']['id'] ?>'>
       <h3 style="margin-bottom: 8px">Thông tin thanh toán</h3>
       <label for="name">Họ và tên * </label>
-      <input type="text" id="product-name" name="name" placeholder="Họ và tên" class="input <?= isset($_SESSION['error']['name']) ? 'error' : '' ?>
-" value='<?= $_SESSION['users']['name'] ?>'>
+      <input type="text" id="product-name" name="name" placeholder="Họ và tên" class="input <?= isset ($_SESSION['error']['name']) ? 'error' : '' ?>
+" value='<?= $pro['name'] ?>'>
 
       </input />
-      <input type="hidden" name='email' value="<?= $_SESSION['users']['email'] ?>">
       <p id="ten-loi">
-        <?= isset($_SESSION['error']['name']) ? $_SESSION['error']['name'] : '' ?>
+        <?= isset ($_SESSION['error']['name']) ? $_SESSION['error']['name'] : '' ?>
       </p>
+      <input type="hidden" name='email' value="<?= $_SESSION['users']['email'] ?>">
+
       <label for="dc">Địa chỉ *</label>
-      <input type="text" placeholder="Địa chỉ" id="product-dc" name="dc" class="input <?= isset($_SESSION['error']['dc']) ? 'error' : '' ?>"
-                                                                                                                              value='<?= isset($_SESSION['users']['address']) ? $_SESSION['users']['address'] : '' ?>' />
+      <input type="text" placeholder="Địa chỉ" id="product-dc" name="dc" class="input <?= isset ($_SESSION['error']['dc']) ? 'error' : '' ?>"
+                                                                                                                              value='<?= isset ($pro['address']) ? $pro['address'] : '' ?>' />
 
       <p id="dc-loi">
-        <?= isset($_SESSION['error']['dc']) ? $_SESSION['error']['dc'] : '' ?>
+        <?= isset ($_SESSION['error']['dc']) ? $_SESSION['error']['dc'] : '' ?>
       </p>
 
       <label for="name">Số điện thoại *</label>
-      <input type="text" id="product-sdt" name="sdt" placeholder="Số điện thoại " class="input <?= isset($_SESSION['error']['sdt']) ? 'error' : '' ?>  "
-                                                                                                                              value='<?= isset($_SESSION['users']['tel']) ? $_SESSION['users']['tel'] : '' ?>' />
+      <input type="text" id="product-sdt" name="sdt" placeholder="Số điện thoại " class="input <?= isset ($_SESSION['error']['sdt']) ? 'error' : '' ?>  "
+                                                                                                                              value='<?= isset ($pro['tel']) ? $pro['tel'] : '' ?>' />
 
       <p id="sdt-loi">
-        <?= isset($_SESSION['error']['sdt']) ? $_SESSION['error']['sdt'] : '' ?>
+        <?= isset ($_SESSION['error']['sdt']) ? $_SESSION['error']['sdt'] : '' ?>
       </p>
       <h3>Thông tin bổ sung</h3>
       <label for="">Ghi chú bổ sung</label>
@@ -66,77 +73,91 @@
 
     <div class="donhang">
       <h3>ĐƠN HÀNG CỦA BẠN</h3>
-      <table>
-        <thead>
-          <tr class="">
-            <th class="product-sp product">Sản phẩm</th>
-            <th class="product-total product">Tổng</th>
-          </tr>
-        </thead>
-        <tbody class="cart1">
-          <?php
-          $cart = $_SESSION['cart']['buy'];
-
-          foreach ($cart as $key => $value): ?>
-            <tr class="cart bor12 m-b-10">
-              <td id="tt-name">
-                <?= substr($value['name'], 0, 30) . '...'; ?> <strong class="tt-quantity">x
-                  <?= $value['sl'] ?>
-                </strong>
-                <input type="hidden" name="ten" id="" value="<?= $value['name'] ?>">
-                <input type="hidden" name="sl" id="" value="<?= $value['sl'] ?>">
-                <p>Size :
-                  <?= $value['size'] ?> - Color :
-                  <?= $value['color'] ?>
-                  <input type="hidden" name="sizes" id="" value="<?= $value['size'] ?>">
-                  <input type="hidden" name="colors" id="" value="<?= $value['color'] ?>">
-                  <input type="hidden" name="id_product" id="" value="<?= $value['id'] ?>">
-                  <input type="hidden" name="price" id=""
-                                                                                                                                          value="<?= number_format(isset($value['total']) ? $value['total'] : $value['tong'], 0, 0, ) ?>">
-                </p>
-              </td>
-              <td>
-                <?= number_format(isset($value['total']) ? $value['total'] : $value['tong'], 0, 0, ) ?>
-                đ
-              </td>
+      <?php if (isset ($_SESSION['cart']['info']) ? $_SESSION['cart']['info']['num_order'] > 0 : ''): ?>
+        <table>
+          <thead>
+            <tr class="">
+              <th class="product-sp product">Sản phẩm</th>
+              <th class="product-total product">Tổng</th>
             </tr>
-          <?php endforeach; ?>
-        </tbody>
-        <tfoot>
-          <tr class="tvc m-b-10">
-            <th class="left">Tiền vận chuyển</th>
-            <td class="right">30.000 đ</td>
-          </tr>
-          <tr class="tvc m-b-10" style="border-bottom: 2px solid #ccc">
-            <th>Tổng thanh toán</th>
-            <td id="product-totals">
-              <?php
+          </thead>
 
-              $tong = $_SESSION['cart']['info']['total']
-                ?>
-              <?= number_format($tong, 0, 0, ) ?> đ
-            </td>
-            <input type="hidden" name='total' value="<?= $tong ?>">
-          </tr>
-        </tfoot>
-      </table>
-      <div class="pttt">
-        <div class="d-flex gap m-t--5">
+          <tbody class="cart1">
+
+
+            <?php
+            $cart = $_SESSION['cart']['buy'] ;
+
+            foreach ($cart as $key => $value): ?>
+              <tr class="cart bor12 m-b-10">
+                <td id="tt-name">
+                  <?= substr($value['name'], 0, 30) . '...'; ?> <strong class="tt-quantity">x
+                    <?= $value['sl'] ?>
+                  </strong>
+                  <input type="hidden" name="ten" id="" value="<?= $value['name'] ?>">
+                  <input type="hidden" name="sl" id="" value="<?= $value['sl'] ?>">
+                  <p>Size :
+                    <?= $value['size'] ?> - Color :
+                    <?= $value['color'] ?>
+                    <input type="hidden" name="sizes" id="" value="<?= $value['size'] ?>">
+                    <input type="hidden" name="colors" id="" value="<?= $value['color'] ?>">
+                    <input type="hidden" name="id_product" id="" value="<?= $value['id'] ?>">
+                    <input type="hidden" name="price" id=""
+                                                                                                                                            value="<?= number_format(isset ($value['total']) ? $value['total'] : $value['tong'], 0, 0, ) ?>">
+                  </p>
+                </td>
+                <td>
+                  <?= number_format(isset ($value['total']) ? $value['total'] : $value['tong'], 0, 0, ) ?>
+                  đ
+                </td>
+              </tr>
+
+            <?php endforeach; ?>
+
+
+          </tbody>
+          <tfoot>
+            <?php if (isset ($_SESSION['voucher'])): ?>
+              <tr class="tvc m-b-10">
+                <th class="left">Mã giảm giá</th>
+                <td class="right">
+                  <?= number_format($_SESSION['voucher']['discount'], 0, 0, ) ?>đ
+                </td>
+              </tr>
+            <?php endif; ?>
+            <tr class="tvc m-b-10">
+              <th class="left">Tiền vận chuyển</th>
+              <td class="right">30.000 đ</td>
+            </tr>
+            <tr class="tvc m-b-10" style="border-bottom: 2px solid #ccc">
+              <th>Tổng thanh toán</th>
+              <td id="product-totals">
+                <?php
+
+                $tong = isset ($_SESSION['cart']['info']['vouchers']) ? $_SESSION['cart']['info']['vouchers'] : $_SESSION['cart']['info']['total']
+                  ?>
+                <?= number_format($tong, 0, 0, ) ?> đ
+              </td>
+              <input type="hidden" name='total' value="<?= $tong ?>">
+            </tr>
+          </tfoot>
+        </table>
+        <div class="pttt">
+          <!-- <div class="d-flex gap m-t--5">
           <input type="radio" name="tt" id="ck" value='1' class="ck" checked />
           <label for="" id="ttck" class="p-t-20">Thanh toán chuyển khoản</label>
         </div>
         <div class="d-flex gap m-t--10">
           <input type="radio" name="tt" value='0' id="tm" class="ck" />
-          <label for="" class="p-t-20"> Trả tiền mặt khi nhận hàng</label>
+          <label for="" class="p-t-20"> </label>
+        </div> -->
+          <button class="btn hov-btn1" name='cod' style='width:150px;'> Thanh toán cod </button>
+          <button class="btn hov-btn5" name='redirect' type='submit'> Thanh toán vnpay</button>
+          <button class="btn hov-btn4" name='payUrl' type='submit'> Thanh toán momo</button>
         </div>
-
-      </div>
-
-      <button class="dathang m-t--19" type="submit">
-        Đặt hàng
-      </button>
-
-
+      <?php else: ?>
+        <h5 class="m-t-20 m-b-20">Không có sản phẩm</h5>
+      <?php endif; ?>
       <p style="font-size: 15px; max-width: 660px">
         Your personal data will be used to process your order, support your
         experience throughout this website, and for other purposes described

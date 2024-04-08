@@ -5,63 +5,25 @@ if (empty($_SESSION['users'])) {
 }
 ?>
 <style>
-    /* Hide the default checkbox */
-    .check input {
-        display: none;
+    #customButton {
+        padding: 6px 12px;
+        border: 1px solid #bab5b5;
+        /* max-width: 190px; */
+        margin: auto;
+        border-radius: 5px;
+        transition: 0.5s ease-in-out;
     }
 
-    .check {
-        display: block;
-        position: relative;
-        cursor: pointer;
-        font-size: 20px;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
+    #customButton:hover {
+        background-color: #2d79f3;
+        color: white;
     }
 
-    /* Create a custom checkbox */
-    .checkmark {
-        position: relative;
-        top: 0;
-        left: 0;
-        height: 1em;
-        width: 1em;
-        background-color: #2196F300;
-        border-radius: 0.25em;
-        transition: all 0.25s;
-    }
-
-    /* When the checkbox is checked, add a blue background */
-    .check input:checked~.checkmark {
-        background-color: #2196F3;
-    }
-
-    /* Create the checkmark/indicator (hidden when not checked) */
-    .checkmark:after {
-        content: "";
-        position: absolute;
-        transform: rotate(0deg);
-        border: 0.1em solid black;
-        left: 0;
-        top: 0;
-        width: 1em;
-        height: 1em;
-        border-radius: 0.25em;
-        transition: all 0.25s, border-width 0.1s;
-    }
-
-    /* Show the checkmark when checked */
-    .check input:checked~.checkmark:after {
-        left: 0.4em;
-        top: 0.2em;
-        width: 0.25em;
-        height: 0.5em;
-        border-color: #fff0 white white #fff0;
-        border-width: 0 0.15em 0.15em 0;
-        border-radius: 0em;
-        transform: rotate(45deg);
+    .form {
+        max-width: 700px;
     }
 </style>
+
 <form class="form" method="post" enctype="multipart/form-data">
     <div class="flex justify-between ">
         <p class="title">Thêm sản phẩm </p>
@@ -81,12 +43,48 @@ if (empty($_SESSION['users'])) {
         <input required="" placeholder="" type="number" class="input" min="0" name="price">
 
     </label>
+    <label>
+        <span>Số lượng</span>
+        <input required="" placeholder="" type="number" class="input" min="0" name="quantity">
 
+    </label>
+    <!-- 
+    <div class="radio-inputs">
+        <label class="radio">
+            <input type="radio" name="status" checked="" value='1'>
+            <span class="name">Hiện thị </span>
+        </label>
+        <label class="radio">
+            <input type="radio" name="status" value='0'>
+            <span class="name">Ẩn đi</span>
+        </label>
+
+    </div> -->
     <label>
         <p>Ảnh</p>
         <input required="" placeholder="" type="file" class="input" name="img">
-    </label>
+        <input type="hidden" value="<?= $pro['img'] ?>">
 
+        <!-- <input type="file" id="fileInput" accept=".jpg,.jpeg,.png" onchange="displayFileName(this)" name='img'
+                                                                                                                                class='d-none'>
+
+
+
+        <button type="button" id="customButton" onclick="chooseFile()" name='img'>Thêm ảnh</button>
+        <p style="margin: auto;padding-top: 5px;">Định dạng:.jpg,.jpeg,.png</p>
+        <br>
+        <p id="fileName" style="margin: auto;"></p> -->
+    </label>
+    <label>
+        <p>Abum</p>
+        <div class="appends ">
+            <input type="file" name="anh[]" class="file-input mb-2" />
+            <br>
+
+        </div>
+        <button type="button" name="addimg" class="mt-2 mb-2 btn m-auto" style="width: 30%;">Add</button>
+
+    </label>
 
     <label>
         <span>Mô tả</span>
@@ -94,47 +92,159 @@ if (empty($_SESSION['users'])) {
         </textarea>
 
     </label>
-    <label>
-        <span>Size</span>
-        <div class="d-flex" style='gap:20px'>
-            <?php foreach ($size as $key => $value): ?>
-                <label class="check">
-                    <input type="checkbox" name='size[]' value='<?= $value['id'] ?>'>
-                    <div class="checkmark"></div>
-                    <p>
-                        <?= $value['size'] ?>
-                    </p>
+    <span>Product attribute</span>
+    <div class="append">
+        <div class="d-flex align-items-center item" style='gap: 20px;'>
+            <label style='width: 180px; '>
+                <span>Size</span>
+                <select name="size[]" id="" class="input" style='padding: 7px;'>
+                    <?php foreach ($size as $key => $value): ?>
+
+                        <?php if ($value['status'] == 1): ?>
+                            <option value="<?= $value['id'] ?>">
+                                <?= $value['size'] ?>
+                            </option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+
+                </select>
+                <label for="" style='color:red'>
+                    <?= isset($_SESSION['error']['size']) ? $_SESSION['error']['size'] : ''
+                        ?>
                 </label>
-            <?php endforeach; ?>
-        </div>
-    </label>
+            </label>
 
-    <label style="margin-top:-30px;">
-        <span>Màu sắc</span>
-        <div class="d-flex " style='gap:20px'>
-            <?php foreach ($color as $key => $value): ?>
-                <label class="check">
-                    <input type="checkbox" name='color[]' value='<?= $value['id'] ?>'>
-                    <div class="checkmark"></div>
-                    <p>
-                        <?= $value['color'] ?>
-                    </p>
+            <label style="width: 180px;">
+                <span>Màu sắc</span>
+                <div class="d-flex " style='gap:20px'>
+                    <select name="color[]" id="" class="input" style='padding: 7px;'>
+                        <?php foreach ($color as $key => $value): ?>
+                            <?php if ($value['status'] == 1): ?>
+
+                                <option value="<?= $value['id'] ?>">
+                                    <?= $value['color'] ?>
+                                </option>
+                            <?php endif; ?>
+
+                        <?php endforeach; ?>
+
+                    </select>
+
+                </div>
+                <label for="" style='color:red'>
+                    <?= isset($_SESSION['error']['color']) ? $_SESSION['error']['color'] : ''
+                        ?>
                 </label>
-            <?php endforeach; ?>
+            </label>
+
+            <label for="" style="margin-top: -24px; width: 300px;">
+                <span>IMG</span>
+                <input type="file" name="imgs[]" class="file-input mb-2" multiple />
+
+            </label>
+            <button class="btn-delete">Xóa</button>
         </div>
-    </label>
-
-
+    </div>
+    <button type="button" name="add" class="mt-2 mb-2 btn m-auto" style="width: 30%;">Add</button>
     <label>
         <span>Loại</span>
         <select name="iddm" id="" class="input">
             <?php foreach ($ad as $key => $value): ?>
-                <option value="<?= $value['id'] ?>">
-                    <?= $value['name'] ?>
-                </option>
-            <?php endforeach; ?>
+                <?php if ($value['status'] == 1): ?>
+
+                    <option value="<?= $value['id'] ?>">
+                        <?= $value['name'] ?>
+                    </option>
+                <?php endif;
+            endforeach; ?>
 
         </select>
     </label>
-    <button class="submit" type="submit">Thêm</button>
+
+    <button class="submit " type="submit">Add</button>
 </form>
+<script>
+    // Lắng nghe sự kiện click vào nút "Thêm"
+    $("button[name=add]").click(function () {
+        // Thêm phần tử mới
+        $(".append").append(` <div class="d-flex align-items-center item" style='gap: 20px;'>
+            <label style='width: 180px; '>
+                <span>Size</span>
+                <select name="size[]" id="" class="input" style='padding: 7px;'>
+                    <?php foreach ($size as $key => $value): ?>
+                                <option value="<?= $value['id'] ?>">
+                                    <?= $value['size'] ?>
+                                </option>
+                    <?php endforeach; ?>
+                </select>
+            </label>
+
+            <label style="width: 180px;">
+                <span>Màu sắc</span>
+                <div class="d-flex " style='gap:20px'>
+                    <select name="color[]" id="" class="input" style='padding: 7px;'>
+                        <?php foreach ($color as $key => $value): ?>
+                                    <option value="<?= $value['id'] ?>">
+                                        <?= $value['color'] ?>
+                                    </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </label>
+
+            <label for="" style=" width: 300px;">
+                <span>IMG</span>
+                <input type="file" name="imgs[]" class="file-input mb-2" />
+            </label>
+            <button class="btn-delete">Xóa</button>
+        </div>`);
+
+        // Gắn sự kiện click vào nút "Xóa" mới được thêm vào
+        $(".btn-delete").click(function () {
+            // Tìm phần tử cha của nút "Xóa" và loại bỏ phần tử đó khỏi DOM
+            $(this).closest('.item').remove();
+        });
+    });
+</script>
+
+<script>
+    function chooseFile() {
+        document.getElementById('fileInput').click();
+    }
+
+    function displayFileName(input) {
+        var fileName = input.files[0].name;
+        document.getElementById('fileName').innerText = fileName;
+        document.getElementById('fileName').style.display = 'block';
+    }
+</script>
+<script>
+    $("button[name=addimg]").click(function () {
+        let file = parseInt($('input[type=hidden]').val());
+        file += 1;
+
+        // Thêm file
+        $(".appends").append(` 
+           
+                <input type="file" name="anh[]" class="file-input mb-2" />
+                <br>
+     `);
+
+        // Cập nhật giá trị     
+        $("input[name=total]").val(file);
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Lắng nghe sự kiện click vào nút xóa
+        var deleteButtons = document.querySelectorAll('.btn-delete');
+        deleteButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+
+                var item = this.closest('.item');
+
+                item.remove();
+            });
+        });
+    });
+</script>

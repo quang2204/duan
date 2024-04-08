@@ -181,7 +181,7 @@
 
 	.fb {
 		position: fixed;
-		bottom: 60px;
+		bottom: 90px;
 		right: 40px;
 		background-color: #1875FF;
 		color: white;
@@ -233,17 +233,13 @@
 	</span>
 </div>
 
-<!-- modal1  -->
-
-
-<!--===============================================================================================-->
-<script src="view/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
+<script   src="view/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--=== =================================================================================== =========-->
 <script src="view/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
+<!--=== =================================================================================== =========-->
 <script src="view/vendor/bootstrap/js/popper.js"></script>
 <script src="view/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
+<!--=== =================================================================================== =========-->
 <script src="view/vendor/select2/select2.min.js"></script>
 <script>
 	$(".js-select2").each(function () {
@@ -254,20 +250,20 @@
 	})
 </script>
 <!--===============================================================================================-->
-<script src="view/vendor/daterangepicker/moment.min.js"></script>
-<script src="view/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-<script src="view/vendor/slick/slick.min.js"></script>
-<script src="view/js/slick-custom.js"></script>
-<!--===============================================================================================-->
-<script src="view/vendor/parallax100/parallax100.js"></script>
+<script   src="view/vendor/daterangepicker/moment.min.js"></script>
+<script   src="view/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===  ===================================================================================  =========-->
+<script   src="view/vendor/slick/slick.min.js"></script>
+<script   src="view/js/slick-custom.js"></script>
+<!--===  ===================================================================================  =========-->
+<script   src="view/vendor/parallax100/parallax100.js"></script>
 <script>
 	$('.parallax100').parallax100();
 </script>
 <!--===============================================================================================-->
-<script src="view/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<script   src="view/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <script>
-	$('.gallery-lb').each(function () { // the containers for all your galleries
+	$('.gallery-lb').each(function () { // các thùng chứa cho tất cả các phòng trưng bày của bạn
 		$(this).magnificPopup({
 			delegate: 'a', // the selector for gallery item
 			type: 'image',
@@ -278,10 +274,11 @@
 		});
 	});
 </script>
+<script src="https://uhchat.net/code.php?f=072043"></script>
 <!--===============================================================================================-->
-<script src="view/vendor/isotope/isotope.pkgd.min.js"></script>
+<script   src="view/vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
-<script src="view/vendor/sweetalert/sweetalert.min.js"></script>
+<script   src="view/vendor/sweetalert/sweetalert.min.js"></script>
 <script>
 	$('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
 		e.preventDefault();
@@ -326,7 +323,7 @@
 
 </script>
 <!--===============================================================================================-->
-<script src="view/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script   src="view/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
 	$('.js-pscroll').each(function () {
 		$(this).css('position', 'relative');
@@ -368,8 +365,8 @@
 				data: {
 					productId: productId,
 					quantity: quantity,
-					color:color,
-					size:size
+					color: color,
+					size: size
 
 				},
 				success: function (datas) {

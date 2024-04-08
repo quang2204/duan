@@ -98,7 +98,7 @@
 										<?php
 										if (!empty($_SESSION['users']['img'])):
 											?>
-											<img src="admin/<?= $_SESSION['users']['img'] ?>" alt="" style="  width: 40px; height:40px;border-radius: 50%;
+											<img src="admin/<?= $pro['img'] ?>" alt="" style="  width: 40px; height:40px;border-radius: 50%;
 												">
 										<?php else: ?>
 											<img src="view\images\avatar-01.jpg" alt="" style="  width: 40px; height:40px;border-radius: 50%;
@@ -123,8 +123,6 @@
 							<!-- -->
 
 						</div>
-
-
 					</div>
 			</div>
 			</nav>
@@ -234,14 +232,13 @@
 			<div class="sidebar-content flex-w w-full p-lr-65 js-pscroll">
 				<ul class="sidebar-link w-full">
 					<li class="p-b-13">
-						<a href="?act=profile&id=<?= $_SESSION['users']['id'] ?>"
-																																				class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="?act=profile" class="stext-102 cl2 hov-cl1 trans-04">
 							Portfolio
 						</a>
 					</li>
 
 					<li class="p-b-13">
-						<a href="?act=order&id=<?= $_SESSION['users']['id'] ?>" class="stext-102 cl2 hov-cl1 trans-04">
+						<a href="?act=order" class="stext-102 cl2 hov-cl1 trans-04">
 							Order
 						</a>
 					</li>
@@ -345,11 +342,10 @@
 				</div>
 			</div>
 
-			<?php
-			$numOrder = isset($_SESSION['cart']['info']['num_order']) ? $_SESSION['cart']['info']['num_order'] : '';
+			<?php if (isset($_SESSION['cart'])): ?>
 
-			if ($numOrder > 0 && isset($_SESSION['cart'])): ?>
 				<div class="header-cart-content flex-w js-pscroll block">
+
 					<ul class="header-cart-wrapitem w-full addcart">
 						<?php
 
@@ -389,22 +385,21 @@
 							Total:
 							<?= number_format($info, 0, 0, ) ?> đ
 						</div>
+					<?php endif; ?>
+					<h2 class="m-auto none" style='display: none;'>Không có sản phẩm </h2>
+					<div class="header-cart-buttons flex-w w-full " <?= !isset($_SESSION['cart']) ? "style='position: fixed; bottom:40px'" : '' ?>>
+						<a href="?act=shoping-cart"
+																																				class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+							Xem giỏ hàng
+						</a>
 
-						<div class="header-cart-buttons flex-w w-full">
-							<a href="?act=shoping-cart"
-																																					class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-								Xem giỏ hàng
-							</a>
-
-							<a href="?act=pay"
-																																					class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-								 Thanh toán
-							</a>
-						</div>
+						<a href="?act=pay"
+																																				class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+							Thanh toán
+						</a>
 					</div>
 				</div>
-				<h2 class="m-auto none" style='display: none;'>Không có sản phẩm </h2>
+			</div>
 
-			<?php endif ?>
 		</div>
 	</div>

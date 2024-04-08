@@ -7,14 +7,14 @@ function updatecart()
 {
 
     // Ensure that id and qty are set in the $_GET array
-    if (isset($_GET['id'], $_GET['qty'])) {
+    if (isset ($_GET['id'], $_GET['qty'])) {
         $id = $_GET['id'];
         $qty = $_GET['qty'];
 
         $product = getByID($id);
 
 
-        if (isset($_SESSION['cart'], $_SESSION['cart']['buy'][$id])) {
+        if (isset ($_SESSION['cart'], $_SESSION['cart']['buy'][$id])) {
             $_SESSION['cart']['buy'][$id]['sl'] = $qty;
             $sub_total = $qty * $product['sp_price'];
             $_SESSION['cart']['buy'][$id]['tong'] = $sub_total;

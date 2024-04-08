@@ -61,7 +61,13 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- main script file  -->
 <script src="./assets/js/soft-ui-dashboard-tailwind.js?v=1.0.5" async></script>
-
+<script>
+    function searchProduct() {
+        var searchInput = document.getElementById('searchInput').value;
+        window.location.href = '?act=<?= $act ?>&search=' + searchInput;
+        return false;
+    }
+</script>
 <script>
     $(document).ready(function () {
         $(".ii").click(function () {
@@ -92,7 +98,4 @@
         });
     });
 </script>
-
-
-
 </html>

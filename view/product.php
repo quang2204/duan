@@ -13,19 +13,25 @@
 
 	<div class="container con">
 		<div class="flex-w flex-sb-m p-b-52">
-			<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+			<div class="flex-w flex-l-m filter-tope-group m-tb-10" style='    max-width: 950px;'>
 				<a href="?act=product">
-					<button class="stext-106 cl6 hov1 trans-04 m-r-32 m-tb-5 how-active1">
+					<button class="stext-106 cl6 hov1 trans-04 m-r-32 m-tb-5 
+					 <?= !isset($_GET['id']) ? 'how-active1' : '' ?>">
 						Tất cả sản phẩm
 					</button>
 				</a>
 
 				<?php foreach ($product['dm'] as $category): ?>
-					<a href="?act=product&id=<?= $category['id'] ?>">
-						<button class="stext-106 cl6 hov1 trans-04 m-r-32 m-tb-5 how-active1">
-							<?= $category['name'] ?>
-						</button>
-					</a>
+					<?php if ($category['status'] == 1): ?>
+
+						<a href="?act=product<?= isset($category['id']) ? '&id=' . $category['id'] : '' ?>">
+							<button
+																																					class="stext-106 cl6 hov1 trans-04 m-r-32 m-tb-5 <?= isset($_GET['id']) && $_GET['id'] == $category['id'] ? 'how-active1' : '' ?>">
+								<?= $category['name'] ?>
+							</button>
+						</a>
+					<?php endif ?>
+
 				<?php endforeach; ?>
 
 			</div>
@@ -206,36 +212,41 @@
 		</div>
 
 		<div class="row isotope-grid">
+
+
 			<?php $products = $product['product']['products'];
 			foreach ($products as $key => $value): ?>
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="admin/<?= $value['img'] ?>" alt="IMG-PRODUCT">
-							<!-- js-show-modal1	 -->
-							<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
-																																					class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-								View detail
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
+				<?php if ($value['status'] == 1): ?>
+					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+						<!-- Block2 -->
+						<div class="block2">
+							<div class="block2-pic hov-img0">
+								<img src="admin/<?= $value['img'] ?>" alt="IMG-PRODUCT">
+								<!-- js-show-modal1	 -->
 								<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
-																																						class="stext-107 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									<?= $value['name'] ?>
+																																						class="block2-btn flex-c-m stext-103 cl2 size-119 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+									View detail
 								</a>
-
-								<span class="stext-105 cl3">
-									<?= number_format($value['price'], 0, ',', '.') ?> đ
-								</span>
 							</div>
 
+							<div class="block2-txt flex-w flex-t p-t-14">
+								<div class="block2-txt-child1 flex-col-l ">
+									<a href="?act=product-detail&id=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>"
+																																							class="stext-107 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										<?= $value['name'] ?>
+									</a>
+
+									<span class="stext-105 cl3">
+										<?= number_format($value['price'], 0, ',', '.') ?> đ
+									</span>
+								</div>
+
+							</div>
 						</div>
 					</div>
-				</div>
+				<?php endif ?>
 			<?php endforeach; ?>
+
 		</div>
 		<div class="flex-c-m flex-w w-full p-t-38">
 			<?php if ($page > 1): ?>
@@ -268,27 +279,3 @@
 		return false;
 	}
 </script>
-<!-- <script>
-	$(document).ready(function () {
-		$('.cart').on('click', function (event) {
-			event.preventDefault(); // Prevent the default behavior
-
-			var productId = $(this).data('product-id');
-
-			$.ajax({
-				url: '?act=cart&id=' + productId,
-				type: 'GET',
-				data: {
-					productId: productId
-				},
-				success: function (response) {
-					console.log(response);
-					// Update your cart display or perform any other necessary actions
-				},
-				error: function (xhr, status, error) {
-					console.log('Error: ' + error);
-				}
-			});
-		});
-	});
-</script> -->

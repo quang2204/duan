@@ -39,7 +39,7 @@
         </div>
         <div class="inputForm">
             <i class="fa fa-envelope"></i>
-            <input type="text" class="input" placeholder="Enter your Email" required='' name='email'>
+            <input type="email" class="input" placeholder="Enter your Email" required='' name='email'>
         </div>
 
 

@@ -1,5 +1,5 @@
 <?php
-function allbl($productId)
+function allbl()
 {
     try {
         $sql = "SELECT 
@@ -14,8 +14,7 @@ function allbl($productId)
             sp.id as product_id,
             sp.name as product_name,
             sp.price as product_price,
-            sp.img as product_img,
-            sp.mota as product_description
+            sp.img as product_img
         FROM binhluan as bl
         INNER JOIN taikhoan as u ON bl.iduser = u.id
         INNER JOIN sanpham as sp ON bl.idpro = sp.id
@@ -24,7 +23,7 @@ function allbl($productId)
 
         $stmt = $GLOBALS['conn']->prepare($sql);
 
-        $stmt->bindParam(':productId', $productId);
+        $stmt->bindParam(':productId', $_GET['id']);
 
         $stmt->execute();
 
@@ -73,7 +72,7 @@ function addbl()
     }
 }
 
-function allsbl($page = 1, $perPage = 6)
+function allsbl($keyword, $page = 1, $perPage = 6)
 {
 
     $offset = ($page - 1) * $perPage;
@@ -82,8 +81,9 @@ function allsbl($page = 1, $perPage = 6)
     sp.price as product_price,
     sp.img as product_img,
     COUNT(bl.id) AS comment_content
-FROM sanpham sp
+FROM sanpham sp 
 LEFT JOIN binhluan bl ON sp.id = bl.idpro
+WHERE sp.name LIKE '%$keyword%' OR sp.name LIKE '%$keyword%'
 GROUP BY sp.id, sp.name LIMIT $offset, $perPage";
     return select($sql);
 }

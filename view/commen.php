@@ -1,3 +1,9 @@
+<?php
+if (empty($_SESSION['users'])) {
+    header('Location: ?act=sign-in');
+
+}
+?>
 <div class="container m-t-100">
     <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
         <form class="w-full " method="post" id=<?php echo isset($_SESSION['users']) ? 'reviewForm' : ''; ?>>

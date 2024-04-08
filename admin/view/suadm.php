@@ -13,5 +13,5 @@
 
     </label>
 
-    <button class=" submit" type="submit">Thêm</button>
+    <button class=" submit" type="submit">Update</button>
 </form>

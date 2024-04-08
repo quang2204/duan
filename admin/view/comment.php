@@ -114,15 +114,18 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 </div>
 
 <ul class="pagination d-flex justify-content-center">
+    <?php
+    $link = isset($_GET['search']) ? '&search=' . $_GET['search'] : '';
+    ?>
     <?php if ($page > 1): ?>
         <li class="page-item">
-            <a class="page-link" href="?act=danhmuc&trang=<?= $page - 1; ?>">Prev</a>
+            <a class="page-link" href="?act=comment&trang=<?= $page - 1; ?><?= $link ?>">Prev</a>
         </li>
     <?php endif; ?>
     <?php if ($totalPages > 1):
         for ($i = 1; $i <= $totalPages; $i++): ?>
             <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
-                <a class="page-link" href="?act=danhmuc&trang=<?= $i; ?>">
+                <a class="page-link" href="?act=comment&trang=<?= $i; ?><?= $link ?>">
                     <?= $i; ?>
                 </a>
             </li>
@@ -131,7 +134,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
     <?php endif; ?>
     <?php if ($page < $totalPages): ?>
         <li class="page-item">
-            <a class="page-link" href="?act=danhmuc&trang=<?= $page + 1; ?>">Next</a>
+            <a class="page-link" href="?act=comment&trang=<?= $page + 1; ?><?= $link ?>">Next</a>
         </li>
     <?php endif; ?>
 </ul>

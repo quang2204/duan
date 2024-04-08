@@ -1,3 +1,9 @@
+<?php
+if (empty($_SESSION['users'])) {
+    header('Location: ?act=sign-in');
+
+}
+?>
 <style>
     li {
         list-style: disc;
@@ -68,16 +74,31 @@
 
                     </tr>
                 <?php endforeach; ?>
-
                 <tr>
-                    <th scope="row">Ship</th>
+                    <th scope="row">Voucher : </th>
+                    <td class='text-right'>
+                        <?= $orders['voucher'] ?>
+                    </td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Ship : </th>
                     <td class='text-right'>30.000 đ</td>
 
                 </tr>
                 <tr>
                     <th scope="row">Phương thức thanh toán:</th>
                     <td class='text-right'>
-                        <?= $orders['pay'] ? 'Chuyển khoản' : "COD" ?>
+                        <?php
+                        if ($orders['pay'] == 0) {
+                            echo 'Cod';
+                        } elseif ($orders['pay'] == 1) {
+                            echo 'Thanh toán bằng vnpay';
+                        } else {
+                            echo 'Thanh toán bằng momo';
+
+                        }
+                        ?>
                     </td>
 
                 </tr>
@@ -102,6 +123,7 @@
         <ul class='dh '>
             <li>Mã đơn hàng :
                 <strong>
+                    DH
                     <?= $orders['id'] ?>
                 </strong>
             </li>
@@ -110,24 +132,33 @@
                     <?= $orders['created_time'] ?>
                 </strong>
             </li>
-            <li>Tổng cộng
+            <li>Tổng cộng :
                 <strong>
                     <?= number_format($orders['total'], 0, 0, ) ?>đ
 
                 </strong>
             </li>
-            <li>Phương thức thanh toán
+            <li>Phương thức thanh toán :
                 <strong>
-                    <?= $orders['pay'] ? 'Chuyển khoản' : "COD" ?>
+                    <?php
+                    if ($orders['pay'] == 0) {
+                        echo 'Cod';
+                    } elseif ($orders['pay'] == 1) {
+                        echo 'Thanh toán bằng vnpay';
+                    } else {
+                        echo 'Thanh toán bằng momo';
 
+                    }
+                    ?>
                 </strong>
             </li>
-            <li>Trạng thái
+            <li>Trạng thái đơn hàng :
                 <strong>
                     <?= $orders['status'] ? 'Thành công' : "Đang xác nhận" ?>
 
                 </strong>
             </li>
+
         </ul>
     </div>
 

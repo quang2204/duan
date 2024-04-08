@@ -2,10 +2,10 @@
 
 function cart()
 {
-    $id = isset($_GET['id']) ? $_GET['id'] : null;
-    $qty = isset($_GET['quantity']) ? ($_GET['quantity']) : 1;
-    $color = isset($_GET['color']) ? $_GET['color'] : 'red';
-    $size = isset($_GET['size']) ? $_GET['size'] : 'M';
+    $id = isset ($_GET['id']) ? $_GET['id'] : null;
+    $qty = isset ($_GET['quantity']) ? ($_GET['quantity']) : 1;
+    $color = isset ($_GET['color']) ? $_GET['color'] : 'red';
+    $size = isset ($_GET['size']) ? $_GET['size'] : 'M';
 
     if ($qty <= 0) {
         $qty = 1;
@@ -13,7 +13,7 @@ function cart()
 
     $product = getByID($id);
 
-    if (isset($_SESSION['cart']) && array_key_exists($id, $_SESSION['cart']['buy'])) {
+    if (isset ($_SESSION['cart']) && array_key_exists($id, $_SESSION['cart']['buy'])) {
         $qty = $_SESSION['cart']['buy'][$id]['sl'] + $qty;
     }
 
@@ -53,11 +53,10 @@ function update()
 }
 function deletecart()
 {
-    $id = isset($_GET['id']) ? $_GET['id'] : null;
+    $id = isset ($_GET['id']) ? $_GET['id'] : null;
 
     unset($_SESSION['cart']['buy'][$id]);
     update();
     echo json_encode($_SESSION['cart']);
     exit();
 }
-

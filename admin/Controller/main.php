@@ -30,10 +30,39 @@ function deleteuser($id)
 function status()
 {
     $status = updateorder();
-    header('Location: ?act=order');
+    header('Location: ?act=order_detail&id=' . $_POST['id']);
 
 }
+function statussp($table)
+{
+    $status = updatestatus($table);
+    header('Location: ?act=sanpham');
 
+}
+function statusdm($table)
+{
+    $status = updatestatus($table);
+    header('Location: ?act=danhmuc');
+
+}
+function statuscolor($table)
+{
+    $status = updatestatus($table);
+    header('Location: ?act=color');
+
+}
+function statussize($table)
+{
+    $status = updatestatus($table);
+    header('Location: ?act=size');
+
+}
+function statusmgg($table)
+{
+    $status = updatestatus($table);
+    header('Location: ?act=voucher');
+
+}
 function deletenxb($id)
 {
     $xoa = xoanxb($id);
@@ -44,5 +73,17 @@ function deletesach($id)
 {
     $xoa = xoasach($id);
     header("location: ?act=sach");
+
+}
+function deletecolor($id)
+{
+    $xoa = xoacolor($id);
+    header("location: ?act=color");
+
+}
+function deletesize($id)
+{
+    $xoa = xoasize($id);
+    header("location: ?act=size");
 
 }

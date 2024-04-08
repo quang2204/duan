@@ -3,12 +3,12 @@ function select($sql)
 {
     try {
         
-        $stmt = $GLOBALS['conn']->prepare($sql);
+            $stmt = $GLOBALS['conn']->prepare($sql);
 
-        $stmt->execute();
+            $stmt->execute();
 
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
     } catch (Exception $e) {
         echo 'ERROR: ' . $e->getMessage();
         die;

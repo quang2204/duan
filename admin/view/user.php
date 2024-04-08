@@ -8,6 +8,37 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
     .ml {
         margin-left: -12px;
     }
+
+    .update {
+        font-family: inherit;
+        font-size: 15px;
+        background: royalblue;
+        color: white;
+        padding: 0.5em 0;
+        width: 100px;
+        padding-left: 0.9em;
+        display: flex;
+        align-items: center;
+        border: none;
+        border-radius: 5px;
+        overflow: hidden;
+        transition: all 0.2s;
+        cursor: pointer;
+        font-weight: 700;
+
+    }
+
+    .update span {
+        display: block;
+        margin-left: 0.3em;
+        transition: all 0.3s ease-in-out;
+    }
+
+
+
+    .update:active {
+        transform: scale(0.95);
+    }
 </style>
 <div class="w-full px-6 py-6 mx-auto">
     <!-- table 1 -->
@@ -17,9 +48,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
             <div
                                                                                                                                     class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border ">
                 <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent ">
-                    <h6>Sản phẩm </h6>
-
-
+                    <h6>User</h6>
                 </div>
                 <div class="flex-auto px-0 pt-0 ">
                     <div class="p-0 overflow-x-auto">
@@ -30,18 +59,21 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                                                                                                                                             class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Stt</th>
                                     <th
-                                                                                                                                                            class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                                                                            class="px-6 py-3 pl-2 font-bold text-leftuppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Name </th>
 
                                     <th
-                                                                                                                                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                                                                                                                                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Address</th>
 
                                     <th
-                                                                                                                                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 ">
+                                                                                                                                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 ">
                                         Phone</th>
                                     <th
-                                                                                                                                                            class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 ">
+                                                                                                                                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 ">
+                                        Status</th>
+                                    <th
+                                                                                                                                                            class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70 ">
                                         Role</th>
                                     <th
                                                                                                                                                             class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70 text-center">
@@ -83,14 +115,14 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                             </div>
                                         </td>
                                         <td
-                                                                                                                                                                class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                                                                                                class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent text-center">
                                             <p class="mb-0 text-xs font-semibold leading-tight">
                                                 <?= $value['address'] ?>
                                             </p>
 
                                         </td>
                                         <td
-                                                                                                                                                                class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                                                                                                class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent text-center">
                                             <p class="mb-0 text-xs font-semibold leading-tight">
                                                 <?= $value['tel'] ?>
                                             </p>
@@ -98,21 +130,38 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                         </td>
 
                                         <td
-                                                                                                                                                                class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                                                                                                                                                                class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent text-center">
                                             <p class="mb-0 px-4 text-xs font-semibold leading-tight">
-                                                <?= $value['role'] ? 'User' : 'Người  dùng' ?>
+                                                <?= $value['role'] ? 'Admin' : 'User' ?>
                                             </p>
 
                                         </td>
+                                        <td
+                                                                                                                                                                class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent text-center">
+                                            <p class="mb-0 px-4 text-xs font-semibold leading-tight">
+                                                <?= $value['status'] ? 'Activated' : 'Lock up' ?>
+                                            </p>
+
+                                        </td>
+
                                         <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent" style="display: flex;
                                         justify-content: center;
                                         align-items: center; gap:20px;padding: 52px 0;">
+                                            <form action="?act=role" method='post'>
+                                                <?php $role = $value['role'] ? 0 : 1 ?>
+                                                <input type="hidden" value=<?= $value['id'] ?> name='id'>
+                                                <input type="hidden" value=<?= $role ?> name='role'>
 
-
-
-                                            <a href="?act=xoauser&id=<?= $value['id'] ?>">
+                                                <button class="c-button c-button--gooey" type='submit'
+                                                                                                                                                                        style='width: 120px;'>
+                                                    <span>
+                                                        <?= $value['role'] ? ' User' : 'Admin' ?>
+                                                    </span>
+                                                </button>
+                                            </form>
+                                            <!-- <a href="?act=xoauser&id=<?= $value['id'] ?>">
                                                 <button class="noselect"
-                                                                                                                                                                        onclick="return confirm('Bạn có muốn xóa sản phẩm <?= $value['name'] ?>')">
+                                                                                                                                                                        onclick="return confirm('Bạn có muốn xóa tài khoản <?= $value['name'] ?>')">
                                                     <span class="text">Delete</span>
                                                     <span class="icon">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -123,7 +172,20 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                                                         </svg>
                                                     </span>
                                                 </button>
-                                            </a>
+                                            </a> -->
+                                            <form action="?act=updatetk" method='post'>
+                                                <?php $status = $value['status'] ? 0 : 1 ?>
+                                                <input type="hidden" value=<?= $value['id'] ?> name='id'>
+                                                <input type="hidden" value=<?= $status ?> name='status'>
+                                                <button class='update' type='submit'>
+
+
+                                                    <span>
+                                                        <?= $value['status'] ? ' Lock up' : 'Activated' ?>
+                                                    </span>
+                                                </button>
+                                            </form>
+
 
                                         </td>
                                     </tr>
@@ -139,15 +201,18 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
     </div>
 </div>
 <ul class="pagination d-flex justify-content-center">
+    <?php
+    $link = isset($_GET['search']) ? '&search=' . $_GET['search'] : '';
+    ?>
     <?php if ($page > 1): ?>
         <li class="page-item">
-            <a class="page-link" href="?act=user&trang=<?= $page - 1; ?>">Prev</a>
+            <a class="page-link" href="?act=user&trang=<?= $page - 1; ?><?= $link ?>">Prev</a>
         </li>
     <?php endif; ?>
     <?php if ($totalPages > 1):
         for ($i = 1; $i <= $totalPages; $i++): ?>
             <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
-                <a class="page-link" href="?act=user&trang=<?= $i; ?>">
+                <a class="page-link" href="?act=user&trang=<?= $i; ?><?= $link ?>">
                     <?= $i; ?>
                 </a>
             </li>
@@ -156,7 +221,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
     <?php endif; ?>
     <?php if ($page < $totalPages): ?>
         <li class="page-item">
-            <a class="page-link" href="?act=user&trang=<?= $page + 1; ?>">Next</a>
+            <a class="page-link" href="?act=user&trang=<?= $page + 1; ?><?= $link ?>">Next</a>
         </li>
     <?php endif; ?>
 </ul>

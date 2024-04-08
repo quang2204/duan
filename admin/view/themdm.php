@@ -1,6 +1,6 @@
 <form class="form mb-32 mt-32" method="post">
     <div class="flex justify-between ">
-        <p class="title">Thêm danh mục </p>
+        <p class="title">Add Category </p>
         <a href="?act=danhmuc" class="mt-4 ">
             <p class="btn">List product </p>
         </a>

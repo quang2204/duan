@@ -16,6 +16,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
     align-items: center;
     justify-content: space-between;">
           <h6>Product</h6>
+
           <a href="?act=adsp">
             <button type="button" class="button" style="background-color: #3aa856;">
               <span class="button__text">Add product</span>
@@ -52,7 +53,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 
                   <th
                                                                                                                                           class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                    View</th>
+                    Status</th>
                   <th
                                                                                                                                           class="pr-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                     IMG </th>
@@ -69,6 +70,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
               <tbody>
                 <?php
                 foreach ($productData as $key => $value): ?>
+
                   <tr>
                     <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                       <div class="flex px-2 py-1">
@@ -100,7 +102,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                     </td>
                     <td class=" align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                       <p class="mb-0 text-xs font-semibold leading-tight ml-4">
-                        <?= $value['sp_luotxem'] ?>
+                        <?= $value['sp_status'] ? ' Hiện' : 'Ẩn' ?>
                       </p>
                     </td>
                     <td
@@ -108,9 +110,10 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                       <img src="<?= $value['sp_img'] ?>" style="width: 80px;" alt="">
                     </td>
                     <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent readonly">
-                      <textarea class="mb-0 text-xs font-semibold w-full leading-tight pl-2" readonly>
-                                                                                                                                                                        <?= $value['sp_motact'] ?>
-                                                                                                                                                                        </textarea>
+                      <textarea class="mb-0 text-xs font-semibold w-full leading-tight pl-2" readonly
+                                                                                                                                              style='max-height: 150px;'>
+                                                                                                                                                                                                                                                  <?= $value['sp_motact'] ?>
+                                                                                                                                                                                                                                                  </textarea>
                     </td>
 
                     <td class="align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"
@@ -120,7 +123,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 
                         </button>
                       </a>
-                      <a href="?act=xoa&id=<?= $value['sp_id'] ?>">
+                      <!-- <a href="?act=xoa&id=<?= $value['sp_id'] ?>">
                         <button class="noselect"
                                                                                                                                                 onclick="return confirm('Bạn có muốn xóa sản phẩm <?= $value['sp_name'] ?>')">
                           <span class="text">Delete</span>
@@ -132,13 +135,32 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                             </svg>
                           </span>
                         </button>
+                      </a> -->
+                      <form action="?act=statsp" method='post'>
+
+                        <input type="hidden" value=<?= $value['sp_id'] ?> name='id'>
+                        <input type="hidden" name='idpoduct' value='<?= $value['id_product'] ?>'>
+                        <input type="hidden" value=<?= $value['sp_status'] ? 0 : 1 ?> name='status'>
+
+                        <button class="noselect">
+                          <span class="text">Delete</span>
+                          <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                              <path
+                                                                                                                                                      d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+                              </path>
+                            </svg>
+                          </span>
+                        </button>
+                      </form>
+                      <a href="?act=attribute&id=<?= $value['sp_id'] ?>">
+                        <button class="c-button c-button--gooeys"> Attribute
+
+                        </button>
                       </a>
                     </td>
                   </tr>
                 <?php endforeach; ?>
-
-
-
               </tbody>
             </table>
           </div>
@@ -149,15 +171,19 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 
 </div>
 <ul class="pagination d-flex justify-content-center">
+  <?php
+  $link = isset($_GET['search']) ? '&search=' . $_GET['search'] : '';
+  ?>
+
   <?php if ($page > 1): ?>
     <li class="page-item">
-      <a class="page-link" href="?act=sanpham&trang=<?= $page - 1; ?>">Prev</a>
+      <a class="page-link" href="?act=sanpham&trang=<?= $page - 1; ?><?= $link ?>">Prev</a>
     </li>
   <?php endif; ?>
   <?php if ($totalPages > 1):
     for ($i = 1; $i <= $totalPages; $i++): ?>
       <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
-        <a class="page-link" href="?act=danhmuc&trang=<?= $i; ?>">
+        <a class="page-link" href="?act=sanpham&trang=<?= $i; ?><?= $link ?>">
           <?= $i; ?>
         </a>
       </li>
@@ -167,7 +193,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 
   <?php if ($page < $totalPages): ?>
     <li class="page-item">
-      <a class="page-link" href="?act=sanpham&trang=<?= $page + 1; ?>">Next</a>
+      <a class="page-link" href="?act=sanpham&trang=<?= $page + 1; ?><?= $link ?>">Next</a>
     </li>
   <?php endif; ?>
 </ul>

@@ -39,8 +39,8 @@
 
     <label>
         <span>Address</span>
-        <input class="input" name="address">
-        <?= $pro['address'] ?></input>
+        <input class="input" name="address" value='<?= $pro['address'] ?>'>
+        </input>
 
     </label>
 

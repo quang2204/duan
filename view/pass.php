@@ -6,7 +6,7 @@
         padding-left: 10px;
     }
 
-    i {
+    form i {
         color: black;
     }
 </style>

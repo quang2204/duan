@@ -15,6 +15,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
         <div
                                                                                                                                 class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent flex justify-content-between">
           <h6>Category </h6>
+
           <a href="?act=themdm">
             <button type="button" class="button" style="background-color: #3aa856;">
               <span class="button__text">Add Category </span>
@@ -42,6 +43,9 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                   <th
                                                                                                                                           class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                     Name </th>
+                  <th
+                                                                                                                                          class="px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+                    Status </th>
 
                   <th
                                                                                                                                           class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-gray-200 border-solid shadow-none tracking-none whitespace-nowrap text-slate-400 opacity-70 text-center">
@@ -74,7 +78,12 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                       </p>
 
                     </td>
+                    <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
+                      <p class="mb-0 text-xs font-semibold leading-tight">
+                        <?= $value['status'] ? 'Show' : 'Hide' ?>
+                      </p>
 
+                    </td>
                     <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent" style="display: flex;
                     justify-content: center;
                   align-items: center; gap:20px;padding: 52px 0;">
@@ -83,9 +92,13 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
 
                         </button>
                       </a>
-                      <a href="?act=xoadanhmuc&id=<?= $value['id'] ?>">
-                        <button class="noselect"
-                                                                                                                                                onclick="return confirm('Bạn có muốn xóa sản phẩm <?= $value['name'] ?>')">
+                      <form action="?act=statusdm" method='post'>
+
+                        <input type="hidden" value=<?= $value['id'] ?> name='id'>
+
+                        <input type="hidden" value=<?= $value['status'] ? 0 : 1 ?> name='status'>
+
+                        <button class="noselect">
                           <span class="text">Delete</span>
                           <span class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -95,7 +108,7 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                             </svg>
                           </span>
                         </button>
-                      </a>
+                      </form>
 
                     </td>
                   </tr>
@@ -111,15 +124,18 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
   </div>
 </div>
 <ul class="pagination d-flex justify-content-center">
+  <?php
+  $link = isset($_GET['search']) ? '&search=' . $_GET['search'] : '';
+  ?>
   <?php if ($page > 1): ?>
     <li class="page-item">
-      <a class="page-link" href="?act=danhmuc&trang=<?= $page - 1; ?>">Prev</a>
+      <a class="page-link" href="?act=danhmuc&trang=<?= $page - 1; ?><?= $link ?>">Prev</a>
     </li>
   <?php endif; ?>
   <?php if ($totalPages > 1):
     for ($i = 1; $i <= $totalPages; $i++): ?>
       <li class="page-item <?= ($i == $page) ? 'active' : ''; ?>">
-        <a class="page-link" href="?act=danhmuc&trang=<?= $i; ?>">
+        <a class="page-link" href="?act=danhmuc&trang=<?= $i; ?><?= $link ?>">
           <?= $i; ?>
         </a>
       </li>
@@ -128,7 +144,14 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
   <?php endif; ?>
   <?php if ($page < $totalPages): ?>
     <li class="page-item">
-      <a class="page-link" href="?act=danhmuc&trang=<?= $page + 1; ?>">Next</a>
+      <a class="page-link" href="?act=danhmuc&trang=<?= $page + 1; ?><?= $link ?>">Next</a>
     </li>
   <?php endif; ?>
 </ul>
+<script>
+  function searchProduct() {
+    var searchInput = document.getElementById('searchInput').value;
+    window.location.href = '?act=danhmuc&search=' + searchInput;
+    return false;
+  }
+</script>

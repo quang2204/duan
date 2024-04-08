@@ -1,9 +1,10 @@
 <?php
-function getAlldms($page = '', $perPage = '')
+function getAlldms($keyword, $page = '', $perPage = '')
 {
 
     $offset = ($page - 1) * $perPage;
-    $sql = "SELECT * FROM danhmuc LIMIT $offset, $perPage";
+
+    $sql = "SELECT * FROM danhmuc WHERE name LIKE '%$keyword%' OR name LIKE '%$keyword%' LIMIT $offset, $perPage";
     return select($sql);
 }
 
