@@ -4,7 +4,7 @@ function dn()
 {
     try {
         if (!empty($_POST)) {
-            $pass = $_POST['pass'];
+            $pass = md5($_POST['pass']);
             $email = $_POST['email']; // Sanitize user input
             // Using prepared statements to prevent SQL injection
             $query = "SELECT * FROM taikhoan WHERE email = :email AND pass = :pass ";

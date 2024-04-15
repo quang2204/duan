@@ -10,8 +10,21 @@ if (empty($_SESSION['users'])) {
     strong,
     h6,
     h4,
-    p {
-        color: black;
+    p,.den {
+        color: black ;
+
+    }
+    .den{
+        transition: 0.3s all ;
+  font-size: 17px;
+    }
+    .den:hover{
+       color: red;
+  
+    }
+    .den.active{
+       
+        color: red;
 
     }
 </style>
@@ -20,10 +33,21 @@ if (empty($_SESSION['users'])) {
     <?php require_once 'view/inc/headeruser.php' ?>
 
     <div>
-
+        <div class=" bor2  p-l-10  p-r-10 d-flex align-items-center justify-content-between m-b-40" style='box-shadow: -1px 0px 3px 0px #b0b0b0;     position: sticky;
+    top: 70px;
+    background: white; height:60px'>
+            <a href="?act=order" class='den <?= isset($_GET['status'])?'':'active' ?>'>Tất cả </a>
+            <a href="?act=order&status=0" class='den <?= isset($_GET['status'])&&$_GET['status']==0?'active':'' ?>'>Chờ xác nhận </a>
+            <a href="?act=order&status=3" class='den <?= isset($_GET['status'])&&$_GET['status']==3?'active':'' ?>'>Xác nhận  </a>
+            <a href="?act=order&status=-1" class='den <?= isset($_GET['status'])&&$_GET['status']==-1?'active':'' ?>' >Đang vận chuyển  </a>
+            <a href="?act=order&status=-2" class='den <?= isset($_GET['status'])&&$_GET['status']==-2?'active':'' ?>'>Giao hàng thành công  </a>
+            <a href="?act=order&status=1" class='den <?= isset($_GET['status'])&&$_GET['status']==1?'active':'' ?>'>Thành công </a>
+            <a href="?act=order&status=2" class='den <?= isset($_GET['status'])&&$_GET['status']==2?'active':'' ?>'>Đã hủy </a>
+        </div>
+ <div class="container how-shadow1 m-b-30 bor2 " style="width: 900px">
         <?php foreach ($orders as $key => $values): ?>
             <!-- <a href="?act=hoadon&id=<?= $values['id'] ?>"> -->
-            <div class="container how-shadow1 m-b-30 bor2 " style="width: 900px">
+           
                 <div class="bor12 p-t-20  text-right p-b-20 text-danger">
                     <?php if ($values['status'] == 1) {
                         echo 'Thành công';
@@ -44,7 +68,7 @@ if (empty($_SESSION['users'])) {
                 </div>
 
                 <?php foreach ($order as $key => $value): ?>
-
+                   
                     <?php if ($values['id'] == $value['order_id']): ?>
                  
                         <a href="?act=hoadon&id=<?= $values['id'] ?>">
@@ -140,8 +164,9 @@ if (empty($_SESSION['users'])) {
 
                 <?php endif ?>
 
-            </div>
+          
             <!-- </a> -->
         <?php endforeach; ?>
+          </div>
     </div>
 </div>

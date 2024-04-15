@@ -74,8 +74,8 @@ if ($act === 'index') {
 
 } else if ($act === 'order') {
 
-    $order = getOrderDetailsByUserId($id);
-    $orders = orderiduser();
+    $order = isset($_GET['status']) ? getOrderDetailId() : getOrderDetailsByUserId();
+    $orders = isset($_GET['status']) ? orderids() : orderiduser();
 } else if ($act === 'profile') {
 
     $pros = updatepro($id);

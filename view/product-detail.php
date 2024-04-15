@@ -48,7 +48,7 @@
 								</div>
 							</div>
 							<?php foreach ($img as $key => $value): ?>
-								<div class="item-slick3" data-thumb="admin/<?= $value['img'] ?>" >
+								<div class="item-slick3" data-thumb="admin/<?= $value['img'] ?>">
 									<div class="wrap-pic-w pos-relative">
 
 										<img src="admin/<?= $value['img'] ?>" alt="IMG-PRODUCT">
@@ -64,14 +64,14 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="col-md-6 col-lg-5 p-b-30">
 				<div class="p-r-50 p-t-5 p-lr-0-lg">
 					<h4 class="mtext-105 cl2 js-name-detail p-b-14">
 						<?= $productDetail['sp_name'] ?>
 					</h4>
 					<span class="mtext-106 cl2 price">
-						
+
 						<?= number_format($productDetail['sp_price'], 0, ',', '.') ?> đ
 
 					</span>
@@ -83,21 +83,19 @@
 
 							<div class="size-204 respon6-next">
 								<div class="rs1-select2 bor8 bg0">
-						
-										<select class="size js-select2" name="time" > 
+
+									<select class="size js-select2" name="time">
 										<?php foreach ($variants as $key => $value): ?>
 											<?php if ($value['status'] == 1): ?>
 
-											<option value="<?= $value['size_name'] ?>" >
-												<?= $value['size_name'] ?>
-											</option>
+												<option value="<?= $value['size_name'] ?>">
+													<?= $value['size_name'] ?>
+												</option>
 											<?php endif ?>
 
 										<?php endforeach; ?>
 									</select>
 									<div class="dropDownSelect2"></div>
-								
-									
 								</div>
 							</div>
 						</div>
@@ -112,12 +110,13 @@
 									<select class="color js-select2" name="time" onchange="searchProduct()">
 										<?php foreach ($variants as $key => $value): ?>
 											<?php if ($value['status'] == 1): ?>
-									
-											<option value="<?= $value['color_name'] ?>" id='color' data-color='<?= $value['id_colors'] ?>'>
-												<?= $value['color_name'] ?>
-											</option>
+
+												<option value="<?= $value['color_name'] ?>" id='color'
+																																										data-color='<?= $value['id_colors'] ?>'>
+													<?= $value['color_name'] ?>
+												</option>
 											<?php endif ?>
-										
+
 										<?php endforeach; ?>
 									</select>
 									<div class="dropDownSelect2"></div>
@@ -127,7 +126,8 @@
 
 						<div class="flex-w flex-r-m p-b-10 ">
 
-							<div class="size-204 flex-w flex-m respon6-next align-content-between " style='    flex-direction: column;'>
+							<div class="size-204 flex-w flex-m respon6-next align-content-between "
+																																					style='    flex-direction: column;'>
 								<div class="wrap-num-product flex-w m-r-20 m-tb-10">
 									<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 										<i class="fs-16 zmdi zmdi-minus"></i>
@@ -140,19 +140,19 @@
 										<i class="fs-16 zmdi zmdi-plus"></i>
 									</div>
 								</div>
-								
-								<?php if ($productDetail['sp_quantity']>0) :  ?>
-								
-								<button href="<?= !isset($_SESSION['users']) ? '?act=sign-in' : '' ?>" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04  <?= isset($_SESSION['users']) ? 'add-to-cart-btn js-addcart-detail' : '' ?> "
-							<?= !isset($_SESSION['users']) ? 'onclick="return confirm(\'Đăng nhập để thêm giỏ hàng\')"' : '' ?>
 
-																																					data-product-id='<?= $productDetail['sp_id'] ?>' type='submit'>
-								Thêm vào giỏ hàng
-							</button>
-							<?php else: ?>
-								<h5>Hết hàng</h5>
-							<?php endif?>
-								
+								<?php if ($productDetail['sp_quantity'] > 0): ?>
+
+									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 <?= !isset($_SESSION['users']) ? 'link' : '' ?>  <?= isset($_SESSION['users']) ? 'add-to-cart-btn js-addcart-detail' : '' ?> "
+																																							<?= !isset($_SESSION['users']) ? 'onclick="return confirm(\'Đăng nhập để thêm giỏ hàng\')"' : '' ?>
+																																							data-product-id='<?= $productDetail['sp_id'] ?>'
+																																							type='submit'>
+										Thêm vào giỏ hàng
+									</button>
+								<?php else: ?>
+									<h5>Hết hàng</h5>
+								<?php endif ?>
+
 							</div>
 						</div>
 					</div>
@@ -274,7 +274,7 @@
 									<!-- Review -->
 
 									<div id="reviewsContainer">
-										<?php if (empty ($bl)): ?>
+										<?php if (empty($bl)): ?>
 											<h5 class='text-center'>Không có bình luận.</h5>
 										<?php else: ?>
 											<?php foreach ($bl as $key => $value): ?>
@@ -378,46 +378,48 @@
 	</div>
 </section>
 <script>
-    // function searchProduct() {
-    //    
+	// function searchProduct() {
+	//    
 
-    //     window.location.href = '?act=product-detail&id=<?= $variants[0]['id_product'] ?>&iddm=<?= $_GET['iddm'] ?>&color=' + encodeURIComponent(productId);
+	//     window.location.href = '?act=product-detail&id=<?= $variants[0]['id_product'] ?>&iddm=<?= $_GET['iddm'] ?>&color=' + encodeURIComponent(productId);
 
-    // }
+	// }
 	function searchProduct() {
 
-     var selectedOption = document.querySelector('.color option:checked');
-        var productId = selectedOption.dataset.color;
-    // Tạo một yêu cầu AJAX
-	$.ajax({
-				url: '?act=product-detaill&id=<?= $variants[0]['id_product'] ?>&iddm=<?= $_GET['iddm'] ?>&color=' + productId,
-				type: 'GET',
-				data: {
-					productId: productId,
-				},
-				success: function (datas) {
-					const cartData = JSON.parse(datas);
-					
-					img(cartData.img);
-					console.log(cartData);
-				},
-				error: function (xhr, status, error) {
-					console.log('Error: ' + error);
-				}
-			});
+		var selectedOption = document.querySelector('.color option:checked');
+		var productId = selectedOption.dataset.color;
+		// Tạo một yêu cầu AJAX
+		$.ajax({
+			url: '?act=product-detaill&id=<?= $variants[0]['id_product'] ?>&iddm=<?= $_GET['iddm'] ?>&color=' + productId,
+			type: 'GET',
+			data: {
+				productId: productId,
+			},
+			success: function (datas) {
+				const cartData = JSON.parse(datas);
 
-			function img(newImageSrc) {
-    newImageSrc = 'admin/' + newImageSrc;
-  
-    $('.imgs img').attr('src', newImageSrc);
+				img(cartData.img);
+				console.log(cartData);
+			},
+			error: function (xhr, status, error) {
+				console.log('Error: ' + error);
+			}
+		});
 
-    setTimeout(function() {
-        var newImageSrcs = 'admin/<?php echo $productDetail['sp_img']; ?>';
-        $('.imgs img').attr('src', newImageSrcs);
-    }, 3000); 
-}
+		function img(newImageSrc) {
+			newImageSrc = 'admin/' + newImageSrc;
+
+			$('.imgs img').attr('src', newImageSrc);
+
+			setTimeout(function () {
+				var newImageSrcs = 'admin/<?php echo $productDetail['sp_img']; ?>';
+				$('.imgs img').attr('src', newImageSrcs);
+			}, 3000);
+		}
 
 
-}
-
+	}
+	$('.link').on('click', () => {
+		window.location.href = '?act=sign-in';
+	})	
 </script>

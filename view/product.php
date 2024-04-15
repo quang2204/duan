@@ -278,4 +278,5 @@
 		window.location.href = '?act=product&search=' + searchInput;
 		return false;
 	}
+	
 </script>

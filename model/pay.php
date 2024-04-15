@@ -243,7 +243,7 @@ function pay($pay = null, $id_order = null)
                 } elseif (isset($_POST['redirect'])) {
                     header('https://sandbox.vnpayment.vn/paymentv2/vpcpay.html');
                     exit();
-                } 
+                }
 
             }
         }
@@ -297,6 +297,44 @@ function getOrderDetailsByUserId()
 
         $stmt = $GLOBALS['conn']->prepare($sql);
         $stmt->bindParam(':id_user', $_SESSION['users']['id']);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    } catch (PDOException $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+}
+function getOrderDetailId()
+{
+    try {
+        $sql = 'SELECT 
+                    `order`.id as id,
+                    `order`.status as status,
+                    detail.order_id as order_id,
+                    detail.quantity as quantity,
+                    detail.price as price,
+                    detail.id as detail_id,
+                    detail.id_product as id_product,
+                    detail.colors as colors,
+                    detail.sizes as sizes,
+                    detail.is_comment as is_comment,
+                    user.id as id_user,
+                    sp.img as img,
+                    sp.id as sp_id,
+                    sp.iddm as sp_iddm,
+                    sp.name as name
+                FROM order_detail as detail
+                INNER JOIN orders AS `order` ON `order`.id = detail.order_id
+                INNER JOIN taikhoan AS user ON `order`.id_us = user.id
+                INNER JOIN sanpham AS sp ON detail.id_product = sp.id
+                WHERE user.id = :id_user and `order`.status=:status';
+
+        $stmt = $GLOBALS['conn']->prepare($sql);
+        $stmt->bindParam(':id_user', $_SESSION['users']['id']);
+        $stmt->bindParam(':status', $_GET['status']);
         $stmt->execute();
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -363,12 +401,12 @@ function bl()
     }
 }
 
-function orderall($keyword,$page = '', $perPage = '')
+function orderall($keyword, $page = '', $perPage = '')
 {
 
     $offset = ($page - 1) * $perPage;
 
-$sql = "SELECT * FROM orders WHERE id LIKE '%$keyword%' OR id LIKE '%$keyword%' ORDER BY created_time DESC LIMIT $offset, $perPage";
+    $sql = "SELECT * FROM orders WHERE id LIKE '%$keyword%' OR id LIKE '%$keyword%' ORDER BY created_time DESC LIMIT $offset, $perPage";
     return select($sql);
 }
 // function orderall($page = null, $perPage = null)
@@ -416,7 +454,25 @@ function orderiduser()
         die;
     }
 }
+function orderids()
+{
+    try {
+        $sql = "SELECT * FROM orders WHERE id_us = :id_us and status=:status ORDER BY created_time DESC";
 
+        $stmt = $GLOBALS['conn']->prepare($sql);
+
+        $stmt->bindParam(":id_us", $_SESSION['users']['id']);
+        $stmt->bindParam(":status", $_GET['status']);
+
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (Exception $e) {
+        echo 'ERROR: ' . $e->getMessage();
+        die;
+    }
+}
 function xoaorder()
 {
 

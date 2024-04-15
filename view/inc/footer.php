@@ -233,7 +233,7 @@
 	</span>
 </div>
 
-<script   src="view/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="view/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--=== =================================================================================== =========-->
 <script src="view/vendor/animsition/js/animsition.min.js"></script>
 <!--=== =================================================================================== =========-->
@@ -250,18 +250,18 @@
 	})
 </script>
 <!--===============================================================================================-->
-<script   src="view/vendor/daterangepicker/moment.min.js"></script>
-<script   src="view/vendor/daterangepicker/daterangepicker.js"></script>
+<script src="view/vendor/daterangepicker/moment.min.js"></script>
+<script src="view/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===  ===================================================================================  =========-->
-<script   src="view/vendor/slick/slick.min.js"></script>
-<script   src="view/js/slick-custom.js"></script>
+<script src="view/vendor/slick/slick.min.js"></script>
+<script src="view/js/slick-custom.js"></script>
 <!--===  ===================================================================================  =========-->
-<script   src="view/vendor/parallax100/parallax100.js"></script>
+<script src="view/vendor/parallax100/parallax100.js"></script>
 <script>
 	$('.parallax100').parallax100();
 </script>
 <!--===============================================================================================-->
-<script   src="view/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<script src="view/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <script>
 	$('.gallery-lb').each(function () { // các thùng chứa cho tất cả các phòng trưng bày của bạn
 		$(this).magnificPopup({
@@ -276,9 +276,9 @@
 </script>
 <script src="https://uhchat.net/code.php?f=072043"></script>
 <!--===============================================================================================-->
-<script   src="view/vendor/isotope/isotope.pkgd.min.js"></script>
+<script src="view/vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
-<script   src="view/vendor/sweetalert/sweetalert.min.js"></script>
+<script src="view/vendor/sweetalert/sweetalert.min.js"></script>
 <script>
 	$('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
 		e.preventDefault();
@@ -323,7 +323,7 @@
 
 </script>
 <!--===============================================================================================-->
-<script   src="view/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="view/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
 	$('.js-pscroll').each(function () {
 		$(this).css('position', 'relative');
@@ -370,26 +370,28 @@
 
 				},
 				success: function (datas) {
+
 					const cartData = JSON.parse(datas);
 					updateCartCount(cartData.info.num_order);
 					updateCartItems(cartData.buy);
 					updateTotal(cartData.info.total);
-
-					console.log(cartData)
-					console.log(datas)
 					if (cartData.info.num_order > 0) {
-						console.log('Show .block');
+
 						$('.block').show();
 						$('.none').hide();
 					} else {
-						console.log('Show .none');
+
 						$('.block').hide();
 						$('.none').show();
 					}
 				},
 				error: function (xhr, status, error) {
 					console.log('Error: ' + error);
+					// Xử lý lỗi tại đây, ví dụ:
+					// Hiển thị một thông báo lỗi cho người dùng
+					alert('Đã xảy ra lỗi trong quá trình xử lý yêu cầu.');
 				}
+
 			});
 		});
 
