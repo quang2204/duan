@@ -93,33 +93,36 @@ if (empty($_SESSION['users']) || $_SESSION['users']['role'] != 1) {
                             </tbody>
 
                         </table>
-
-                        <form action="?act=updateorder" id="statusForm" method="post">
-                            <input type="hidden" name='id' value="<?= htmlspecialchars($_GET['id']) ?>">
-                            <div class="radio-inputs " style='margin: 40px auto; width: 660px'>
-                                <label class="radio">
-                                    <input type="radio" name="status" value='0' onclick="submitForm();" <?= $orders['status'] === 0 ? 'checked' : '' ?>>
-                                    <span class="name">Đang xác nhận </span>
-                                </label>
-                                <label class="radio">
-                                    <input type="radio" name="status" value='3' onclick="submitForm();" <?= $orders['status'] === 3 ? 'checked' : '' ?>>
-                                    <span class="name">Xác nhận </span>
-                                </label>
-                                <label class="radio">
-                                    <input type="radio" name="status" value='2' onclick="submitForm();" <?= $orders['status'] === 2 ? 'checked' : '' ?>>
-                                    <span class="name">Hủy </span>
-                                </label>
-                                <label class="radio">
-                                    <input type="radio" name="status" value='-1' onclick="submitForm();" <?= $orders['status'] === -1 ? 'checked' : '' ?>>
-                                    <span class="name">Đang vận chuyển </span>
-                                </label>
-                                <label class="radio">
-                                    <input type="radio" name="status" value='-2' onclick="submitForm();" <?= $orders['status'] === -2 ? 'checked' : '' ?>>
-                                    <span class="name">Vận chuyển thành công </span>
-                                </label>
-                            </div>
-                        </form>
-
+                        <?php if ($orders['status'] !== 2 && $orders['status'] !== 1): ?>
+                            <form action="?act=updateorder" id="statusForm" method="post">
+                                <input type="hidden" name='id' value="<?= htmlspecialchars($_GET['id']) ?>">
+                                <div class="radio-inputs " style='margin: 40px auto; width: 660px'>
+                                    <?php if ($orders['status'] !== -1 && $orders['status'] !== -2): ?>
+                                        <label class="radio">
+                                            <input type="radio" name="status" value='3' onclick="submitForm();" <?= $orders['status'] === 3 ? 'checked' : '' ?>> <span class="name">Xác nhận </span>
+                                        </label>
+                                    <?php endif; ?>
+                                    <?php if ($orders['status'] == 0 ): ?>
+                                        <label class="radio">
+                                            <input type="radio" name="status" value='2' onclick="submitForm();" <?= $orders['status'] === 2 ? 'checked' : '' ?>> <span class="name">Hủy
+                                            </span>
+                                        </label>
+                                        <?php endif;?>
+                                        <?php if ($orders['status'] === 1 ): ?>
+                                        <label class="radio">
+                                            <input type="radio" name="status" value='-1' onclick="submitForm();" <?= $orders['status'] === -1 ? 'checked' : '' ?>> <span
+                                                                                                                                                                    class="name">Đang
+                                            vận chuyển </span>
+                                        </label>
+                                        <?php endif ?>
+                                        <label class="radio">
+                                            <input type="radio" name="status" value='-2' onclick="submitForm();" <?= $orders['status'] === -2 ? 'checked' : '' ?>> <span
+                                                                                                                                                                    class="name">Vận
+                                            chuyển thành công </span>
+                                        </label>
+                                </div>
+                            </form>
+                        <?php endif; ?>
 
                     </div>
                 </div>

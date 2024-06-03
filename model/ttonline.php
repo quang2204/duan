@@ -12,7 +12,7 @@ function check_online()
 
         $vnp_TxnRef = rand(00, 9999);
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://php.test/duan1/?act=hoadon&id=" . $vnp_TxnRef;
+        $vnp_Returnurl = "http://php.test/duanmau/?act=hoadon&id=" . $vnp_TxnRef;
 
 
         $vnp_TmnCode = "KTI4SAMY";//Mã website tại VNPAY 
@@ -155,8 +155,8 @@ function check_online()
         $orderInfo = "Thanh toán qua MoMo";
         $amount = $_POST['total'];
         $orderId = rand(00, 9999);
-        $redirectUrl = "http://php.test/duan1/?act=hoadon&id=" . $orderId;
-        $ipnUrl = "http://php.test/duan1/?act=hoadon&id=" . $orderId;
+        $redirectUrl = "http://php.test/duanmau/?act=hoadon&id=" . $orderId;
+        $ipnUrl = "http://php.test/duanmau/?act=hoadon&id=" . $orderId;
         $extraData = "";
 
 

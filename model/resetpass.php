@@ -2,7 +2,7 @@
 function resset()
 {
     try {
-        if (!empty ($_POST)) {
+        if (!empty($_POST)) {
             $email = $_POST['email'];
 
             $query = "SELECT * FROM taikhoan WHERE email = :email";
@@ -13,14 +13,14 @@ function resset()
 
             if ($stmt->rowCount() > 0) {
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                $name = $result['name']; 
+                $name = $result['name'];
                 $_SESSION['email'] = [
                     'email' => $result['email'],
 
                 ];
                 $token = bin2hex(random_bytes(32));
 
-                $reset_link = 'http://php.test/duan1/?act=reset_password&email=' . urlencode($email) . '&token=' . $token;
+                $reset_link = 'http://php.test/duanmau/?act=reset_password&email=' . urlencode($email) . '&token=' . $token;
                 $to = $email;
                 $subject = "Welcome";
                 $body = '<!DOCTYPE html>
@@ -117,13 +117,15 @@ function resset()
 function updatetoken()
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $pass = md5($_POST['pass']);
+
         try {
             $sql = "UPDATE taikhoan
                     SET 
                     pass = :pass
                     where email=:email";
             $stmt = $GLOBALS['conn']->prepare($sql);
-            $stmt->bindParam(':pass', $_POST['pass']);
+            $stmt->bindParam(':pass', $pass);
 
             $stmt->bindParam(':email', $_GET['email']);
 
@@ -138,37 +140,47 @@ function updatetoken()
 function doimk()
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset ($_POST['pass'], $_POST['thaypas'], $_POST['nhaplai'])) {
-            $pass = $_POST['pass'];
-            $updatepass = $_POST['thaypas'];
-            $nhaplai = $_POST['nhaplai'];
+        // Kiểm tra xem các trường cần thiết có tồn tại không
+        if (isset($_POST['pass'], $_POST['thaypas'], $_POST['nhaplai'])) {
+            // Lấy mật khẩu hiện tại, mật khẩu mới và nhập lại mật khẩu mới
+            $pass = md5($_POST['pass']);
+            $updatepass = md5($_POST['thaypas']);
+            $nhaplai = md5($_POST['nhaplai']);
 
-       
-            if (isset ($_SESSION['users']['pass'], $_SESSION['users']['id'])) {
-                $pro=getuser();
+            // Kiểm tra xem người dùng đã đăng nhập và thông tin người dùng có sẵn không
+            if (isset($_SESSION['users']['pass'], $_SESSION['users']['id'])) {
+                $pro = getuser();
                 $ktpass = $pro['pass'];
                 if ($pass == $ktpass) {
-                  
+
                     if ($updatepass == $nhaplai) {
+                        // Cập nhật mật khẩu mới vào cơ sở dữ liệu
                         $sql = 'UPDATE taikhoan SET pass=:pass WHERE id=:id';
                         $stmt = $GLOBALS['conn']->prepare($sql);
                         $stmt->bindParam(':pass', $updatepass);
                         $stmt->bindParam(':id', $_SESSION['users']['id']);
                         $stmt->execute();
+
+
                         header('Location: ?act=profile');
                         exit();
                     } else {
-                        echo '<script>alert("Mật khẩu nhập lại không đúng ")</script>';
+
+                        echo '<script>alert("Mật khẩu nhập lại không đúng")</script>';
                     }
                 } else {
+
                     echo '<script>alert("Mật khẩu hiện tại sai")</script>';
                 }
             } else {
+                // Hiển thị thông báo lỗi nếu thông tin tài khoản không hợp lệ
                 echo '<script>alert("Thông tin tài khoản không hợp lệ")</script>';
             }
         } else {
+            // Hiển thị thông báo lỗi nếu không có mật khẩu mới được cung cấp
             echo '<script>alert("Không có mật khẩu mới được cung cấp")</script>';
         }
     }
 }
+
 

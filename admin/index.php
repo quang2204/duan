@@ -11,6 +11,7 @@ require_once './model/product.php';
 require_once './model/danhmuc.php';
 require_once './model/order.php';
 require_once './model/mail.php';
+require_once './model/singin.php';
 require_once './model/user.php';
 require_once '../model/singin.php';
 require_once '../model/danhmuc.php';
@@ -104,7 +105,7 @@ if ($act === 'sanpham') {
     $updatedm = updatedm($id);
 
 } else if ($act === 'sign-up') {
-    $dk = login();
+    $dk = dk();
 } else if ($act === 'sign-in') {
     $dn = dn();
 } else if ($act === 'dx') {
@@ -154,7 +155,7 @@ if ($act === 'sanpham') {
     $tk = thongke();
 } elseif ($act === 'updateorder') {
     $update = status();
- 
+
 } elseif ($act === 'xoaimg') {
     $update = xoaimg();
 } elseif ($act === 'order') {
